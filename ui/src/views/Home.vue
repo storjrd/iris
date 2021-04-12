@@ -231,12 +231,17 @@ input {
 							</h1>
 
 							<p class="description my-4 text-white">
-								Get safer, faster, decentralized object storage at a fraction of the
-								cost. Experience it for yourself and start with 1 TB free when you
-								sign up.
+								Get safer, faster, decentralized object storage
+								at a fraction of the cost. Experience it for
+								yourself and start with 1 TB free when you sign
+								up.
 							</p>
 
-							<img src="@/assets/mascot.png" alt="Mascot" class="w-100 mt-4 mascot" />
+							<img
+								src="@/assets/mascot.png"
+								alt="Mascot"
+								class="w-100 mt-4 mascot"
+							/>
 						</div>
 					</div>
 
@@ -335,9 +340,7 @@ input {
 
 								<p>
 									Don't have an account?
-									<a href="#"
-										>Sign Up</a
-									>
+									<a href="#">Sign Up</a>
 								</p>
 							</div>
 						</div>
@@ -471,7 +474,7 @@ import MainFooter from "../components/MainFooter";
 export default {
 	name: "Home",
 	components: {
-		MainFooter,
+		MainFooter
 	}
-}
+};
 </script>

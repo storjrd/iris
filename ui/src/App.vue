@@ -333,12 +333,8 @@
 								</a>
 							</li>
 
-							<li
-								class="nav-item active"
-							>
-								<button
-									class="btn my-2 my-sm-0 nav-join"
-								>
+							<li class="nav-item active">
+								<button class="btn my-2 my-sm-0 nav-join">
 									Logout
 								</button>
 							</li>
