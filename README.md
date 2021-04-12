@@ -5,11 +5,13 @@
 
 ## Usage
 
+> Requires `make`, `docker`, and `docker-compose`
+
 ```
 make
 ```
 
-## Development
+### Development
 
 ```
 make dev
