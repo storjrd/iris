@@ -1,0 +1,20 @@
+version: "3.8"
+
+volumes:
+  ui-dist:
+
+services:
+  ui:
+    build: ui
+    ports:
+      - "127.0.0.1:3000:80"
+    volumes:
+      - ui-dist:/usr/share/nginx/html
+  ui-watcher:
+    build:
+      context: ui
+      dockerfile: Dockerfile.watcher
+    volumes:
+      - ui-dist:/app/dist
+      - ./ui/src:/app/src
+      - ./ui/public:/app/public
