@@ -29,24 +29,18 @@
 </style>
 
 <script>
+import { register } from "./lib/satellite.js";
+
+console.log({ register });
+
 export default {
 	async setup() {
-		const response = await fetch("/api/v0/auth/register", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				fullName: "Monty Anderson",
-				shortName: "Monty",
-				email: `monty+iris-testing-${Math.random().toString().slice(2)}@storj.io`,
-				password: "testtest123",
-				isProfessional: false,
-				position: "dj"
-			})
-		});
-
-		console.log('response', response.json());
+		console.log(await register({
+			fullName: "Monty Anderson",
+			shortName: "Monty",
+			email: "",
+			password: ""
+		}));
 	},
 };
 </script>
