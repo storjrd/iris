@@ -35,12 +35,14 @@ console.log({ register });
 
 export default {
 	async setup() {
-		console.log(await register({
-			fullName: "Monty Anderson",
-			shortName: "Monty",
-			email: "",
-			password: ""
-		}));
-	},
+		console.log(
+			await register({
+				fullName: "Monty Anderson",
+				shortName: "Monty",
+				email: "",
+				password: ""
+			})
+		);
+	}
 };
 </script>
