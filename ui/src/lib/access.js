@@ -2,13 +2,22 @@ import "./wasm_exec.js";
 
 const go = new Go();
 
-const wasmInit = WebAssembly.instantiateStreaming(fetch("access.wasm"), go.importObject);
+const wasmInit = WebAssembly.instantiateStreaming(
+	fetch("access.wasm"),
+	go.importObject
+);
 
 wasmInit.then((result) => {
 	go.run(result.instance);
 });
 
-export async function generateAccess({ key, buckets, satelliteUrl, passphrase, projectId }) {
+export async function generateAccess({
+	key,
+	buckets,
+	satelliteUrl,
+	passphrase,
+	projectId
+}) {
 	await wasmInit;
 
 	const permission = await global.newPermission();
@@ -56,6 +65,6 @@ export async function generateAccess({ key, buckets, satelliteUrl, passphrase, p
 	}
 
 	return {
-        access: access.value
-    };
-};
+		access: access.value
+	};
+}

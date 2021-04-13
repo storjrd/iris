@@ -29,7 +29,13 @@
 </style>
 
 <script>
-import { AccountAlreadyExistsError, register, login, getProjects, createApiKey } from "./lib/satellite.js";
+import {
+	AccountAlreadyExistsError,
+	register,
+	login,
+	getProjects,
+	createApiKey
+} from "./lib/satellite.js";
 import { generateAccess } from "./lib/access.js";
 import { getMtCredentials } from "./lib/mt.js";
 
@@ -38,7 +44,7 @@ export default {
 		const fullName = "Monty Anderson";
 		const shortName = "Monty";
 		const email = "monty+iris-testing-5@storj.io";
-		
+
 		/*
 		try {
 			await register({
@@ -61,13 +67,15 @@ export default {
 			password
 		});
 
-		console.log({token});
+		console.log({ token });
 
 		// find primary project
-		const { myProjects: [ project ] } = await getProjects({ token });
+		const {
+			myProjects: [project]
+		} = await getProjects({ token });
 		console.log({ project });
 
-		if(typeof project !== "object") {
+		if (typeof project !== "object") {
 			throw new Error("Couldn't find project");
 		}
 
@@ -85,7 +93,8 @@ export default {
 		const { access } = await generateAccess({
 			key,
 			projectId: project.id,
-			satelliteUrl: "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo@us2.tardigrade.io:7777",
+			satelliteUrl:
+				"12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo@us2.tardigrade.io:7777",
 			buckets: [],
 			passphrase: "testestsetset"
 		});

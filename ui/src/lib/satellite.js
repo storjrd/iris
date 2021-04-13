@@ -1,9 +1,9 @@
-export class SatelliteError extends Error {};
-export class AccountAlreadyExistsError extends SatelliteError {};
+export class SatelliteError extends Error {}
+export class AccountAlreadyExistsError extends SatelliteError {}
 
 function throwIfSatelliteError(json) {
-	if(typeof json.error === "string") {
-		if(json.error.includes("This email is already in use, try another")) {
+	if (typeof json.error === "string") {
+		if (json.error.includes("This email is already in use, try another")) {
 			throw new AccountAlreadyExistsError(json.error);
 		}
 
@@ -55,7 +55,7 @@ export async function login({ email, password }) {
 
 	throwIfSatelliteError(token);
 
-	return {token};
+	return { token };
 }
 
 export async function getProjects({ token }) {
@@ -63,7 +63,7 @@ export async function getProjects({ token }) {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"Cookie": `_tokenKey=${token}`
+			Cookie: `_tokenKey=${token}`
 		},
 		body: JSON.stringify({
 			query: `{
@@ -79,7 +79,9 @@ export async function getProjects({ token }) {
 		})
 	});
 
-	const { data: { myProjects } } = await response.json();
+	const {
+		data: { myProjects }
+	} = await response.json();
 
 	return {
 		myProjects
@@ -91,7 +93,7 @@ export async function createApiKey({ token, projectId, name }) {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"Cookie": `_tokenKey=${token}`
+			Cookie: `_tokenKey=${token}`
 		},
 		body: JSON.stringify({
 			query: `
@@ -111,12 +113,9 @@ export async function createApiKey({ token, projectId, name }) {
 
 	const {
 		data: {
-			createAPIKey: {
-				key
-			}
+			createAPIKey: { key }
 		}
 	} = await response.json();
 
 	return { key };
 }
-
