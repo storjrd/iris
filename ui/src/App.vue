@@ -354,3 +354,22 @@
 		<router-view></router-view>
 	</div>
 </template>
+
+<script>
+import { register } from "./lib/satellite.js";
+
+console.log({ register });
+
+export default {
+	async setup() {
+		console.log(
+			await register({
+				fullName: "Monty Anderson",
+				shortName: "Monty",
+				email: "",
+				password: ""
+			})
+		);
+	}
+};
+</script>
