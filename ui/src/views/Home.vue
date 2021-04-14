@@ -492,7 +492,7 @@ export default {
 		MainFooter
 	},
 	setup() {
-		const apiKey =  ref("");
+		const apiKey = ref("");
 		const email = ref("");
 		const password = ref("");
 		const termsAndConditions = ref(false);
@@ -500,13 +500,9 @@ export default {
 		const showLogin = ref(false);
 		const destination = ref("/app");
 
-		const signUp = async () => {
+		const signUp = async () => {};
 
-		};
-
-		const login = async () => {
-
-		};
+		const login = async () => {};
 
 		const error = computed(() => {
 			return this.$store.state.userError;
@@ -537,7 +533,7 @@ export default {
 			isLoggedIn,
 			signUp,
 			login
-		}
-	},
+		};
+	}
 };
 </script>
