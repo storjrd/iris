@@ -252,27 +252,31 @@ input {
 								class="alert alert-danger"
 								role="alert"
 							>
-								There has been an error
+								{{ error }}
 							</div>
 
-							<div>
+							<div v-if="showLogin === false">
 								<h5 class="mb-4">Get Started</h5>
 
 								<label for="emailAddress">Email Address</label>
 								<input
+									v-model="email"
 									required
 									type="email"
 									class="form-control input email"
 									placeholder="example@email.com"
+									v-on:keyup.enter="signUp"
 									id="emailAddress"
 								/>
 
 								<label for="password">Password</label>
 								<input
+									v-model="password"
 									required
 									type="password"
 									class="form-control input password"
 									placeholder="••••••••••••"
+									v-on:keyup.enter="signUp"
 									id="password"
 								/>
 
@@ -280,6 +284,7 @@ input {
 									class="custom-control custom-checkbox mb-3"
 								>
 									<input
+										v-model="termsAndConditions"
 										required
 										type="checkbox"
 										class="custom-control-input"
@@ -298,6 +303,7 @@ input {
 								</div>
 
 								<button
+									v-on:click="signUp"
 									class="btn btn-primary button btn-block"
 								>
 									Try Storj
@@ -306,17 +312,19 @@ input {
 								<hr />
 
 								<button
+									v-on:click="showLogin = true"
 									class="button-no-bg btn btn-success btn-block"
 								>
 									Login to Storj
 								</button>
 							</div>
 
-							<div>
+							<div v-if="showLogin === true">
 								<h5 class="mb-4">Login</h5>
 
 								<label for="emailAddress">Email Address</label>
 								<input
+									v-model="email"
 									type="email"
 									class="form-control input email"
 									placeholder="example@email.com"
@@ -326,13 +334,16 @@ input {
 
 								<label for="password">Password</label>
 								<input
+									v-model="password"
 									type="password"
 									class="form-control input password"
 									placeholder="••••••••••••"
+									v-on:keyup.enter="signUp"
 									id="password"
 								/>
 
 								<button
+									v-on:click="login"
 									class="btn btn-primary button signup-btn btn-block"
 								>
 									Login
@@ -340,7 +351,9 @@ input {
 
 								<p>
 									Don't have an account?
-									<a href="#">Sign Up</a>
+									<a v-on:click="showLogin = false" href="#"
+										>Sign Up</a
+									>
 								</p>
 							</div>
 						</div>
@@ -463,6 +476,7 @@ input {
 					</div>
 				</div>
 			</div>
+
 			<main-footer></main-footer>
 		</div>
 	</div>
@@ -470,11 +484,56 @@ input {
 
 <script>
 import MainFooter from "../components/MainFooter";
+import { ref, watch, computed } from "vue";
 
 export default {
 	name: "Home",
 	components: {
 		MainFooter
+	},
+	setup() {
+		const apiKey = ref("");
+		const email = ref("");
+		const password = ref("");
+		const termsAndConditions = ref(false);
+		const message = ref("");
+		const showLogin = ref(false);
+		const destination = ref("/app");
+
+		const signUp = async () => {};
+
+		const login = async () => {};
+
+		const error = computed(() => {
+			return this.$store.state.userError;
+		});
+
+		const isLoggedIn = computed(() => {
+			return this.$store.getters.isLoggedIn;
+		});
+
+		watch(isLoggedIn, (loggedIn) => {
+			if (loggedIn === true) {
+				this.$router.push({ path: destination });
+			}
+		});
+
+		// redirection
+		if (this.$route.query.app) this.destination = "/app/apps";
+		else this.destination = "/app/browser";
+
+		return {
+			apiKey,
+			email,
+			password,
+			termsAndConditions,
+			message,
+			showLogin,
+			error,
+			isLoggedIn,
+			signUp,
+			login
+		};
 	}
 };
 </script>
