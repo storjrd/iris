@@ -27,7 +27,7 @@
 		</td>
 		<td class="no-border">4/16/2021, 12:32:52 PM</td>
 		<td class="d-flex justify-content-lg-end no-border">
-			<div v-else class="d-inline-flex">
+			<div class="d-inline-flex">
 				<div class="dropleft">
 					<div
 						v-if="false"
@@ -65,7 +65,7 @@
 					</button>
 					<div class="dropdown-menu shadow show" v-if="false">
 						<button
-							v-if=""
+							v-if="false"
 							class="dropdown-item action p-3"
 							v-on:click=""
 						>
