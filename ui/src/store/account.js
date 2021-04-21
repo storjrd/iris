@@ -16,9 +16,14 @@ export default {
     },
     actions: {
         async signUp({ commit }, { email, password }) {
-            const { token } = await register({
+            await register({
                 fullName: "Iris User",
                 shortName: "Iris User",
+                email,
+                password
+            });
+
+            const { token } = login({
                 email,
                 password
             });
