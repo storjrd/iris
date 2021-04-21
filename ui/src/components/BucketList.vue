@@ -73,7 +73,7 @@ tbody {
 								hidden
 								multiple
 							/>
-							<button class="btn btn-primary btn-block w-75">
+							<button class="btn btn-primary btn-block w-75" @click="createBucket">
 								<svg
 									width="22"
 									height="20"
@@ -109,15 +109,16 @@ tbody {
 					<div>
 						<table class="table table-hover">
 							<th class="table-heading" scope="col">Name</th>
-							<th class="table-heading" scope="col">
+							<!--<th class="table-heading" scope="col">
 								Date Added
-							</th>
+							</th>-->
 							<th class="table-heading"></th>
 
 							<tbody>
 								<bucket
 									v-for="bucket in buckets"
 									v-bind:bucket="bucket"
+									v-bind:key="bucket"
 								></bucket>
 							</tbody>
 						</table>
@@ -129,8 +130,13 @@ tbody {
 </template>
 
 <script>
-import { ref } from "vue";
+import { inject, ref } from "vue";
+import S3 from "aws-sdk/clients/s3";
+
 import Bucket from "./Bucket";
+
+import { generateAccess } from "../lib/access";
+import { getCredentials } from "../lib/mt";
 
 export default {
 	name: "BucketList",
@@ -139,15 +145,33 @@ export default {
 	},
 	setup() {
 		const buckets = ref([]);
-		buckets.value = [
-			"test-bucket",
-			"another-bucket",
-			"cool-bucket",
-			"storj-bucket"
-		];
+
+		const store = inject("store");
+
+		console.log(store.getters["gateway/rootClient"]);
+
+		buckets.value = [];
+
+		async function listBuckets() {
+			buckets.value = await store.dispatch("gateway/getBuckets");
+		}
+
+		async function createBucket() {
+			const name = prompt("Bucket name");
+
+			await store.dispatch("gateway/createBucket", { name });
+			await listBuckets();
+		}
+
+		listBuckets();
+
 		return {
-			buckets
+			buckets,
+			createBucket
 		};
+	},
+	createBucket() {
+
 	}
 };
 </script>

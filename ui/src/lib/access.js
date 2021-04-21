@@ -13,10 +13,10 @@ wasmInit.then((result) => {
 
 export async function generateAccess({
 	key,
-	buckets,
-	satelliteUrl,
-	passphrase,
-	projectId
+	projectId,
+	buckets = [],
+	satelliteUrl = "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo@us2.storj.io:7777",
+	passphrase = ""
 }) {
 	await wasmInit;
 

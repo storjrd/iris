@@ -29,7 +29,7 @@
 				class="custom-control-input"
 				id="termsCheck"
 			/>
-			<label class="custom-control-label" for="termsCheck"
+			<label class= "custom-control-label" for="termsCheck"
 				>Accept the
 				<a
 					href="https://tardigrade.io/terms-of-service/"
@@ -66,9 +66,6 @@ export default {
 				password: this.password
 			});
 
-			console.log(this.$store);
-
-			alert(this.$store.state.account.token);
 			this.routeToBucketsView();
 		},
 		routeToBucketsView() {

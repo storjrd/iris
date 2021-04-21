@@ -1,4 +1,4 @@
-import { register, login, createApiKey } from "../lib/satellite";
+import { register, login, createProject, createApiKey, getProjects } from "../lib/satellite";
 
 export default {
 	namespaced: true,
@@ -6,16 +6,21 @@ export default {
 	state: () => ({
 		email: null,
 		token: null,
-		apiKey: null
+		apiKey: null,
+		projectId: null
 	}),
 	mutations: {
-		setSession(state, { email, token }) {
+		setSession(state, { email, token, apiKey, projectId }) {
+			console.log("setSession", { email, token, apiKey, projectId });
+
 			state.email = email;
 			state.token = token;
+			state.apiKey = apiKey;
+			state.projectId = projectId;
 		}
 	},
 	actions: {
-		async signUp({ commit }, { email, password }) {
+		async signUp({ commit, dispatch }, { email, password }) {
 			await register({
 				fullName: "Iris User",
 				shortName: "Iris User",
@@ -23,15 +28,10 @@ export default {
 				password
 			});
 
-			const { token } = await login({
+			return dispatch("login", {
 				email,
 				password
-			});
-
-			commit("setSession", {
-				email,
-				token
-			});
+			})
 		},
 
 		async login({ commit }, { email, password }) {
@@ -40,9 +40,37 @@ export default {
 				password
 			});
 
+			// project name to find and create Iris project
+			const projectName = "Iris";
+
+			const { myProjects } = await getProjects({ token });
+			let projectId = myProjects.find(project => project.name === projectName).id;
+
+			// create new project if it doesn't exist
+			if(typeof projectId !== "string") {
+				console.log("couldn't find Iris project, creating new one");
+
+				const { id } = await createProject({
+					token,
+					name: projectName,
+					description: "Your buckets created and managed by Iris."
+				});
+
+				projectId = id;
+			}
+
+			// create new api key
+			const { key } = await createApiKey({
+				token,
+				projectId,
+				name: `${projectName} Key ${Date.now()}`
+			});
+
 			commit("setSession", {
 				email,
-				token
+				token,
+				projectId,
+				apiKey: key
 			});
 		}
 	},
