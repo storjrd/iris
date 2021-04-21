@@ -252,11 +252,12 @@ input {
 								class="alert alert-danger"
 								role="alert"
 							>
-								There has been an error
+								{{ error }}
 							</div>
 
 							<!-- sign up / login -->
 							<router-view></router-view>
+
 						</div>
 					</div>
 				</div>
@@ -377,6 +378,7 @@ input {
 					</div>
 				</div>
 			</div>
+
 			<main-footer></main-footer>
 		</div>
 	</div>
@@ -384,11 +386,56 @@ input {
 
 <script>
 import MainFooter from "../components/MainFooter";
+import { ref, watch, computed } from "vue";
 
 export default {
 	name: "Home",
 	components: {
 		MainFooter
+	},
+	setup() {
+		const apiKey = ref("");
+		const email = ref("");
+		const password = ref("");
+		const termsAndConditions = ref(false);
+		const message = ref("");
+		const showLogin = ref(false);
+		const destination = ref("/app");
+
+		const signUp = async () => {};
+
+		const login = async () => {};
+
+		const error = computed(() => {
+			return this.$store.state.userError;
+		});
+
+		const isLoggedIn = computed(() => {
+			return this.$store.getters.isLoggedIn;
+		});
+
+		watch(isLoggedIn, (loggedIn) => {
+			if (loggedIn === true) {
+				this.$router.push({ path: destination });
+			}
+		});
+
+		// redirection
+		if (this.$route.query.app) this.destination = "/app/apps";
+		else this.destination = "/app/browser";
+
+		return {
+			apiKey,
+			email,
+			password,
+			termsAndConditions,
+			message,
+			showLogin,
+			error,
+			isLoggedIn,
+			signUp,
+			login
+		};
 	}
 };
 </script>
