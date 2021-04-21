@@ -90,6 +90,40 @@ export async function getProjects({ token }) {
 	};
 }
 
+export async function createProject({ token, name, description }) {
+	const response = await fetch("/api/v0/graphql", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Cookie: `_tokenKey=${token}`
+		},
+		body: JSON.stringify({
+			query: `
+				mutation ($name: String!, $description: String!) {
+					createProject(input: {name: $name, description: $description}) {
+						id
+						__typename
+					}
+				}
+			`,
+			variables: {
+				name,
+				description
+			}
+		})
+	});
+
+	const {
+		data: {
+			createProject: {
+				id
+			}
+		}
+	} = await response.json();
+
+	return { id };
+}
+
 export async function createApiKey({ token, projectId, name }) {
 	const response = await fetch("/api/v0/graphql", {
 		method: "POST",

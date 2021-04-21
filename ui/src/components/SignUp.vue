@@ -72,6 +72,7 @@ export default {
 			this.routeToBucketsView();
 		},
 		routeToBucketsView() {
+			console.log('going to buckets');
 			this.$router.push({ path: "/app/buckets" });
 		}
 	},
