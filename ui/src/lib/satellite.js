@@ -115,9 +115,7 @@ export async function createProject({ token, name, description }) {
 
 	const {
 		data: {
-			createProject: {
-				id
-			}
+			createProject: { id }
 		}
 	} = await response.json();
 

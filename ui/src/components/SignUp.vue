@@ -29,7 +29,7 @@
 				class="custom-control-input"
 				id="termsCheck"
 			/>
-			<label class= "custom-control-label" for="termsCheck"
+			<label class="custom-control-label" for="termsCheck"
 				>Accept the
 				<a
 					href="https://tardigrade.io/terms-of-service/"
@@ -69,7 +69,7 @@ export default {
 			this.routeToBucketsView();
 		},
 		routeToBucketsView() {
-			console.log('going to buckets');
+			console.log("going to buckets");
 			this.$router.push({ path: "/app/buckets" });
 		}
 	},

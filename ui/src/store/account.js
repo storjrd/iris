@@ -1,4 +1,10 @@
-import { register, login, createProject, createApiKey, getProjects } from "../lib/satellite";
+import {
+	register,
+	login,
+	createProject,
+	createApiKey,
+	getProjects
+} from "../lib/satellite";
 
 export default {
 	namespaced: true,
@@ -31,7 +37,7 @@ export default {
 			return dispatch("login", {
 				email,
 				password
-			})
+			});
 		},
 
 		async login({ commit }, { email, password }) {
@@ -44,10 +50,12 @@ export default {
 			const projectName = "Iris";
 
 			const { myProjects } = await getProjects({ token });
-			let projectId = myProjects.find(project => project.name === projectName).id;
+			let projectId = myProjects.find(
+				(project) => project.name === projectName
+			).id;
 
 			// create new project if it doesn't exist
-			if(typeof projectId !== "string") {
+			if (typeof projectId !== "string") {
 				console.log("couldn't find Iris project, creating new one");
 
 				const { id } = await createProject({

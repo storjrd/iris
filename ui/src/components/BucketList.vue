@@ -73,7 +73,10 @@ tbody {
 								hidden
 								multiple
 							/>
-							<button class="btn btn-primary btn-block w-75" @click="createBucket">
+							<button
+								class="btn btn-primary btn-block w-75"
+								@click="createBucket"
+							>
 								<svg
 									width="22"
 									height="20"
@@ -170,8 +173,6 @@ export default {
 			createBucket
 		};
 	},
-	createBucket() {
-
-	}
+	createBucket() {}
 };
 </script>
