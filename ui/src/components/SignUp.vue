@@ -67,6 +67,8 @@ export default {
 			});
 
 			console.log(this.$store);
+
+			alert(this.$store.state.account.token);
 		}
 	}
 }
