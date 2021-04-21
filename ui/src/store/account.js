@@ -1,6 +1,8 @@
 import { register, login, createApiKey } from "../lib/satellite";
 
 export default {
+    namespaced: true,
+
     state: () => ({
         email: null,
         token: null,
@@ -14,7 +16,7 @@ export default {
     },
     actions: {
         async signUp({ commit }, { email, password }) {
-            const { token } = register({
+            const { token } = await register({
                 fullName: "Iris User",
                 shortName: "Iris User",
                 email,

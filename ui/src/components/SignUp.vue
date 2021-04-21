@@ -9,6 +9,7 @@
 			class="form-control input email"
 			placeholder="example@email.com"
 			id="emailAddress"
+			v-model="email"
 		/>
 
 		<label for="password">Password</label>
@@ -18,6 +19,7 @@
 			class="form-control input password"
 			placeholder="••••••••••••"
 			id="password"
+			v-model="password"
 		/>
 
 		<div class="custom-control custom-checkbox mb-3">
