@@ -39,7 +39,9 @@
 			>
 		</div>
 
-		<button class="btn btn-primary button btn-block" @click="signUp">Try Storj</button>
+		<button class="btn btn-primary button btn-block" @click="signUp">
+			Try Storj
+		</button>
 
 		<hr />
 
@@ -71,5 +73,5 @@ export default {
 			alert(this.$store.state.account.token);
 		}
 	}
-}
+};
 </script>
