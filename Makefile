@@ -17,7 +17,6 @@ prettier-check:
 	prettier --check .
 
 release:
-	rm -f iris-ui.tar
-	docker build -t iris-ui:latest ui
-	docker save iris-ui:latest > iris-ui.tar
-	gpg --sign iris-ui.tar
+	docker-compose build
+	docker save iris_ui:latest > iris_ui.tar
+	gpg --sign iris_ui.tar
