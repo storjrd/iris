@@ -257,7 +257,6 @@ input {
 
 							<!-- sign up / login -->
 							<router-view></router-view>
-
 						</div>
 					</div>
 				</div>
