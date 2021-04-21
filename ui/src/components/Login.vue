@@ -21,7 +21,10 @@
 			v-model="password"
 		/>
 
-		<button class="btn btn-primary button signup-btn btn-block" @click="login">
+		<button
+			class="btn btn-primary button signup-btn btn-block"
+			@click="login"
+		>
 			Login
 		</button>
 
@@ -41,7 +44,10 @@ export default {
 	}),
 	methods: {
 		async login() {
-			await this.$store.dispatch("account/login", { email: this.email, password: this.password });
+			await this.$store.dispatch("account/login", {
+				email: this.email,
+				password: this.password
+			});
 			this.routeToBucketsView();
 		},
 
@@ -53,6 +59,6 @@ export default {
 		if (this.$store.state.account.token) {
 			this.routeToBucketsView();
 		}
-	},
-}
+	}
+};
 </script>

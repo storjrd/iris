@@ -79,6 +79,6 @@ export default {
 		if (this.$store.state.account.token) {
 			this.routeToBucketsView();
 		}
-	},
+	}
 };
 </script>
