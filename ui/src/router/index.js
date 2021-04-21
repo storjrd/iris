@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../views/Dashboard";
+
+import Login from "../components/Login";
+import SignUp from "../components/SignUp";
+
 import BucketCreation from "../components/BucketCreation";
 import BucketAccess from "../components/BucketAccess";
 import BucketList from "../components/BucketList";
@@ -9,7 +13,17 @@ const routes = [
 	{
 		path: "/",
 		name: "Home",
-		component: Home
+		component: Home,
+		children: [
+			{
+				path: "login",
+				component: Login
+			},
+			{
+				path: "",
+				component: SignUp
+			}
+		]
 	},
 	{
 		path: "/app",

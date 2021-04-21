@@ -255,94 +255,9 @@ input {
 								There has been an error
 							</div>
 
-							<div>
-								<h5 class="mb-4">Get Started</h5>
+							<!-- sign up / login -->
+							<router-view></router-view>
 
-								<label for="emailAddress">Email Address</label>
-								<input
-									required
-									type="email"
-									class="form-control input email"
-									placeholder="example@email.com"
-									id="emailAddress"
-								/>
-
-								<label for="password">Password</label>
-								<input
-									required
-									type="password"
-									class="form-control input password"
-									placeholder="••••••••••••"
-									id="password"
-								/>
-
-								<div
-									class="custom-control custom-checkbox mb-3"
-								>
-									<input
-										required
-										type="checkbox"
-										class="custom-control-input"
-										id="termsCheck"
-									/>
-									<label
-										class="custom-control-label"
-										for="termsCheck"
-										>Accept the
-										<a
-											href="https://tardigrade.io/terms-of-service/"
-											target="_blank"
-											>Terms &amp; Conditions</a
-										></label
-									>
-								</div>
-
-								<button
-									class="btn btn-primary button btn-block"
-								>
-									Try Storj
-								</button>
-
-								<hr />
-
-								<button
-									class="button-no-bg btn btn-success btn-block"
-								>
-									Login to Storj
-								</button>
-							</div>
-
-							<div>
-								<h5 class="mb-4">Login</h5>
-
-								<label for="emailAddress">Email Address</label>
-								<input
-									type="email"
-									class="form-control input email"
-									placeholder="example@email.com"
-									v-on:keyup.enter="signUp"
-									id="emailAddress"
-								/>
-
-								<label for="password">Password</label>
-								<input
-									type="password"
-									class="form-control input password"
-									placeholder="••••••••••••"
-									id="password"
-								/>
-
-								<button
-									class="btn btn-primary button signup-btn btn-block"
-								>
-									Login
-								</button>
-
-								<p>
-									Don't have an account?
-									<a href="#">Sign Up</a>
-								</p>
-							</div>
 						</div>
 					</div>
 				</div>
