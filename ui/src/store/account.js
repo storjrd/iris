@@ -23,7 +23,7 @@ export default {
 				password
 			});
 
-			const { token } = login({
+			const { token } = await login({
 				email,
 				password
 			});
@@ -35,7 +35,7 @@ export default {
 		},
 
 		async login({ commit }, { email, password }) {
-			const { token } = login({
+			const { token } = await login({
 				email,
 				password
 			});

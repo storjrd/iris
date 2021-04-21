@@ -61,8 +61,6 @@ export default {
 	}),
 	methods: {
 		async signUp() {
-			console.log("click");
-
 			await this.$store.dispatch("account/signUp", {
 				email: this.email,
 				password: this.password
@@ -71,7 +69,16 @@ export default {
 			console.log(this.$store);
 
 			alert(this.$store.state.account.token);
+			this.routeToBucketsView();
+		},
+		routeToBucketsView() {
+			this.$router.push({ path: "/app/buckets" });
 		}
-	}
+	},
+	created() {
+		if (this.$store.state.account.token) {
+			this.routeToBucketsView();
+		}
+	},
 };
 </script>
