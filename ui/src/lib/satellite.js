@@ -37,6 +37,8 @@ export async function register({ fullName, shortName, email, password }) {
 			`Satellite register returned bad value ${JSON.stringify(token)}`
 		);
 	}
+
+	return { token };
 }
 
 export async function login({ email, password }) {

@@ -37,7 +37,7 @@
 			>
 		</div>
 
-		<button class="btn btn-primary button btn-block">Try Storj</button>
+		<button class="btn btn-primary button btn-block" @click="signUp">Try Storj</button>
 
 		<hr />
 
@@ -48,3 +48,24 @@
 		</router-link>
 	</div>
 </template>
+
+<script>
+export default {
+	data: () => ({
+		email: "",
+		password: ""
+	}),
+	methods: {
+		async signUp() {
+			console.log("click");
+
+			await this.$store.dispatch("account/signUp", {
+				email: this.email,
+				password: this.password
+			});
+
+			console.log(this.$store);
+		}
+	}
+}
+</script>

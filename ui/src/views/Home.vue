@@ -406,11 +406,11 @@ export default {
 		const login = async () => {};
 
 		const error = computed(() => {
-			return this.$store.state.userError;
+			//return this.$store.state.userError;
 		});
 
 		const isLoggedIn = computed(() => {
-			return this.$store.getters.isLoggedIn;
+			//return this.$store.getters.isLoggedIn;
 		});
 
 		watch(isLoggedIn, (loggedIn) => {
@@ -420,8 +420,8 @@ export default {
 		});
 
 		// redirection
-		if (this.$route.query.app) this.destination = "/app/apps";
-		else this.destination = "/app/browser";
+		//if (this.$route.query.app) this.destination = "/app/apps";
+		//else this.destination = "/app/browser";
 
 		return {
 			apiKey,
