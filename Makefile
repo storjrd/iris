@@ -12,3 +12,6 @@ prettier:
 	git add .
 	git commit -m "prettierize"
 	git push
+
+prettier-check:
+	prettier --check .
