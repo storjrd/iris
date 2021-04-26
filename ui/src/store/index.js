@@ -1,7 +1,9 @@
 import { createStore } from "vuex";
+import { files } from "browser";
 
 import account from "./account";
 import gateway from "./gateway";
+import buckets from "./buckets";
 
 export default createStore({
 	state: {},
@@ -9,6 +11,8 @@ export default createStore({
 	actions: {},
 	modules: {
 		account,
-		gateway
+		gateway,
+		buckets,
+		files
 	}
 });

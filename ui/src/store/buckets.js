@@ -1,19 +1,19 @@
 export default {
+	namespaced: true,
 	state: () => ({
 		names: [],
 		passphrases: {}
 	}),
-
 	getters: {
 		// is the bucket unlocked?
 		isUnlocked: (state) => (bucket) => bucket in state.passphrases,
 		s3: (state) => (bucket) => getS3ClientForBucketAndPassphrase()
 	},
-
 	mutations: {
 		// called with the list of all buckets in a user's project
 		setNames(state, names) {
 			state.names = names;
+			console.log(state, names);
 		},
 
 		// called when the user sets a passphrase
@@ -21,11 +21,16 @@ export default {
 			state.passphrases[name] = passphrase;
 		}
 	},
-
 	actions: {
-		async getBuckets({ dispatch, commit }) {
+		async list({ dispatch, commit }) {
 			// get s3 client with access to all buckets [but no passphrase set]
-			const s3 = await dispatch("gateway/getRootClient");
+			const s3 = await dispatch(
+				"gateway/getRootClient",
+				{},
+				{
+					root: true
+				}
+			);
 
 			const { Buckets } = await s3.listBuckets({}).promise();
 

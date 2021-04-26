@@ -3,7 +3,7 @@ import "./wasm_exec.js";
 const go = new Go();
 
 const wasmInit = WebAssembly.instantiateStreaming(
-	fetch("access.wasm"),
+	fetch("/access.wasm"),
 	go.importObject
 );
 

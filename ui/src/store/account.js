@@ -9,12 +9,22 @@ import {
 export default {
 	namespaced: true,
 
-	state: () => ({
-		email: null,
-		token: null,
-		apiKey: null,
-		projectId: null
-	}),
+	state: () => {
+		const sessionJson = localStorage.getItem("session");
+
+		if (typeof sessionJson === "string") {
+			const cachedLogin = JSON.parse(sessionJson);
+
+			return cachedLogin;
+		}
+
+		return {
+			email: null,
+			token: null,
+			apiKey: null,
+			projectId: null
+		};
+	},
 	mutations: {
 		setSession(state, { email, token, apiKey, projectId }) {
 			console.log("setSession", { email, token, apiKey, projectId });
@@ -23,6 +33,16 @@ export default {
 			state.token = token;
 			state.apiKey = apiKey;
 			state.projectId = projectId;
+
+			localStorage.setItem(
+				"session",
+				JSON.stringify({
+					email,
+					token,
+					apiKey,
+					projectId
+				})
+			);
 		}
 	},
 	actions: {
@@ -46,10 +66,11 @@ export default {
 				password
 			});
 
-			// project name to find and create Iris project
+			// find and create Iris project
 			const projectName = "Iris";
 
 			const { myProjects } = await getProjects({ token });
+
 			let projectId = myProjects.find(
 				(project) => project.name === projectName
 			).id;

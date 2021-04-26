@@ -354,3 +354,34 @@
 		<router-view></router-view>
 	</div>
 </template>
+
+<script>
+export default {
+	computed: {
+		isLoggedIn() {
+			return this.$store.getters["account/isLoggedIn"];
+		}
+	},
+	methods: {
+		navigateLogin() {
+			if (this.isLoggedIn === true) {
+				//this.$router.push({
+				//	path: "/app/buckets"
+				//});
+			} else {
+				this.$router.push({
+					path: "/"
+				});
+			}
+		}
+	},
+	watch: {
+		isLoggedIn() {
+			this.navigateLogin();
+		}
+	},
+	created() {
+		this.navigateLogin();
+	}
+};
+</script>

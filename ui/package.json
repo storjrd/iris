@@ -12,7 +12,8 @@
 		"prettier": "^2.2.1",
 		"vue": "^3.0.0",
 		"vue-router": "^4.0.0-0",
-		"vuex": "^4.0.0-0"
+		"vuex": "^4.0.0-0",
+		"browser": "git+https://github.com/storj/browser#699cbc2aee22cc3f734f3ec9348a8f8f8a5febfe"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-router": "~4.5.0",

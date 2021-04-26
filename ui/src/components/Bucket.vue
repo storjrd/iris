@@ -23,7 +23,15 @@
 					fill="#768394"
 				></path>
 			</svg>
-			<span class="ml-3">{{ bucket }}</span>
+			<span class="ml-3">
+				<span v-if="isUnlocked" v-on:click="browse" class="text-success">
+					{{ bucket }}
+				</span>
+
+				<span v-else v-on:click="unlock" class="text-danger">
+					{{ bucket }}
+				</span>
+			</span>
 		</td>
 		<td class="no-border">4/16/2021, 12:32:52 PM</td>
 		<td class="d-flex justify-content-lg-end no-border">
@@ -150,6 +158,29 @@ export default {
 		return {
 			bucket
 		};
+	},
+	computed: {
+		isUnlocked() {
+			return this.$store.getters["buckets/isUnlocked"](this.bucket);
+		}
+	},
+	methods: {
+		unlock() {
+			this.$router.push({
+				name: "unlock",
+				params: {
+					bucket: this.bucket
+				}
+			});
+		},
+		browse() {
+			this.$router.push({
+				name: "browse",
+				params: {
+					bucket: this.bucket
+				}
+			});
+		}
 	}
 };
 </script>

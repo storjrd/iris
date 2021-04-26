@@ -8,6 +8,8 @@ import SignUp from "../components/SignUp";
 import BucketCreation from "../components/BucketCreation";
 import BucketAccess from "../components/BucketAccess";
 import BucketList from "../components/BucketList";
+import Unlock from "../components/Unlock";
+import Browse from "../components/Browse";
 
 const routes = [
 	{
@@ -40,6 +42,16 @@ const routes = [
 			{
 				path: "buckets",
 				component: BucketList
+			},
+			{
+				name: "unlock",
+				path: "buckets/:bucket/unlock",
+				component: Unlock
+			},
+			{
+				name: "browse",
+				path: "buckets/:bucket/browse",
+				component: Browse
 			}
 		]
 	}

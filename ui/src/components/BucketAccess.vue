@@ -6,6 +6,7 @@
 </style>
 
 <template>
+	<div>
 	<h2 class="text-center mb-5 title">Access test-bucket</h2>
 	<form class="container col-6">
 		<div class="mb-3">
@@ -24,4 +25,5 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Continue</button>
 	</form>
+	</div>
 </template>

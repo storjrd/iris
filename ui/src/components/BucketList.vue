@@ -73,10 +73,7 @@ tbody {
 								hidden
 								multiple
 							/>
-							<button
-								class="btn btn-primary btn-block w-75"
-								@click="createBucket"
-							>
+							<button class="btn btn-primary btn-block w-75">
 								<svg
 									width="22"
 									height="20"
@@ -134,45 +131,20 @@ tbody {
 
 <script>
 import { inject, ref } from "vue";
-import S3 from "aws-sdk/clients/s3";
-
 import Bucket from "./Bucket";
-
-import { generateAccess } from "../lib/access";
-import { getCredentials } from "../lib/mt";
 
 export default {
 	name: "BucketList",
 	components: {
 		Bucket
 	},
-	setup() {
-		const buckets = ref([]);
-
-		const store = inject("store");
-
-		console.log(store.getters["gateway/rootClient"]);
-
-		buckets.value = [];
-
-		async function listBuckets() {
-			buckets.value = await store.dispatch("gateway/getBuckets");
+	computed: {
+		buckets() {
+			return this.$store.state.buckets.names;
 		}
-
-		async function createBucket() {
-			const name = prompt("Bucket name");
-
-			await store.dispatch("gateway/createBucket", { name });
-			await listBuckets();
-		}
-
-		listBuckets();
-
-		return {
-			buckets,
-			createBucket
-		};
 	},
-	createBucket() {}
+	created() {
+		this.$store.dispatch("buckets/list");
+	}
 };
 </script>
