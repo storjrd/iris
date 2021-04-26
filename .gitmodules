@@ -1,0 +1,3 @@
+[submodule "ui/browser"]
+	path = ui/browser
+	url = https://github.com/storj/browser

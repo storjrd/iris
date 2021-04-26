@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { FileBrowser } from "browser";
+import FileBrowser from "../../browser/src/components/FileBrowser";
 
 export default {
 	computed: {
