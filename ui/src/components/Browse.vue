@@ -10,25 +10,23 @@
 </style>
 
 <template>
-    <div>
-        <file-browser></file-browser>
-    </div>
+	<div>
+		<file-browser></file-browser>
+	</div>
 </template>
 
 <script>
 import { FileBrowser } from "browser";
 
 export default {
-    computed: {
-        bucket() {
-            return this.$route.params.bucket;
-        }
-    },
-    methods: {
-
-    },
-    components: {
-        FileBrowser
-    }
-}
+	computed: {
+		bucket() {
+			return this.$route.params.bucket;
+		}
+	},
+	methods: {},
+	components: {
+		FileBrowser
+	}
+};
 </script>

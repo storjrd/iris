@@ -24,7 +24,11 @@
 				></path>
 			</svg>
 			<span class="ml-3">
-				<span v-if="isUnlocked" v-on:click="browse" class="text-success">
+				<span
+					v-if="isUnlocked"
+					v-on:click="browse"
+					class="text-success"
+				>
 					{{ bucket }}
 				</span>
 
