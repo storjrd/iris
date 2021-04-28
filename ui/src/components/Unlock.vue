@@ -54,7 +54,10 @@ export default {
 			});
 
 			this.$router.push({
-				path: "/app/buckets"
+				name: "browse",
+				params: {
+					bucket: this.bucket
+				}
 			});
 		}
 	}

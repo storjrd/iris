@@ -45,6 +45,28 @@ export default {
 			};
 		},
 
+		async getBucketCredentials({
+			rootState: {
+				account: { apiKey, projectId }
+			}
+		}, { name, passphrase }) {
+			const { access } = await generateAccess({
+				key: apiKey,
+				projectId,
+				passphrase,
+				buckets: [ name ]
+			});
+
+			const { accessKeyId, secretAccessKey } = await getCredentials({
+				access
+			});
+
+			return {
+				accessKeyId,
+				secretAccessKey
+			};
+		},
+
 		async getRootClient({ dispatch }) {
 			const { accessKeyId, secretAccessKey } = await dispatch(
 				"getRootCredentials"

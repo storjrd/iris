@@ -369,9 +369,9 @@ export default {
 				//	path: "/app/buckets"
 				//});
 			} else {
-				this.$router.push({
-					path: "/"
-				});
+				////this.$router.push({
+				//	path: "/"
+				//});
 			}
 		}
 	},
