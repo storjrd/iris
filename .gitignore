@@ -1,4 +1,4 @@
 package.json
 package-lock.json
 *.tar
-*.gpg
+*.asc
