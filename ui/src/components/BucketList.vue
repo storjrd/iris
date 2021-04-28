@@ -44,6 +44,13 @@ tbody {
 .div-responsive {
 	min-height: 400px;
 }
+
+.folder-input:focus {
+ 	color: #fe5d5d;
+ 	box-shadow: 0 0 0 0.2rem rgba(254, 93, 93, 0.5) !important;
+ 	border-color: #fe5d5d !important;
+ 	outline: none !important;
+ }
 </style>
 
 <template>
@@ -73,7 +80,7 @@ tbody {
 								hidden
 								multiple
 							/>
-							<button class="btn btn-primary btn-block w-75">
+							<button class="btn btn-primary btn-block w-75" v-on:click="displayBucketInput">
 								<svg
 									width="22"
 									height="20"
@@ -115,13 +122,66 @@ tbody {
 							<th class="table-heading"></th>
 
 							<tbody>
+								<tr
+									v-if="createBucketInputShow"
+								>
+									<td span="3">
+										<input
+											class="form-control"
+											v-bind:class="{
+ 												'folder-input':
+ 													createBucketInput.length >
+ 														0 &&
+ 													!createBucketEnabled
+ 											}"
+											type="text"
+											placeholder="Name of the bucket"
+											v-model="createBucketInput"
+											v-on:keypress.enter="createBucket"
+										/>
+									</td>
+
+									<td span="3">
+										<button
+											v-on:click="createBucket"
+											v-bind:disabled="
+												!createBucketEnabled
+											"
+											class="btn btn-primary"
+										>
+											Save Bucket
+										</button>
+										<span class="mx-1"></span>
+										<button
+											class="btn btn-light"
+											v-on:click="cancelBucketCreation"
+										>
+											Cancel
+										</button>
+									</td>
+									<td span="3">
+										<div
+											v-if="creatingBucketSpinner"
+											class="spinner-border"
+											role="status"
+										></div>
+									</td>
+								</tr>
 								<bucket
+									v-if="!loadingBucketsSpinner"
 									v-for="bucket in buckets"
 									v-bind:bucket="bucket"
 									v-bind:key="bucket"
 								></bucket>
 							</tbody>
 						</table>
+						<div
+							v-if="loadingBucketsSpinner"
+							class="d-flex justify-content-center"
+						>
+							<div class="spinner-border"
+							role="status"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -130,7 +190,6 @@ tbody {
 </template>
 
 <script>
-import { inject, ref } from "vue";
 import Bucket from "./Bucket";
 
 export default {
@@ -138,13 +197,48 @@ export default {
 	components: {
 		Bucket
 	},
+	data: () => ({
+		createBucketInputShow: false,
+		createBucketInput: "",
+		creatingBucketSpinner: false,
+		loadingBucketsSpinner: true
+	}),
 	computed: {
 		buckets() {
 			return this.$store.state.buckets.names;
+		},
+
+		createBucketEnabled() {
+			return this.createBucketInput.length > 0 &&
+				!this.buckets.includes(this.createBucketInput) &&
+				!this.createBucketInput.includes(" ") &&
+				this.createBucketInput.toLowerCase() === this.createBucketInput;
 		}
 	},
-	created() {
-		this.$store.dispatch("buckets/list");
+	methods: {
+		displayBucketInput() {
+			this.createBucketInputShow = !this.createBucketInputShow;
+		},
+
+		async createBucket() {
+			if (this.createBucketEnabled) {
+				this.creatingBucketSpinner = true;
+
+				await this.$store.dispatch("buckets/createBucket", { name: this.createBucketInput });
+
+				this.creatingBucketSpinner = false;
+				this.createBucketInput = "";
+				this.createBucketInputShow = false;
+			}
+		},
+
+		cancelBucketCreation() {
+			this.createBucketInputShow = false;
+		},
+	},
+	async created() {
+		await this.$store.dispatch("buckets/list");
+		this.loadingBucketsSpinner = false;
 	}
 };
 </script>

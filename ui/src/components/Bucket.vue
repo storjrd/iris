@@ -2,25 +2,33 @@
 .no-border {
 	border: none;
 }
+
+.unlocked-bucket {
+	fill: #28a745;
+}
+
+.locked-bucket {
+	fill: #dc3545;
+}
 </style>
 
 <template>
 	<tr scope="row">
-		<td class="no-border">
+		<td>
 			<svg
 				data-v-765080aa=""
 				width="16"
 				height="18"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				class=""
+				v-bind:class="{'unlocked-bucket': isUnlocked,
+					'locked-bucket': !isUnlocked}"
 			>
 				<path
 					data-v-765080aa=""
 					fill-rule="evenodd"
 					clip-rule="evenodd"
 					d="M15.42 4.555l-1.047 11.463h-.003C14.267 17.119 11.327 18 7.715 18s-6.552-.882-6.656-1.981h-.002L.01 4.554c.037.03.076.059.116.088.458.332 1.09.62 1.866.857 1.506.462 3.51.725 5.647.731h.076c2.164 0 4.199-.264 5.723-.731.775-.238 1.408-.525 1.866-.857.04-.029.079-.058.116-.088zM7.715 0c4.001 0 7.245.995 7.245 2.222 0 1.227-3.244 2.221-7.245 2.221C3.714 4.443.47 3.45.47 2.222S3.714 0 7.715 0z"
-					fill="#768394"
 				></path>
 			</svg>
 			<span class="ml-3">
@@ -37,8 +45,8 @@
 				</span>
 			</span>
 		</td>
-		<td class="no-border">4/16/2021, 12:32:52 PM</td>
-		<td class="d-flex justify-content-lg-end no-border">
+		<td>4/16/2021, 12:32:52 PM</td>
+		<td class="d-flex justify-content-lg-end">
 			<div class="d-inline-flex">
 				<div class="dropleft">
 					<div
@@ -166,6 +174,11 @@ export default {
 	computed: {
 		isUnlocked() {
 			return this.$store.getters["buckets/isUnlocked"](this.bucket);
+		},
+
+		bucketFill() {
+			console.log('fill')
+			return this.isUnlocked ? '#28a745' : '#768394';
 		}
 	},
 	methods: {
