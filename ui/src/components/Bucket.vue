@@ -21,8 +21,10 @@
 				height="18"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				v-bind:class="{'unlocked-bucket': isUnlocked,
-					'locked-bucket': !isUnlocked}"
+				v-bind:class="{
+					'unlocked-bucket': isUnlocked,
+					'locked-bucket': !isUnlocked
+				}"
 			>
 				<path
 					data-v-765080aa=""
@@ -177,8 +179,8 @@ export default {
 		},
 
 		bucketFill() {
-			console.log('fill')
-			return this.isUnlocked ? '#28a745' : '#768394';
+			console.log("fill");
+			return this.isUnlocked ? "#28a745" : "#768394";
 		}
 	},
 	methods: {

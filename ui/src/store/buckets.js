@@ -15,9 +15,9 @@ export default {
 			state.names = names;
 		},
 
-    appendName(state, name) {
-      state.names = [...state.names, name];
-    },
+		appendName(state, name) {
+			state.names = [...state.names, name];
+		},
 
 		// called when the user sets a passphrase
 		unlock(state, { name, passphrase }) {
@@ -43,13 +43,13 @@ export default {
 			commit("setNames", names);
 		},
 
-    async createBucket({ dispatch, commit }, { name }) {
+		async createBucket({ dispatch, commit }, { name }) {
 			const response = await dispatch(
 				"gateway/createBucket",
 				{
 					name
 				},
-        {
+				{
 					root: true
 				}
 			);
