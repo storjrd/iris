@@ -32,13 +32,13 @@ export default {
 		FileBrowser
 	},
 	async created() {
-		const {
-			accessKeyId,
-			secretAccessKey
-		} = await this.$store.dispatch("gateway/getBucketCredentials", {
-			name: this.bucket,
-			passphrase: this.$store.state.buckets.passphrases[this.bucket]
-		});
+		const { accessKeyId, secretAccessKey } = await this.$store.dispatch(
+			"gateway/getBucketCredentials",
+			{
+				name: this.bucket,
+				passphrase: this.$store.state.buckets.passphrases[this.bucket]
+			}
+		);
 
 		this.$store.commit("files/init", {
 			endpoint: "gateway.tardigradeshare.io",
