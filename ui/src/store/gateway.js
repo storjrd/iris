@@ -45,16 +45,19 @@ export default {
 			};
 		},
 
-		async getBucketCredentials({
-			rootState: {
-				account: { apiKey, projectId }
-			}
-		}, { name, passphrase }) {
+		async getBucketCredentials(
+			{
+				rootState: {
+					account: { apiKey, projectId }
+				}
+			},
+			{ name, passphrase }
+		) {
 			const { access } = await generateAccess({
 				key: apiKey,
 				projectId,
 				passphrase,
-				buckets: [ name ]
+				buckets: [name]
 			});
 
 			const { accessKeyId, secretAccessKey } = await getCredentials({
