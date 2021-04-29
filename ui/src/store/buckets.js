@@ -13,7 +13,10 @@ export default {
 		// called with the list of all buckets in a user's project
 		setNames(state, names) {
 			state.names = names;
-			console.log(state, names);
+		},
+
+		appendName(state, name) {
+			state.names = [...state.names, name];
 		},
 
 		// called when the user sets a passphrase
@@ -38,6 +41,21 @@ export default {
 
 			// update list of buckets
 			commit("setNames", names);
+		},
+
+		async createBucket({ dispatch, commit }, { name }) {
+			const response = await dispatch(
+				"gateway/createBucket",
+				{
+					name
+				},
+				{
+					root: true
+				}
+			);
+
+			// add newly created bucket to names
+			commit("appendName", name);
 		}
 	}
 };
