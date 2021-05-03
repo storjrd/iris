@@ -15,7 +15,7 @@
 
 <template>
 	<div>
-		<router-link to="./unlock">
+		<router-link :to="{ path: `/app/buckets/${bucket}/unlock` }">
 			<button
 				class="btn btn-success d-flex align-items-center back-btn btn-sm"
 			>
