@@ -45,7 +45,7 @@ export default {
 			accessKey: accessKeyId,
 			secretKey: secretAccessKey,
 			bucket: this.bucket,
-			browserRoot: `/app/buckets/${this.bucket}/browse`,
+			browserRoot: `/app/buckets/${this.bucket}/browse/`,
 			openModalOnFirstUpload: false
 		});
 

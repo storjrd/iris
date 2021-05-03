@@ -50,7 +50,7 @@ const routes = [
 			},
 			{
 				name: "browse",
-				path: "buckets/:bucket/browse",
+				path: "buckets/:bucket/browse/:pathMatch*",
 				component: Browse
 			}
 		]
