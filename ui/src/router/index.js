@@ -6,7 +6,6 @@ import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 
 import BucketCreation from "../components/BucketCreation";
-import BucketAccess from "../components/BucketAccess";
 import BucketList from "../components/BucketList";
 import Unlock from "../components/Unlock";
 import Browse from "../components/Browse";
