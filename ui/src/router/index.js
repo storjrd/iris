@@ -32,16 +32,14 @@ const routes = [
 		component: Dashboard,
 		children: [
 			{
-				path: "create",
-				component: BucketCreation
-			},
-			{
-				path: "access",
-				component: BucketAccess
-			},
-			{
+				name: "buckets",
 				path: "buckets",
 				component: BucketList
+			},
+			{
+				name: "create",
+				path: "buckets/create",
+				component: BucketCreation
 			},
 			{
 				name: "unlock",

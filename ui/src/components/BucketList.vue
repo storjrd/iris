@@ -44,13 +44,6 @@ tbody {
 .div-responsive {
 	min-height: 400px;
 }
-
-.folder-input:focus {
-	color: #fe5d5d;
-	box-shadow: 0 0 0 0.2rem rgba(254, 93, 93, 0.5) !important;
-	border-color: #fe5d5d !important;
-	outline: none !important;
-}
 </style>
 
 <template>
@@ -82,7 +75,7 @@ tbody {
 							/>
 							<button
 								class="btn btn-primary btn-block w-75"
-								v-on:click="displayBucketInput"
+								v-on:click="createBucket"
 							>
 								<svg
 									width="22"
@@ -125,49 +118,6 @@ tbody {
 							<th class="table-heading"></th>
 
 							<tbody>
-								<tr v-if="createBucketInputShow">
-									<td span="3">
-										<input
-											class="form-control"
-											v-bind:class="{
-												'folder-input':
-													createBucketInput.length >
-														0 &&
-													!createBucketEnabled
-											}"
-											type="text"
-											placeholder="Name of the bucket"
-											v-model="createBucketInput"
-											v-on:keypress.enter="createBucket"
-										/>
-									</td>
-
-									<td span="3">
-										<button
-											v-on:click="createBucket"
-											v-bind:disabled="
-												!createBucketEnabled
-											"
-											class="btn btn-primary"
-										>
-											Save Bucket
-										</button>
-										<span class="mx-1"></span>
-										<button
-											class="btn btn-light"
-											v-on:click="cancelBucketCreation"
-										>
-											Cancel
-										</button>
-									</td>
-									<td span="3">
-										<div
-											v-if="creatingBucketSpinner"
-											class="spinner-border"
-											role="status"
-										></div>
-									</td>
-								</tr>
 								<bucket
 									v-if="!loadingBucketsSpinner"
 									v-for="bucket in buckets"
@@ -198,46 +148,18 @@ export default {
 		Bucket
 	},
 	data: () => ({
-		createBucketInputShow: false,
-		createBucketInput: "",
-		creatingBucketSpinner: false,
 		loadingBucketsSpinner: true
 	}),
 	computed: {
 		buckets() {
 			return this.$store.state.buckets.names;
-		},
-
-		createBucketEnabled() {
-			return (
-				this.createBucketInput.length > 0 &&
-				!this.buckets.includes(this.createBucketInput) &&
-				!this.createBucketInput.includes(" ") &&
-				this.createBucketInput.toLowerCase() === this.createBucketInput
-			);
 		}
 	},
 	methods: {
-		displayBucketInput() {
-			this.createBucketInputShow = !this.createBucketInputShow;
-		},
-
-		async createBucket() {
-			if (this.createBucketEnabled) {
-				this.creatingBucketSpinner = true;
-
-				await this.$store.dispatch("buckets/createBucket", {
-					name: this.createBucketInput
-				});
-
-				this.creatingBucketSpinner = false;
-				this.createBucketInput = "";
-				this.createBucketInputShow = false;
-			}
-		},
-
-		cancelBucketCreation() {
-			this.createBucketInputShow = false;
+		createBucket() {
+			this.$router.push({
+				name: "create"
+			});
 		}
 	},
 	async created() {
