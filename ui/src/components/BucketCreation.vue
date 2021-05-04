@@ -39,10 +39,7 @@
 				class="form-control"
 				id="name"
 				v-model="bucketName"
-				v-bind:class="{
-					'bucketname-input':
-						bucketName.length > 0 && !bucketNameValid
-				}"
+				v-bind:class="bucketNameClass"
 			/>
 		</div>
 		<div class="mb-3">
@@ -52,10 +49,7 @@
 				class="form-control"
 				id="passphrase"
 				v-model="bucketPassphrase"
-				v-bind:class="{
-					'bucketpassphrase-input':
-						bucketPassphrase.length > 0 && !bucketPassphraseValid
-				}"
+				v-bind:class="bucketPassphraseClass"
 			/>
 		</div>
 		<div class="d-flex">
@@ -115,6 +109,21 @@ export default {
 
 		createBucketEnabled() {
 			return this.bucketNameValid && this.bucketPassphraseValid;
+		},
+
+		bucketNameClass() {
+			return {
+				"bucketname-input":
+					this.bucketName.length > 0 && !this.bucketNameValid
+			};
+		},
+
+		bucketPassphraseClass() {
+			return {
+				"bucketpassphrase-input":
+					this.bucketPassphrase.length > 0 &&
+					!this.bucketPassphraseValid
+			};
 		}
 	},
 	methods: {
