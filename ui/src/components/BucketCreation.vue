@@ -25,17 +25,38 @@
 
 <template>
 	<h2 class="text-center mb-5 title">Create a New Bucket</h2>
-	<div v-if="creatingBucketSpinner" class="mt-4 d-flex justify-content-center">
+	<div
+		v-if="creatingBucketSpinner"
+		class="mt-4 d-flex justify-content-center"
+	>
 		<div class="spinner-border text-center" role="status"></div>
 	</div>
 	<div v-else class="container col-6 white-background">
 		<div class="mb-3">
 			<label for="name" class="form-label">Bucket Name</label>
-			<input type="text" class="form-control" id="name" v-model="bucketName" v-bind:class="{ 'bucketname-input': bucketName.length > 0 && !bucketNameValid }" />
+			<input
+				type="text"
+				class="form-control"
+				id="name"
+				v-model="bucketName"
+				v-bind:class="{
+					'bucketname-input':
+						bucketName.length > 0 && !bucketNameValid
+				}"
+			/>
 		</div>
 		<div class="mb-3">
 			<label for="passphrase" class="form-label">Passphrase</label>
-			<input type="text" class="form-control" id="passphrase" v-model="bucketPassphrase" v-bind:class="{ 'bucketpassphrase-input': bucketPassphrase.length > 0 && !bucketPassphraseValid }" />
+			<input
+				type="text"
+				class="form-control"
+				id="passphrase"
+				v-model="bucketPassphrase"
+				v-bind:class="{
+					'bucketpassphrase-input':
+						bucketPassphrase.length > 0 && !bucketPassphraseValid
+				}"
+			/>
 		</div>
 		<div class="d-flex">
 			<router-link to="/app/buckets">
@@ -59,7 +80,13 @@
 
 			<div class="mx-1"></div>
 
-			<button class="btn btn-primary" v-bind:disabled="!createBucketEnabled" v-on:click="createBucket">Create</button>
+			<button
+				class="btn btn-primary"
+				v-bind:disabled="!createBucketEnabled"
+				v-on:click="createBucket"
+			>
+				Create
+			</button>
 		</div>
 	</div>
 </template>
@@ -70,7 +97,7 @@ export default {
 	data: () => ({
 		bucketName: "",
 		bucketPassphrase: "",
-		creatingBucketSpinner: false,
+		creatingBucketSpinner: false
 	}),
 	computed: {
 		bucketNameValid() {
@@ -99,7 +126,10 @@ export default {
 					name: this.bucketName
 				});
 
-				this.$store.commit("buckets/unlock", { name: this.bucketName, passphrase: this.bucketPassphrase });
+				this.$store.commit("buckets/unlock", {
+					name: this.bucketName,
+					passphrase: this.bucketPassphrase
+				});
 
 				this.$router.push({
 					name: "browse",
@@ -112,11 +142,11 @@ export default {
 				this.bucketName = "";
 				this.bucketPassphrase = "";
 			}
-		},
+		}
 	},
 
 	async created() {
 		await this.$store.dispatch("buckets/list");
 	}
-}
+};
 </script>
