@@ -365,13 +365,13 @@ export default {
 	methods: {
 		navigateLogin() {
 			if (this.isLoggedIn === true) {
-				//this.$router.push({
-				//	path: "/app/buckets"
-				//});
+				this.$router.push({
+					path: "/app/buckets"
+				});
 			} else {
-				////this.$router.push({
-				//	path: "/"
-				//});
+				this.$router.push({
+					path: "/"
+				});
 			}
 		}
 	},
