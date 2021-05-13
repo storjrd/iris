@@ -18,3 +18,4 @@ services:
       - ui-dist:/app/dist
       - ./ui/src:/app/src
       - ./ui/public:/app/public
+      - ./ui/browser:/app/browser
