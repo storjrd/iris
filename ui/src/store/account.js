@@ -101,6 +101,15 @@ export default {
 				projectId,
 				apiKey: key
 			});
+		},
+
+		async logout({ commit }) {
+			commit("setSession", {
+				email: null,
+				token: null,
+				projectId: null,
+				apiKey: null
+			});
 		}
 	},
 	getters: {
