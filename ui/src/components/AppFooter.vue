@@ -199,6 +199,13 @@ footer {
 		height: auto;
 	}
 }
+
+.commit-hash {
+	color: #fff;
+	opacity: 0.4;
+	font-weight: 300;
+	font-size: 13px;
+}
 </style>
 
 <template>
@@ -213,6 +220,11 @@ footer {
 							© 2021 Storj Labs Inc. - 3423 Piedmont Road NE,
 							Suite 475, Atlanta, Georgia, 30305, United States
 						</address>
+					</div>
+					<div
+						class="col-12 col-sm-12 col-md-8 text-center text-md-left"
+					>
+						<address class="commit-hash">Commit Hash: 1789fac</address>
 					</div>
 					<div
 						class="col-12 col-sm-12 col-md-4 text-center text-md-right"
