@@ -34,6 +34,7 @@ export default {
 			state.apiKey = apiKey;
 			state.projectId = projectId;
 
+			/*
 			localStorage.setItem(
 				"session",
 				JSON.stringify({
@@ -43,6 +44,7 @@ export default {
 					projectId
 				})
 			);
+			*/
 		}
 	},
 	actions: {
