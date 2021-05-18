@@ -333,8 +333,11 @@
 								</a>
 							</li>
 
-							<li class="nav-item active">
-								<button class="btn my-2 my-sm-0 nav-join">
+							<li v-if="isLoggedIn" class="nav-item active">
+								<button
+									class="btn my-2 my-sm-0 nav-join"
+									v-on:click="logout"
+								>
 									Logout
 								</button>
 							</li>
@@ -365,14 +368,18 @@ export default {
 	methods: {
 		navigateLogin() {
 			if (this.isLoggedIn === true) {
-				//this.$router.push({
-				//	path: "/app/buckets"
-				//});
+				this.$router.push({
+					path: "/app/buckets"
+				});
 			} else {
-				////this.$router.push({
-				//	path: "/"
-				//});
+				this.$router.push({
+					path: "/"
+				});
 			}
+		},
+
+		logout() {
+			this.$store.dispatch("account/logout");
 		}
 	},
 	watch: {
