@@ -10,7 +10,7 @@ export default {
 	namespaced: true,
 
 	state: () => {
-		const sessionJson = localStorage.getItem("session");
+		const sessionJson = null; // localStorage.getItem("session");
 
 		if (typeof sessionJson === "string") {
 			const cachedLogin = JSON.parse(sessionJson);
