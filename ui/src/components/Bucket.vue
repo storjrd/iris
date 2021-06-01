@@ -27,7 +27,7 @@
 
 <template>
 	<tr scope="row">
-		<td v-else v-on:click="unlock" class="bucket-name">
+		<td v-on:click="unlock" class="bucket-name">
 			<svg
 				data-v-765080aa=""
 				width="16"
