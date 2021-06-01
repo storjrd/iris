@@ -8,7 +8,7 @@
 .about-tardigrade {
 	font-weight: bold;
 	font-size: 16px;
-	color: #376FFF;
+	color: #376fff;
 }
 
 @media (max-width: 575.98px) {
@@ -20,7 +20,10 @@
 
 <template>
 	<div id="app">
-		<div class="alert alert-warning text-center rounded-0 mb-0 border-bottom" role="alert">
+		<div
+			class="alert alert-warning text-center rounded-0 mb-0 border-bottom"
+			role="alert"
+		>
 			Welcome! Please be aware that this is an alpha development version.
 			Data and accounts will be deleted every few days.
 		</div>

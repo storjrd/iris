@@ -46,9 +46,7 @@
 		<hr />
 
 		<router-link to="/login">
-			<button class="btn btn-success btn-block">
-				Login to Storj
-			</button>
+			<button class="btn btn-success btn-block">Login to Storj</button>
 		</router-link>
 	</div>
 </template>

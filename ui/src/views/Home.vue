@@ -361,7 +361,7 @@ input {
 }
 .button {
 	padding: 14px 0;
-	background-color: #376FFF;
+	background-color: #376fff;
 	border-radius: 6px;
 	font-weight: bold;
 	font-size: 16px;
@@ -393,18 +393,19 @@ input {
 	line-height: 2.4;
 }
 .btn-primary {
-	background: #376FFF;
+	background: #376fff;
 }
 .btn-light {
 	background: #e6e9ef;
 }
 .btn-success {
-	background: #00A858;
+	background: #00a858;
 }
-.btn-primary.disabled, .btn-primary:disabled {
-    color: #fff;
-    background-color: #001030;
-    border-color: #001030;
+.btn-primary.disabled,
+.btn-primary:disabled {
+	color: #fff;
+	background-color: #001030;
+	border-color: #001030;
 }
 .custom-select {
 	width: 100%;
@@ -478,7 +479,7 @@ input {
 	border-color: #f9a482;
 }
 .spinner-border {
-	color: #376FFF;
+	color: #376fff;
 }
 .nav-tabs {
 	border-bottom: none;
@@ -501,7 +502,7 @@ input {
 	color: #000;
 }
 .nav-tabs .nav-link:hover {
-	color: #376FFF;
+	color: #376fff;
 	background: #f8f9fb;
 }
 .nav-tabs .nav-link.active:hover {
@@ -516,7 +517,6 @@ input {
 
 <template>
 	<div>
-
 		<div class="container">
 			<div class="row pb-3 pt-4">
 				<div class="col">
@@ -614,7 +614,11 @@ input {
 					<div class="row py-5">
 						<div class="col-sm-12 col-md-5 pb-5">
 							<div
-								class="video embed-responsive embed-responsive-16by9 mb-5"
+								class="
+									video
+									embed-responsive embed-responsive-16by9
+									mb-5
+								"
 							>
 								<iframe
 									class="embed-responsive-item"

@@ -4,19 +4,21 @@
 }
 
 .unlocked-bucket {
-	fill: #376FFF;
+	fill: #376fff;
 }
 
 .locked-bucket {
 	fill: #768295;
 }
 
-.bucket-name, .bucket-name span {
+.bucket-name,
+.bucket-name span {
 	cursor: pointer;
 	font-weight: 700;
-	color: #091C45;
+	color: #091c45;
 }
-.bucket-name:hover, .bucket-name:hover span {
+.bucket-name:hover,
+.bucket-name:hover span {
 	color: #366fff;
 }
 .bucket-date {
@@ -48,11 +50,7 @@
 				></path>
 			</svg>
 			<span class="ml-3">
-				<span
-					v-if="isUnlocked"
-					v-on:click="browse"
-					class="bucket-name"
-				>
+				<span v-if="isUnlocked" v-on:click="browse" class="bucket-name">
 					{{ bucket }}
 				</span>
 
