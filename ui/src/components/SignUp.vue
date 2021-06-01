@@ -73,6 +73,11 @@ export default {
 			this.$router.push({ path: "/app/buckets" });
 		}
 	},
+	watch: {
+		email() {
+			this.$store.commit("account/setEmail", { email: this.email });
+		}
+	},
 	created() {
 		if (this.$store.state.account.token) {
 			this.routeToBucketsView();
