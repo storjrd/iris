@@ -4,23 +4,37 @@
 }
 
 .unlocked-bucket {
-	fill: #28a745;
+	fill: #376FFF;
 }
 
 .locked-bucket {
-	fill: #dc3545;
+	fill: #768295;
+}
+
+.bucket-name, .bucket-name span {
+	cursor: pointer;
+	font-weight: 700;
+	color: #091C45;
+}
+.bucket-name:hover, .bucket-name:hover span {
+	color: #366fff;
+}
+.bucket-date {
+	color: grey;
+	font-weight: 300;
 }
 </style>
 
 <template>
 	<tr scope="row">
-		<td>
+		<td v-else v-on:click="unlock" class="bucket-name">
 			<svg
 				data-v-765080aa=""
 				width="16"
 				height="18"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
+				class="ml-3"
 				v-bind:class="{
 					'unlocked-bucket': isUnlocked,
 					'locked-bucket': !isUnlocked
@@ -37,17 +51,17 @@
 				<span
 					v-if="isUnlocked"
 					v-on:click="browse"
-					class="text-success"
+					class="bucket-name"
 				>
 					{{ bucket }}
 				</span>
 
-				<span v-else v-on:click="unlock" class="text-danger">
+				<span>
 					{{ bucket }}
 				</span>
 			</span>
 		</td>
-		<td>4/16/2021, 12:32:52 PM</td>
+		<td class="bucket-date">4/16/2021, 12:32:52 PM</td>
 		<td class="d-flex justify-content-lg-end">
 			<div class="d-inline-flex">
 				<div class="dropleft">

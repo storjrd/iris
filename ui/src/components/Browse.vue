@@ -4,12 +4,7 @@
 }
 
 .title {
-	color: #4b93fe;
-	font-weight: 600;
-}
-
-.back-btn {
-	margin-left: 6%;
+	font-weight: 700;
 }
 </style>
 
@@ -17,7 +12,7 @@
 	<div>
 		<button
 			v-on:click="back"
-			class="btn btn-success d-flex align-items-center back-btn btn-sm mb-1"
+			class="btn btn-success d-flex align-items-center back-btn btn-sm mb-3"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

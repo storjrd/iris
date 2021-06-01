@@ -4,8 +4,7 @@
 }
 
 .title {
-	color: #4b93fe;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .bucketname-input:focus {
