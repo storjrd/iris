@@ -22,7 +22,7 @@
 		/>
 
 		<button
-			class="btn btn-primary button signup-btn btn-block"
+			class="btn btn-primary signup-btn btn-block my-4"
 			@click="login"
 		>
 			Login
@@ -59,6 +59,8 @@ export default {
 		if (this.$store.state.account.token) {
 			this.routeToBucketsView();
 		}
+
+		this.email = this.$store.state.account.email;
 	}
 };
 </script>

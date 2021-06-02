@@ -39,16 +39,14 @@
 			>
 		</div>
 
-		<button class="btn btn-primary button btn-block" @click="signUp">
+		<button class="btn btn-primary btn-block" @click="signUp">
 			Try Storj
 		</button>
 
 		<hr />
 
 		<router-link to="/login">
-			<button class="button-no-bg btn btn-success btn-block">
-				Login to Storj
-			</button>
+			<button class="btn btn-success btn-block">Login to Storj</button>
 		</router-link>
 	</div>
 </template>
@@ -71,6 +69,11 @@ export default {
 		routeToBucketsView() {
 			console.log("going to buckets");
 			this.$router.push({ path: "/app/buckets" });
+		}
+	},
+	watch: {
+		email() {
+			this.$store.commit("account/setEmail", { email: this.email });
 		}
 	},
 	created() {

@@ -10,7 +10,7 @@ export default {
 	namespaced: true,
 
 	state: () => {
-		const sessionJson = localStorage.getItem("session");
+		const sessionJson = null; // localStorage.getItem("session");
 
 		if (typeof sessionJson === "string") {
 			const cachedLogin = JSON.parse(sessionJson);
@@ -19,7 +19,7 @@ export default {
 		}
 
 		return {
-			email: null,
+			email: "",
 			token: null,
 			apiKey: null,
 			projectId: null
@@ -34,6 +34,7 @@ export default {
 			state.apiKey = apiKey;
 			state.projectId = projectId;
 
+			/*
 			localStorage.setItem(
 				"session",
 				JSON.stringify({
@@ -43,6 +44,11 @@ export default {
 					projectId
 				})
 			);
+			*/
+		},
+
+		setEmail(state, { email }) {
+			state.email = email;
 		}
 	},
 	actions: {
@@ -100,6 +106,15 @@ export default {
 				token,
 				projectId,
 				apiKey: key
+			});
+		},
+
+		async logout({ commit }) {
+			commit("setSession", {
+				email: null,
+				token: null,
+				projectId: null,
+				apiKey: null
 			});
 		}
 	},
