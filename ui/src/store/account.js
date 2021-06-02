@@ -3,7 +3,8 @@ import {
 	login,
 	createProject,
 	createApiKey,
-	getProjects
+	getProjects,
+	SatelliteError
 } from "../lib/satellite";
 
 export default {
@@ -22,7 +23,8 @@ export default {
 			email: null,
 			token: null,
 			apiKey: null,
-			projectId: null
+			projectId: null,
+			errorMessage: ""
 		};
 	},
 	mutations: {
@@ -45,6 +47,10 @@ export default {
 				})
 			);
 			*/
+		},
+
+		setErrorMessage(state, { message }) {
+			state.errorMessage = message;
 		}
 	},
 	actions: {
@@ -63,10 +69,26 @@ export default {
 		},
 
 		async login({ commit }, { email, password }) {
-			const { token } = await login({
-				email,
-				password
-			});
+			let token;
+
+			try {
+				commit("setErrorMessage", { message: "" });
+
+				const response = await login({
+					email,
+					password
+				});
+
+				token = response.token;
+			} catch(e) {
+				if (e instanceof SatelliteError) {
+					commit("setErrorMessage", { message: e.message });
+				} else {
+					console.log(e);
+				}
+
+				return;
+			}
 
 			// find and create Iris project
 			const projectName = "Iris";

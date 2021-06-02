@@ -2,8 +2,8 @@
 	<div>
 		<h5 class="mb-4">Login</h5>
 
-		<div v-if="loginError" class="alert alert-danger" role="alert">
-			{{ loginErrorMessage }}
+		<div v-if="errorExists" class="alert alert-danger" role="alert">
+			{{ errorMessage }}
 		</div>
 
 		<label for="emailAddress">Email Address</label>
@@ -49,26 +49,30 @@ export default {
 	}),
 	methods: {
 		async login() {
-			try {
-				await this.$store.dispatch("account/login", {
-					email: this.email,
-					password: this.password
-				});
+			await this.$store.dispatch("account/login", {
+				email: this.email,
+				password: this.password
+			});
 
-				this.routeToBucketsView();
-			} catch (e) {
-				this.loginError = true;
-				this.setErrorMessage(e);
+			if (this.errorExists) {
 				this.password = "";
+				return;
 			}
+
+			this.routeToBucketsView();
 		},
 
 		routeToBucketsView() {
 			this.$router.push({ path: "/app/buckets" });
 		},
+	},
+	computed: {
+		errorMessage() {
+			return this.$store.state.account.errorMessage;
+		},
 
-		setErrorMessage(e) {
-			this.loginErrorMessage = e.message.split(":")[1].trim();
+		errorExists() {
+			return this.errorMessage.length > 0;
 		}
 	},
 	created() {
