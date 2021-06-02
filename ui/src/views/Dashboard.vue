@@ -228,13 +228,15 @@
 								Support
 							</a>
 						</li>
-						<li v-if="isLoggedIn" class="nav-item active">
-							<button
-								class="btn my-2 my-sm-0 nav-join"
-								v-on:click="logout"
-							>
+						<li v-on:click="logout" class="nav-item">
+							<a class="nav-link" href="#">
+								<div class="nav-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" fill="none" class="bi bi-lock-fill" viewBox="0 0 18 16">
+										<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+									</svg>
+								</div>
 								Logout
-							</button>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -258,6 +260,11 @@ import AppFooter from "../components/AppFooter.vue";
 export default {
 	components: {
 		AppFooter
+	},
+	methods: {
+		logout() {
+			this.$store.dispatch("account/logout");
+		}
 	}
 };
 </script>
