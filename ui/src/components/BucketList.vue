@@ -65,7 +65,12 @@ tbody {
 						</div>
 						<div class="col-sm-12 col-md-4 col-xl-1 mb-3"></div>
 						<div
-							class="col-sm-12 col-md-4 col-xl-3 mb-3 d-flex justify-content-lg-end justify-content-center"
+							class="
+								col-sm-12 col-md-4 col-xl-3
+								mb-3
+								d-flex
+								justify-content-lg-end justify-content-center
+							"
 						>
 							<input
 								ref="fileInput"

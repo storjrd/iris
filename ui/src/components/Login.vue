@@ -56,12 +56,11 @@ export default {
 				});
 
 				this.routeToBucketsView();
-			} catch(e) {
+			} catch (e) {
 				this.loginError = true;
 				this.setErrorMessage(e);
 				this.password = "";
 			}
-
 		},
 
 		routeToBucketsView() {
