@@ -207,7 +207,10 @@ footer {
 			<div class="footer__content">
 				<div class="row">
 					<div
-						class="col-12 col-sm-12 col-md-8 text-center text-md-left"
+						class="
+							col-12 col-sm-12 col-md-8
+							text-center text-md-left
+						"
 					>
 						<address class="footer__content-address">
 							© 2021 Storj Labs Inc. - 3423 Piedmont Road NE,
@@ -215,7 +218,10 @@ footer {
 						</address>
 					</div>
 					<div
-						class="col-12 col-sm-12 col-md-4 text-center text-md-right"
+						class="
+							col-12 col-sm-12 col-md-4
+							text-center text-md-right
+						"
 					>
 						<ul class="social-section">
 							<li class="footer-social">

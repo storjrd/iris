@@ -267,7 +267,11 @@ input {
 					<div class="row py-5">
 						<div class="col-sm-12 col-md-5 pb-5">
 							<div
-								class="video embed-responsive embed-responsive-16by9 mb-5"
+								class="
+									video
+									embed-responsive embed-responsive-16by9
+									mb-5
+								"
 							>
 								<iframe
 									class="embed-responsive-item"

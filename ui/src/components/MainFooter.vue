@@ -206,7 +206,11 @@ footer {
 		<div class="footer container">
 			<div class="footer__content row">
 				<div
-					class="footer__content-item col-sm-12 col-md-12 col-lg-2 mt-2"
+					class="
+						footer__content-item
+						col-sm-12 col-md-12 col-lg-2
+						mt-2
+					"
 				>
 					<a href="/" class="footer__logo"
 						><img
@@ -217,7 +221,11 @@ footer {
 					/></a>
 				</div>
 				<div
-					class="footer__content-item offset-lg-1 col-6 col-sm-6 col-md-6 col-lg-3"
+					class="
+						footer__content-item
+						offset-lg-1
+						col-6 col-sm-6 col-md-6 col-lg-3
+					"
 				>
 					<h5 class="text-white">Legal</h5>
 					<ul class="list-unstyled">
@@ -245,7 +253,10 @@ footer {
 					</ul>
 				</div>
 				<div
-					class="footer__content-item col-6 col-sm-6 col-md-6 col-lg-3"
+					class="
+						footer__content-item
+						col-6 col-sm-6 col-md-6 col-lg-3
+					"
 				>
 					<h5 class="text-white">Resources</h5>
 					<ul class="list-unstyled">
@@ -285,7 +296,10 @@ footer {
 					</ul>
 				</div>
 				<div
-					class="footer__content-item col-6 col-sm-6 col-md-6 col-lg-3"
+					class="
+						footer__content-item
+						col-6 col-sm-6 col-md-6 col-lg-3
+					"
 				>
 					<h5 class="text-white">Company</h5>
 					<ul class="list-unstyled">
