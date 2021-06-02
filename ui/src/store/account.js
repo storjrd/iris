@@ -80,7 +80,7 @@ export default {
 				});
 
 				token = response.token;
-			} catch(e) {
+			} catch (e) {
 				if (e instanceof SatelliteError) {
 					commit("setErrorMessage", { message: e.message });
 				} else {
