@@ -22,7 +22,7 @@
 		/>
 
 		<button
-			class="btn btn-primary button signup-btn btn-block"
+			class="btn btn-primary signup-btn btn-block my-4"
 			@click="login"
 		>
 			Login
