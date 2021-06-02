@@ -19,7 +19,7 @@ export default {
 		}
 
 		return {
-			email: null,
+			email: "",
 			token: null,
 			apiKey: null,
 			projectId: null
@@ -45,6 +45,10 @@ export default {
 				})
 			);
 			*/
+		},
+
+		setEmail(state, { email }) {
+			state.email = email;
 		}
 	},
 	actions: {
