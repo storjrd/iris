@@ -50,7 +50,7 @@ export default {
 		},
 		setErrorMessage(state, { message }) {
 			state.errorMessage = message;
-    },
+		},
 		setEmail(state, { email }) {
 			state.email = email;
 		}
