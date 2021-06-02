@@ -4,7 +4,6 @@
 }
 
 .title {
-	color: #4b93fe;
 	font-weight: 600;
 }
 </style>

@@ -1,6 +1,6 @@
 <style scoped>
 footer {
-	background: #133e9c;
+	background: #001030;
 	z-index: 0;
 	position: relative;
 }
@@ -9,6 +9,10 @@ footer {
 	padding-top: 3.5em;
 	background-size: cover;
 	text-align: left;
+}
+
+.footer__logo-img {
+	width: 120px;
 }
 
 .footer .response {
@@ -195,7 +199,6 @@ footer {
 
 @media (max-width: 767px) {
 	.footer__logo-img {
-		width: 125px;
 		height: auto;
 	}
 }
@@ -232,7 +235,7 @@ footer {
 						<li>
 							<a
 								class="footer__link"
-								href="https://tardigrade.io/terms-of-service"
+								href="https://storj.io/terms-of-service"
 								>Terms of Service</a
 							>
 						</li>
@@ -277,13 +280,8 @@ footer {
 						<li>
 							<a
 								class="footer__link"
-								href="https://tardigrade.io/how-it-works"
+								href="https://storj.io/how-it-works"
 								>How it Works</a
-							>
-						</li>
-						<li>
-							<a class="footer__link" href="https://tardigrade.io"
-								>Tardigrade.io</a
 							>
 						</li>
 						<li>
@@ -311,7 +309,7 @@ footer {
 						<li>
 							<a
 								class="footer__link"
-								href="https://tardigrade.io/about-us"
+								href="https://storj.io/about"
 								>About</a
 							>
 						</li>
