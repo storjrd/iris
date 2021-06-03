@@ -9,11 +9,12 @@
 </style>
 
 <template>
-	<div>
-		<h2 class="text-center mb-3 title">Unlock a bucket</h2>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5 white-background">
 
-		<div class="container col-6 white-background">
-			<div class="mb-3">
+			<h2 class="text-center mb-5 title">Unlock a bucket</h2>
+
+			<div class="mb-4">
 				<label for="name" class="form-label">Bucket Name</label>
 				<input
 					type="text"
@@ -23,14 +24,13 @@
 				/>
 			</div>
 
-			<div class="mb-3">
+			<div class="mb-5">
 				<label for="passphrase" class="form-label">Passphrase</label>
 				<input type="text" class="form-control" v-model="passphrase" />
 			</div>
 
 			<div class="d-flex">
-				<router-link to="/app/buckets">
-					<button class="btn btn-success d-flex align-items-center">
+				<router-link to="/app/buckets" class="btn btn-light btn-block">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="16"
@@ -45,14 +45,13 @@
 							/>
 						</svg>
 						Back
-					</button>
 				</router-link>
 
 				<div class="mx-1"></div>
 
 				<button
 					type="submit"
-					class="btn btn-primary"
+					class="btn btn-primary btn-block"
 					v-on:click="unlock"
 				>
 					Unlock

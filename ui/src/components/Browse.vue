@@ -13,12 +13,12 @@
 		<button
 			v-on:click="back"
 			class="
-				btn btn-success
+				btn btn-light
 				d-flex
 				align-items-center
 				back-btn
 				btn-sm
-				mb-3
+				mb-4
 			"
 		>
 			<svg
