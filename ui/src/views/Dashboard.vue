@@ -56,7 +56,7 @@
 .navbar-nav.bottom {
 	position: sticky;
 	bottom: 0;
-	margin-top: 300px;
+	margin-top: 330px;
 }
 </style>
 

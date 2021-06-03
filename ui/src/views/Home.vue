@@ -518,6 +518,7 @@ input {
 @media (max-width: 575.98px) {
 	.nav-item {
 		text-align: center;
+		padding: 0;
 	}
 	.nav-item .nav-link .nav-icon {
 		display: block;
@@ -533,7 +534,7 @@ input {
 			<div class="row pb-3 pt-4">
 				<div class="col">
 					<nav class="navbar navbar-expand-sm second-nav p-0">
-						<a class="navbar-brand" href="javascript:null"
+						<a class="navbar-brand mt-4" href="javascript:null"
 							><img
 								class="logo"
 								alt="Storj logo"
