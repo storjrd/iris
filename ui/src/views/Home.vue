@@ -514,6 +514,17 @@ input {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+@media (max-width: 575.98px) {
+	.nav-item {
+		text-align: center;
+	}
+	.nav-item .nav-link .nav-icon {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
 </style>
 
 <template>

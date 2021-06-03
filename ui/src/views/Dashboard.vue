@@ -61,9 +61,9 @@
 </style>
 
 <template>
-	<div>
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-4 col-md-3 col-lg-3 col-xl-2 p-4 p-lg-5">
+			<div class="col-4 col-md-3 col-lg-3 col-xl-2 p-3">
 				<div class="position-sticky">
 					<a class="navbar-brand" href="javascript:null">
 						<img
