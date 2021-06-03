@@ -17,7 +17,8 @@ a {
 	font-weight: 400;
 }
 .logo {
-	width: 140px;
+	width: 100%;
+	max-width: 140px;
 }
 
 .navbar {
