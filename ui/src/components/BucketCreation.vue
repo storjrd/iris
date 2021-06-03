@@ -44,7 +44,7 @@
 					v-bind:class="bucketNameClass"
 				/>
 			</div>
-			<div class="mb-5">
+			<div class="mb-4">
 				<label for="passphrase" class="form-label">Passphrase</label>
 				<input
 					type="text"
