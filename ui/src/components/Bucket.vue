@@ -60,7 +60,7 @@
 			</span>
 		</td>
 		<td class="bucket-date">4/16/2021, 12:32:52 PM</td>
-		<td class="d-flex justify-content-lg-end">
+		<!-- <td class="d-flex justify-content-lg-end">
 			<div class="d-inline-flex">
 				<div class="dropleft">
 					<div
@@ -169,7 +169,7 @@
 					</div>
 				</div>
 			</div>
-		</td>
+		</td> -->
 	</tr>
 </template>
 
