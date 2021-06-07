@@ -44,7 +44,7 @@
 export default {
 	data: () => ({
 		email: "",
-		password: "",
+		password: ""
 	}),
 	methods: {
 		async login() {
@@ -79,7 +79,10 @@ export default {
 		},
 
 		emailFromSignupExists() {
-			return this.emailInputFromSignupForm && this.emailInputFromSignupForm.length > 0;
+			return (
+				this.emailInputFromSignupForm &&
+				this.emailInputFromSignupForm.length > 0
+			);
 		}
 	},
 	created() {
