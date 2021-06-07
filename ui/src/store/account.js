@@ -20,11 +20,11 @@ export default {
 		}
 
 		return {
-			email: "",
+			email: null,
 			token: null,
 			apiKey: null,
 			projectId: null,
-			errorMessage: ""
+			errorMessage: null
 		};
 	},
 	mutations: {
@@ -85,11 +85,9 @@ export default {
 			} catch (e) {
 				if (e instanceof SatelliteError) {
 					commit("setErrorMessage", { message: e.message });
-				} else {
-					console.log(e);
 				}
 
-				return;
+				throw e;
 			}
 
 			// find and create Iris project

@@ -45,7 +45,6 @@ export default {
 	data: () => ({
 		email: "",
 		password: "",
-		loginError: false
 	}),
 	methods: {
 		async login() {
@@ -71,8 +70,16 @@ export default {
 			return this.$store.state.account.errorMessage;
 		},
 
+		emailInputFromSignupForm() {
+			return this.$store.state.account.email;
+		},
+
 		errorExists() {
-			return this.errorMessage.length > 0;
+			return this.errorMessage && this.errorMessage.length > 0;
+		},
+
+		emailFromSignupExists() {
+			return this.emailInputFromSignupForm && this.emailInputFromSignupForm.length > 0;
 		}
 	},
 	created() {
@@ -80,7 +87,9 @@ export default {
 			this.routeToBucketsView();
 		}
 
-		this.email = this.$store.state.account.email;
+		if (this.emailFromSignupExists) {
+			this.email = this.emailInputFromSignupForm;
+		}
 	}
 };
 </script>
