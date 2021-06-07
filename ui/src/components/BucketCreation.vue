@@ -24,7 +24,7 @@
 
 <template>
 	<div class="row justify-content-center">
-		<div v-else class="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5 white-background">
+		<div class="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5 white-background">
 
 			<h2 class="text-center mb-5 title">Create a New Bucket</h2>
 			<div
