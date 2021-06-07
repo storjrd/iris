@@ -35,7 +35,11 @@
 			class="btn btn-primary signup-btn btn-block my-4"
 			@click="login"
 		>
-			<span v-if="loggingIn" class="spinner-border text-light align-middle" role="status"></span>
+			<span
+				v-if="loggingIn"
+				class="spinner-border text-light align-middle"
+				role="status"
+			></span>
 			<span v-else class="login">Login</span>
 		</button>
 
