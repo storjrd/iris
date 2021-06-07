@@ -1,13 +1,15 @@
+<style scoped>
+.login {
+	font-weight: bold;
+}
+</style>
+
 <template>
 	<div>
 		<h5 class="mb-4">Login</h5>
 
 		<div v-if="errorExists" class="alert alert-danger" role="alert">
 			{{ errorMessage }}
-		</div>
-
-		<div v-if="loggingIn" class="d-flex justify-content-center">
-			<div class="spinner-border" role="status"></div>
 		</div>
 
 		<label for="emailAddress">Email Address</label>
@@ -33,7 +35,8 @@
 			class="btn btn-primary signup-btn btn-block my-4"
 			@click="login"
 		>
-			Login
+			<span v-if="loggingIn" class="spinner-border text-light align-middle" role="status"></span>
+			<span v-else class="login">Login</span>
 		</button>
 
 		<p>
