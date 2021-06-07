@@ -2,6 +2,10 @@
 	<div>
 		<h5 class="mb-4">Login</h5>
 
+		<div v-if="errorExists" class="alert alert-danger" role="alert">
+			{{ errorMessage }}
+		</div>
+
 		<label for="emailAddress">Email Address</label>
 		<input
 			type="email"
@@ -48,6 +52,12 @@ export default {
 				email: this.email,
 				password: this.password
 			});
+
+			if (this.errorExists) {
+				this.password = "";
+				return;
+			}
+
 			this.routeToBucketsView();
 		},
 
@@ -55,12 +65,34 @@ export default {
 			this.$router.push({ path: "/app/buckets" });
 		}
 	},
+	computed: {
+		errorMessage() {
+			return this.$store.state.account.errorMessage;
+		},
+
+		emailInputFromSignupForm() {
+			return this.$store.state.account.email;
+		},
+
+		errorExists() {
+			return this.errorMessage && this.errorMessage.length > 0;
+		},
+
+		emailFromSignupExists() {
+			return (
+				this.emailInputFromSignupForm &&
+				this.emailInputFromSignupForm.length > 0
+			);
+		}
+	},
 	created() {
 		if (this.$store.state.account.token) {
 			this.routeToBucketsView();
 		}
 
-		this.email = this.$store.state.account.email;
+		if (this.emailFromSignupExists) {
+			this.email = this.emailInputFromSignupForm;
+		}
 	}
 };
 </script>
