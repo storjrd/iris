@@ -6,6 +6,10 @@
 			{{ errorMessage }}
 		</div>
 
+		<div v-if="loggingIn" class="d-flex justify-content-center">
+			<div class="spinner-border" role="status"></div>
+		</div>
+
 		<label for="emailAddress">Email Address</label>
 		<input
 			type="email"
@@ -44,7 +48,8 @@
 export default {
 	data: () => ({
 		email: "",
-		password: ""
+		password: "",
+		loggingIn: false
 	}),
 	methods: {
 		async login() {
@@ -52,6 +57,8 @@ export default {
 				email: this.email,
 				password: this.password
 			});
+
+			this.loggingIn = false;
 
 			if (this.errorExists) {
 				this.password = "";
@@ -83,6 +90,10 @@ export default {
 				this.emailInputFromSignupForm &&
 				this.emailInputFromSignupForm.length > 0
 			);
+		},
+
+		loggingIn() {
+			return this.$store.state.account.loggingIn;
 		}
 	},
 	created() {

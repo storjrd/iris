@@ -24,7 +24,8 @@ export default {
 			token: null,
 			apiKey: null,
 			projectId: null,
-			errorMessage: null
+			errorMessage: null,
+			loggingIn: false
 		};
 	},
 	mutations: {
@@ -53,6 +54,9 @@ export default {
 		},
 		setEmail(state, { email }) {
 			state.email = email;
+		},
+		setLoggingIn(state, value) {
+			state.loggingIn = value;
 		}
 	},
 	actions: {
@@ -73,6 +77,8 @@ export default {
 		async login({ commit }, { email, password }) {
 			let token;
 
+			commit("setLoggingIn", true);
+
 			try {
 				commit("setErrorMessage", { message: "" });
 
@@ -86,6 +92,8 @@ export default {
 				if (e instanceof SatelliteError) {
 					commit("setErrorMessage", { message: e.message });
 				}
+
+				commit("setLoggingIn", false);
 
 				throw e;
 			}
@@ -118,6 +126,8 @@ export default {
 				projectId,
 				name: `${projectName} Key ${Date.now()}`
 			});
+
+			commit("setLoggingIn", false);
 
 			commit("setSession", {
 				email,
