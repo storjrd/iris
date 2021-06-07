@@ -55,8 +55,7 @@
 export default {
 	data: () => ({
 		email: "",
-		password: "",
-		loggingIn: false
+		password: ""
 	}),
 	methods: {
 		async login() {
@@ -64,8 +63,6 @@ export default {
 				email: this.email,
 				password: this.password
 			});
-
-			this.loggingIn = false;
 
 			if (this.errorExists) {
 				this.password = "";
