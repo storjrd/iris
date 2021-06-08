@@ -36,6 +36,7 @@ export default {
 			state.token = token;
 			state.apiKey = apiKey;
 			state.projectId = projectId;
+			state.loggingIn = false;
 
 			/*
 			localStorage.setItem(
@@ -51,12 +52,14 @@ export default {
 		},
 		setErrorMessage(state, { message }) {
 			state.errorMessage = message;
+			state.loggingIn = false;
 		},
 		setEmail(state, { email }) {
 			state.email = email;
 		},
-		setLoggingIn(state, value) {
-			state.loggingIn = value;
+		startLogin(state) {
+			state.loggingIn = true;
+			state.errorMessage = "";
 		}
 	},
 	actions: {
@@ -77,11 +80,9 @@ export default {
 		async login({ commit }, { email, password }) {
 			let token;
 
-			commit("setLoggingIn", true);
+			commit("startLogin");
 
 			try {
-				commit("setErrorMessage", { message: "" });
-
 				const response = await login({
 					email,
 					password
@@ -92,8 +93,6 @@ export default {
 				if (e instanceof SatelliteError) {
 					commit("setErrorMessage", { message: e.message });
 				}
-
-				commit("setLoggingIn", false);
 
 				throw e;
 			}
@@ -127,7 +126,7 @@ export default {
 				name: `${projectName} Key ${Date.now()}`
 			});
 
-			commit("setLoggingIn", false);
+			commit("startLogin");
 
 			commit("setSession", {
 				email,

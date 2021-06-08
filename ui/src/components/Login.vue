@@ -64,11 +64,6 @@ export default {
 				password: this.password
 			});
 
-			if (this.errorExists) {
-				this.password = "";
-				return;
-			}
-
 			this.routeToBucketsView();
 		},
 
