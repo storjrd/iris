@@ -3,6 +3,6 @@ updates:
   - package-ecosystem: npm
     directory: "/ui"
     schedule:
-        interval: weekly
+      interval: weekly
     open-pull-requests-limit: 20
     versioning-strategy: increase
