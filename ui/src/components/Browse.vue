@@ -55,10 +55,7 @@ export default {
 	methods: {
 		back() {
 			this.$router.push({
-				name: "unlock",
-				params: {
-					bucket: this.bucket
-				}
+				name: "buckets"
 			});
 		}
 	},
