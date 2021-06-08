@@ -1,3 +1,9 @@
+<style scoped>
+.login {
+	font-weight: bold;
+}
+</style>
+
 <template>
 	<div>
 		<h5 class="mb-4">Login</h5>
@@ -29,7 +35,12 @@
 			class="btn btn-primary signup-btn btn-block my-4"
 			@click="login"
 		>
-			Login
+			<span
+				v-if="loggingIn"
+				class="spinner-border text-light align-middle"
+				role="status"
+			></span>
+			<span v-else class="login">Login</span>
 		</button>
 
 		<p>
@@ -52,11 +63,6 @@ export default {
 				email: this.email,
 				password: this.password
 			});
-
-			if (this.errorExists) {
-				this.password = "";
-				return;
-			}
 
 			this.routeToBucketsView();
 		},
@@ -83,6 +89,10 @@ export default {
 				this.emailInputFromSignupForm &&
 				this.emailInputFromSignupForm.length > 0
 			);
+		},
+
+		loggingIn() {
+			return this.$store.state.account.loggingIn;
 		}
 	},
 	created() {

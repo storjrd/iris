@@ -24,7 +24,8 @@ export default {
 			token: null,
 			apiKey: null,
 			projectId: null,
-			errorMessage: null
+			errorMessage: null,
+			loggingIn: false
 		};
 	},
 	mutations: {
@@ -35,6 +36,7 @@ export default {
 			state.token = token;
 			state.apiKey = apiKey;
 			state.projectId = projectId;
+			state.loggingIn = false;
 
 			/*
 			localStorage.setItem(
@@ -50,9 +52,14 @@ export default {
 		},
 		setErrorMessage(state, { message }) {
 			state.errorMessage = message;
+			state.loggingIn = false;
 		},
 		setEmail(state, { email }) {
 			state.email = email;
+		},
+		startLogin(state) {
+			state.loggingIn = true;
+			state.errorMessage = "";
 		}
 	},
 	actions: {
@@ -73,9 +80,9 @@ export default {
 		async login({ commit }, { email, password }) {
 			let token;
 
-			try {
-				commit("setErrorMessage", { message: "" });
+			commit("startLogin");
 
+			try {
 				const response = await login({
 					email,
 					password
@@ -118,6 +125,8 @@ export default {
 				projectId,
 				name: `${projectName} Key ${Date.now()}`
 			});
+
+			commit("startLogin");
 
 			commit("setSession", {
 				email,
