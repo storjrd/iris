@@ -23,37 +23,40 @@
 </style>
 
 <template>
-	<h2 class="text-center mb-5 title">Create a New Bucket</h2>
-	<div
-		v-if="creatingBucketSpinner"
-		class="mt-4 d-flex justify-content-center"
-	>
-		<div class="spinner-border text-center" role="status"></div>
-	</div>
-	<div v-else class="container col-6 white-background">
-		<div class="mb-3">
-			<label for="name" class="form-label">Bucket Name</label>
-			<input
-				type="text"
-				class="form-control"
-				id="name"
-				v-model="bucketName"
-				v-bind:class="bucketNameClass"
-			/>
-		</div>
-		<div class="mb-3">
-			<label for="passphrase" class="form-label">Passphrase</label>
-			<input
-				type="text"
-				class="form-control"
-				id="passphrase"
-				v-model="bucketPassphrase"
-				v-bind:class="bucketPassphraseClass"
-			/>
-		</div>
-		<div class="d-flex">
-			<router-link to="/app/buckets">
-				<button class="btn btn-success d-flex align-items-center">
+	<div class="row justify-content-center">
+		<div
+			class="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5 white-background"
+		>
+			<h2 class="text-center mb-5 title">Create a New Bucket</h2>
+			<div
+				v-if="creatingBucketSpinner"
+				class="mt-4 d-flex justify-content-center"
+			>
+				<div class="spinner-border text-center" role="status"></div>
+			</div>
+
+			<div class="mb-4">
+				<label for="name" class="form-label">Bucket Name</label>
+				<input
+					type="text"
+					class="form-control"
+					id="name"
+					v-model="bucketName"
+					v-bind:class="bucketNameClass"
+				/>
+			</div>
+			<div class="mb-4">
+				<label for="passphrase" class="form-label">Passphrase</label>
+				<input
+					type="text"
+					class="form-control"
+					id="passphrase"
+					v-model="bucketPassphrase"
+					v-bind:class="bucketPassphraseClass"
+				/>
+			</div>
+			<div class="d-flex">
+				<router-link to="/app/buckets" class="btn btn-light btn-block">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
@@ -68,18 +71,18 @@
 						/>
 					</svg>
 					Back
+				</router-link>
+
+				<div class="mx-1"></div>
+
+				<button
+					class="btn btn-primary btn-block"
+					v-bind:disabled="!createBucketEnabled"
+					v-on:click="createBucket"
+				>
+					Create
 				</button>
-			</router-link>
-
-			<div class="mx-1"></div>
-
-			<button
-				class="btn btn-primary"
-				v-bind:disabled="!createBucketEnabled"
-				v-on:click="createBucket"
-			>
-				Create
-			</button>
+			</div>
 		</div>
 	</div>
 </template>

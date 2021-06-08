@@ -17,7 +17,8 @@ a {
 	font-weight: 400;
 }
 .logo {
-	width: 140px;
+	width: 100%;
+	max-width: 140px;
 }
 
 .navbar {
@@ -512,6 +513,17 @@ input {
 .card-top-flat {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+}
+
+@media (max-width: 575.98px) {
+	.nav-item {
+		text-align: center;
+		padding: 0;
+	}
+	.nav-item .nav-link .nav-icon {
+		display: block;
+		margin: 0 auto;
+	}
 }
 </style>
 

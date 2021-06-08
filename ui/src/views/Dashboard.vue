@@ -56,16 +56,16 @@
 .navbar-nav.bottom {
 	position: sticky;
 	bottom: 0;
-	margin-top: 300px;
+	margin-top: 330px;
 }
 </style>
 
 <template>
-	<div>
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-4 col-md-3 col-lg-3 col-xl-2 p-4 p-lg-5">
+			<div class="col-4 col-md-3 col-lg-3 col-xl-2 p-3">
 				<div class="position-sticky">
-					<a class="navbar-brand" href="javascript:null">
+					<a class="navbar-brand mt-4" href="javascript:null">
 						<img
 							class="logo"
 							alt="Storj logo"

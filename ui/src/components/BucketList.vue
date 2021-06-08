@@ -61,7 +61,7 @@ tbody {
 	<div>
 		<div class="div-responsive" v-cloak>
 			<div class="row mb-2">
-				<div class="col-sm-12 col-md-4 col-xl-8 mb-3">
+				<div class="col-12 col-sm-5 col-md-6 col-xl-9 mb-3">
 					<h2>
 						Buckets
 						<!-- <span class="trash-can mx-1" v-if="areThereFilesToDelete()" v-on:click="deleteSelected">
@@ -72,10 +72,9 @@ tbody {
 					</span> -->
 					</h2>
 				</div>
-				<div class="col-sm-12 col-md-4 col-xl-1 mb-3"></div>
 				<div
 					class="
-						col-sm-12 col-md-4 col-xl-3
+						col-12 col-sm-7 col-md-6 col-xl-3
 						mb-3
 						d-flex
 						justify-content-lg-end justify-content-center
