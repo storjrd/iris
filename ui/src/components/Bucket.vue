@@ -50,7 +50,7 @@
 				></path>
 			</svg>
 			<span class="ml-3">
-				<span v-bind:class="{isUnlocked: 'bucket-name'}">
+				<span v-bind:class="{ isUnlocked: 'bucket-name' }">
 					{{ bucket }}
 				</span>
 			</span>
