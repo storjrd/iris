@@ -29,7 +29,7 @@
 
 <template>
 	<tr scope="row">
-		<td v-on:click="unlock" class="bucket-name">
+		<td v-on:click="bucketClick" class="bucket-name">
 			<svg
 				data-v-765080aa=""
 				width="16"
@@ -50,11 +50,7 @@
 				></path>
 			</svg>
 			<span class="ml-3">
-				<span v-if="isUnlocked" v-on:click="browse" class="bucket-name">
-					{{ bucket }}
-				</span>
-
-				<span>
+				<span v-bind:class="{isUnlocked: 'bucket-name'}">
 					{{ bucket }}
 				</span>
 			</span>
@@ -188,11 +184,6 @@ export default {
 	computed: {
 		isUnlocked() {
 			return this.$store.getters["buckets/isUnlocked"](this.bucket);
-		},
-
-		bucketFill() {
-			console.log("fill");
-			return this.isUnlocked ? "#28a745" : "#768394";
 		}
 	},
 	methods: {
@@ -211,6 +202,13 @@ export default {
 					bucket: this.bucket
 				}
 			});
+		},
+		bucketClick() {
+			if (this.isUnlocked) {
+				this.browse();
+			} else {
+				this.unlock();
+			}
 		}
 	}
 };
