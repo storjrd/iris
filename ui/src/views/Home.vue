@@ -525,7 +525,6 @@ input {
 		margin: 0 auto;
 	}
 }
-
 </style>
 
 <template>

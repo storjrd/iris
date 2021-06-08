@@ -12,14 +12,7 @@
 	<div>
 		<button
 			v-on:click="back"
-			class="
-				btn btn-light
-				d-flex
-				align-items-center
-				back-btn
-				btn-sm
-				mb-4
-			"
+			class="btn btn-light d-flex align-items-center back-btn btn-sm mb-4"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
