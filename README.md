@@ -7,6 +7,12 @@ Experimental new interface [Storj DCS](https://www.storj.io/).
 
 ## Usage
 
+```
+git clone git@github.com:storjrd/iris.git --recursive
+cd iris
+```
+
+
 > Requires `make`, `docker`, and `docker-compose`
 
 ```
