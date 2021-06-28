@@ -10,7 +10,7 @@ jobs:
         with:
           submodules: "recursive"
       - name: Docker Build & Push to Docker Hub
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         uses: opspresso/action-docker@master
         with:
           args: --docker
