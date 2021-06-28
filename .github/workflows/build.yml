@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
-          
+
       - name: Docker Build & Push to Docker Hub
         if: github.ref != 'refs/heads/main'
         uses: opspresso/action-docker@master
@@ -23,7 +23,7 @@ jobs:
           IMAGE_NAME: "storjstrategy/iris"
           TAG_NAME: "pr-${{github.event.number}}"
           LATEST: "false"
-          
+
       - name: Docker Build & Push to Docker Hub
         if: github.ref == 'refs/heads/main'
         uses: opspresso/action-docker@master
