@@ -20,3 +20,4 @@ jobs:
           IMAGE_NAME: "storjstrategy/iris"
           TAG_NAME: "v0.0.1"
           LATEST: "true"
+
