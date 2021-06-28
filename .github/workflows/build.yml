@@ -10,13 +10,15 @@ jobs:
         with:
           submodules: "recursive"
       - name: Docker Build & Push to Docker Hub
+        if: github.ref == 'refs/heads/master'
         uses: opspresso/action-docker@master
         with:
           args: --docker
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKERFILE: "ui/Dockerfile"
+          BUILD_PATH: "ui/"
+          DOCKERFILE: "Dockerfile"
           IMAGE_NAME: "storjstrategy/iris"
           TAG_NAME: "v0.0.1"
           LATEST: "true"
