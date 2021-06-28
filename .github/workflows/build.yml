@@ -21,7 +21,7 @@ jobs:
           BUILD_PATH: "ui/"
           DOCKERFILE: "ui/Dockerfile"
           IMAGE_NAME: "storjstrategy/iris"
-          TAG_NAME: pr-${{github.event.number}}
+          TAG_NAME: pr-${{github.event.name}}
           LATEST: "false"
 
       - name: Docker Build & Push to Docker Hub
