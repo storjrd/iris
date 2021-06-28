@@ -1,6 +1,6 @@
 name: build
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -9,4 +9,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - run: make build
+      - name: Docker Build & Push to Docker Hub
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKERFILE: "ui/Dockerfile"
+          IMAGE_NAME: "storjstrategy/iris"
+          TAG_NAME: "v0.0.1"
+          LATEST: "true"
