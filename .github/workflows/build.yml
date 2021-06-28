@@ -9,8 +9,21 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - if: github.ref != 'refs/heads/main'
-        run: make build
+          
+      - name: Docker Build & Push to Docker Hub
+        if: github.ref != 'refs/heads/main'
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          BUILD_PATH: "ui/"
+          DOCKERFILE: "ui/Dockerfile"
+          IMAGE_NAME: "storjstrategy/iris"
+          TAG_NAME: ${ GITHUB_REF##*/ }
+          LATEST: "false"
+          
       - name: Docker Build & Push to Docker Hub
         if: github.ref == 'refs/heads/main'
         uses: opspresso/action-docker@master
