@@ -18,7 +18,7 @@ jobs:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           BUILD_PATH: "ui/"
-          DOCKERFILE: "Dockerfile"
+          DOCKERFILE: "ui/Dockerfile"
           IMAGE_NAME: "storjstrategy/iris"
           TAG_NAME: "v0.0.1"
           LATEST: "true"
