@@ -19,7 +19,7 @@
 </style>
 
 <template>
-	<div id="app">
+	<div id="app" v-on:click="closeAllInteractions">
 		<div
 			class="alert alert-warning text-center rounded-0 mb-0 border-bottom"
 			role="alert"
@@ -53,6 +53,10 @@ export default {
 
 		logout() {
 			this.$store.dispatch("account/logout");
+		},
+
+		closeAllInteractions() {
+			this.$store.dispatch("files/closeAllInteractions");
 		}
 	},
 	watch: {
