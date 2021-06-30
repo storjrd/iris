@@ -20,7 +20,7 @@ jobs:
           BUILD_PATH: "ui/"
           DOCKERFILE: "ui/Dockerfile"
           IMAGE_NAME: "storjstrategy/iris"
-          TAG_NAME: $("commit-$GITHUB_SHA")
+          TAG_NAME: $(echo "commit-$GITHUB_SHA")
           LATEST: "false"
 
       - name: Docker Build & Push to Docker Hub
