@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h5 class="mb-4">Get Started</h5>
+		<h5 class="mb-4">Get Started With Iris 2.0!</h5>
 
 		<label for="emailAddress">Email Address</label>
 		<input
