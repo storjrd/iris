@@ -11,7 +11,6 @@ jobs:
           submodules: "recursive"
 
       - name: Docker Build & Push to Docker Hub
-        if: github.ref != 'refs/heads/main'
         uses: opspresso/action-docker@master
         with:
           args: --docker
@@ -21,7 +20,7 @@ jobs:
           BUILD_PATH: "ui/"
           DOCKERFILE: "ui/Dockerfile"
           IMAGE_NAME: "storjstrategy/iris"
-          TAG_NAME: pr-${{github.event.name}}
+          TAG_NAME: "commit-$GITHUB_SHA"
           LATEST: "false"
 
       - name: Docker Build & Push to Docker Hub
