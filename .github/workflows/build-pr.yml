@@ -16,34 +16,25 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Set outputs
-        id: vars
-        run: echo "::set-output name=sha_short::$(jq --raw-output .pull_request.number \"$GITHUB_EVENT_PATH\")"
-
-      - name: Check outputs
-        run: echo ${{ steps.vars.outputs.sha_short }}
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
 
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: ui/
           push: true
-          tags: storjstrategy/iris:pr-${{ steps.vars.outputs.sha_short }}
+          tags: storjstrategy/iris:pr-${{ steps.findPr.outputs.number }}
 
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
-            **Hello**
-            🌏
-            !
+            Howdy. Your pull request has been built and pushed to docker hub for easy testing.
+            Run it like so.
+            ```
+            docker run -it -p 3000:80 storjstrategy/iris:pr-${{steps.findPr.outputs.number}}
+            ```
+            Then browse to [localhost:3000/](http://localhost:3000)
           repo-token: ${{ secrets.BOT_TOKEN }}
           repo-token-user-login: "github-actions[bot]"
           allow-repeats: false
-
-      - name: Build and push
-        if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v2
-        with:
-          context: ui/
-          push: true
-          tags: storjstrategy/iris:latest
