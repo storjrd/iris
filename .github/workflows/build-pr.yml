@@ -32,7 +32,7 @@ jobs:
             Howdy. Your pull request has been built and pushed to docker hub for easy testing.
             Run it like so.
             ```
-            docker run -it -p 3000:80 storjstrategy/iris:pr-${{ github.event.number }}
+            docker run --rm --pull always -it -p 3000:80 storjstrategy/iris:pr-${{ github.event.number }}
             ```
             Then browse to [localhost:3000/](http://localhost:3000)
           repo-token: ${{ secrets.BOT_TOKEN }}
