@@ -31,16 +31,16 @@ jobs:
           message: |
             _Good day._
             
-            _On behalf of her majesty, this pull request has been built and pushed to DockerHub.
-            Run it locally using the royal command below._
+            On behalf of her majesty, this pull request has been built and pushed to DockerHub.
+            Run it locally using the royal command below.
             
             ```
             docker run --rm --pull always -it -p 3000:80 storjstrategy/iris:pr-${{ github.event.number }}
             ```
             
-            _Then browse to [http://localhost:3000/](http://localhost:3000) accordingly._
+            Then browse to [http://localhost:3000/](http://localhost:3000) accordingly.
 
-            _Sincerely,_
+            Sincerely,
             `storjrdbot`
           repo-token: ${{ secrets.BOT_TOKEN }}
           repo-token-user-login: "github-actions[bot]"
