@@ -162,10 +162,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a
-								class="nav-link"
-								href="javascript:null"
-							>
+							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon community-icon">
 									<svg
 										width="23"
