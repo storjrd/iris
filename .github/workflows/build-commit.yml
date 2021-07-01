@@ -1,4 +1,4 @@
-name: build
+name: build-commit
 
 on: [push]
 
@@ -29,22 +29,3 @@ jobs:
           context: ui/
           push: true
           tags: storjstrategy/iris:commit-${{ steps.vars.outputs.sha_short }}
-
-      - uses: mshick/add-pr-comment@v1
-        if: github.head_ref
-        with:
-          message: |
-            **Hello**
-            🌏
-            !
-          repo-token: ${{ secrets.BOT_TOKEN }}
-          repo-token-user-login: "github-actions[bot]" # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
-
-      - name: Build and push
-        if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v2
-        with:
-          context: ui/
-          push: true
-          tags: storjstrategy/iris:latest
