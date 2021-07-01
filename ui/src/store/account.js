@@ -64,12 +64,21 @@ export default {
 	},
 	actions: {
 		async signUp({ commit, dispatch }, { email, password }) {
-			await register({
-				fullName: "Iris User",
-				shortName: "Iris User",
-				email,
-				password
-			});
+			try {
+				await register({
+					fullName: "Iris User",
+					shortName: "Iris User",
+					email,
+					password
+				});
+			} catch(err) {
+				if (e instanceof SatelliteError) {
+					commit("setErrorMessage", { message: e.message });
+				}
+
+				throw e;
+			}
+
 
 			return dispatch("login", {
 				email,
