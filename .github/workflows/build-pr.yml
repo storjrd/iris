@@ -29,13 +29,19 @@ jobs:
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
-            Howdy 🤠
-            This PR has been built and pushed to DockerHub.
-            Run it locally using the command below.
+            _Good day._
+            
+            _On behalf of her majesty, this pull request has been built and pushed to DockerHub.
+            Run it locally using the royal command below._
+            
             ```
             docker run --rm --pull always -it -p 3000:80 storjstrategy/iris:pr-${{ github.event.number }}
             ```
-            Then browse to [http://localhost:3000/](http://localhost:3000).
+            
+            _Then browse to [http://localhost:3000/](http://localhost:3000) accordingly._
+
+            _Sincerely,_
+            `storjrdbot`
           repo-token: ${{ secrets.BOT_TOKEN }}
           repo-token-user-login: "github-actions[bot]"
           allow-repeats: false

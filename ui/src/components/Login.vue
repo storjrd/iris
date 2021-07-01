@@ -5,7 +5,7 @@
 </style>
 
 <template>
-	<div>
+	<div @keyup.enter="login">
 		<h5 class="mb-4">Login</h5>
 
 		<div v-if="errorExists" class="alert alert-danger" role="alert">
