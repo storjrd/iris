@@ -75,7 +75,7 @@
 
 					<ul class="navbar-nav top">
 						<li class="nav-item active">
-							<a class="nav-link" href="https://storj.io/blog">
+							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon">
 									<svg
 										width="18"
@@ -94,7 +94,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="">
+							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon">
 									<svg
 										width="18"
@@ -115,7 +115,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="">
+							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon">
 									<svg
 										width="19"
@@ -141,7 +141,7 @@
 
 					<ul class="navbar-nav bottom pb-4">
 						<li class="nav-item">
-							<a class="nav-link" href="" target="_blank">
+							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon">
 									<svg
 										width="18"
@@ -164,8 +164,7 @@
 						<li class="nav-item">
 							<a
 								class="nav-link"
-								href="https://forum.storj.io/"
-								target="_blank"
+								href="javascript:null"
 							>
 								<div class="nav-icon community-icon">
 									<svg
@@ -201,31 +200,6 @@
 									</svg>
 								</div>
 								Community
-							</a>
-						</li>
-						<li class="nav-item">
-							<a
-								class="nav-link"
-								href="https://support.storj.io/hc/en-us"
-								target="_blank"
-							>
-								<div class="nav-icon">
-									<svg
-										width="20"
-										height="17"
-										viewBox="0 0 20 17"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<path
-											fill-rule="evenodd"
-											clip-rule="evenodd"
-											d="M6.5 0C2.91015 0 0 2.91015 0 6.5C0 9.6597 2.25453 12.2928 5.24267 12.8785L5.24264 17L12.5695 13H13.5C17.0899 13 20 10.0899 20 6.5C20 2.91015 17.0899 0 13.5 0H6.5Z"
-											fill="#768394"
-										/>
-									</svg>
-								</div>
-								Support
 							</a>
 						</li>
 						<li v-on:click="logout" class="nav-item">
