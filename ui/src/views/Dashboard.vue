@@ -85,14 +85,30 @@
 
 					<ul class="navbar-nav top">
 						<li class="nav-item">
-							<div class="project-title">
-								Project
-							</div>
-							<a class="nav-link project-heading d-flex justify-content-between" href="javascript:null">
+							<div class="project-title">Project</div>
+							<a
+								class="
+									nav-link
+									project-heading
+									d-flex
+									justify-content-between
+								"
+								href="javascript:null"
+							>
 								{{ "My Storage Project" }}
 								<span class="align-middle">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-										<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										class="bi bi-chevron-down"
+										viewBox="0 0 16 16"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+										/>
 									</svg>
 								</span>
 							</a>
@@ -100,9 +116,20 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon">
-									<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M15.42 4.55488L14.3732 16.0185L14.3704 16.0186C14.2668 17.1183 11.3267 18 7.7149 18C4.10314 18 1.16304 17.1183 1.05939 16.0186L1.05656 16.0185L0.00976562 4.55488C0.0472251 4.58465 0.0858874 4.61398 0.125716 4.64285C0.584003 4.97514 1.21629 5.26217 1.9919 5.50003C3.49783 5.96186 5.5026 6.22504 7.63856 6.23117L7.7149 6.23128C9.8794 6.23128 11.914 5.96736 13.4379 5.50003C14.2135 5.26217 14.8458 4.97514 15.3041 4.64285C15.3439 4.61398 15.3826 4.58466 15.42 4.55488ZM7.7149 0C11.7162 0 14.9599 0.994665 14.9599 2.22165C14.9599 3.44863 11.7162 4.44329 7.7149 4.44329C3.71361 4.44329 0.469924 3.44863 0.469924 2.22165C0.469924 0.994665 3.71361 0 7.7149 0Z" fill="#768394"/>
-								</svg>
+									<svg
+										width="16"
+										height="18"
+										viewBox="0 0 16 18"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M15.42 4.55488L14.3732 16.0185L14.3704 16.0186C14.2668 17.1183 11.3267 18 7.7149 18C4.10314 18 1.16304 17.1183 1.05939 16.0186L1.05656 16.0185L0.00976562 4.55488C0.0472251 4.58465 0.0858874 4.61398 0.125716 4.64285C0.584003 4.97514 1.21629 5.26217 1.9919 5.50003C3.49783 5.96186 5.5026 6.22504 7.63856 6.23117L7.7149 6.23128C9.8794 6.23128 11.914 5.96736 13.4379 5.50003C14.2135 5.26217 14.8458 4.97514 15.3041 4.64285C15.3439 4.61398 15.3826 4.58466 15.42 4.55488ZM7.7149 0C11.7162 0 14.9599 0.994665 14.9599 2.22165C14.9599 3.44863 11.7162 4.44329 7.7149 4.44329C3.71361 4.44329 0.469924 3.44863 0.469924 2.22165C0.469924 0.994665 3.71361 0 7.7149 0Z"
+											fill="#768394"
+										/>
+									</svg>
 								</div>
 								Buckets
 							</a>
@@ -110,9 +137,18 @@
 						<li class="nav-item">
 							<a class="nav-link" href="javascript:null">
 								<div class="nav-icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-									<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-								</svg>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										class="bi bi-clock-fill"
+										viewBox="0 0 16 16"
+									>
+										<path
+											d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+										/>
+									</svg>
 								</div>
 								Backup
 							</a>
@@ -182,19 +218,44 @@
 							</a>
 						</li>
 						<li v-on:click="logout" class="nav-item">
-							<a class="nav-link d-flex justify-content-between" href="#">
+							<a
+								class="nav-link d-flex justify-content-between"
+								href="#"
+							>
 								<span>
 									<div class="nav-icon">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-											<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-											<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="16"
+											height="16"
+											fill="currentColor"
+											class="bi bi-person-circle"
+											viewBox="0 0 16 16"
+										>
+											<path
+												d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+											/>
+											<path
+												fill-rule="evenodd"
+												d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+											/>
 										</svg>
 									</div>
 									Account
 								</span>
 								<span class="align-middle">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-										<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										class="bi bi-chevron-right"
+										viewBox="0 0 16 16"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+										/>
 									</svg>
 								</span>
 							</a>
