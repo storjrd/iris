@@ -38,7 +38,7 @@ jobs:
             🌏
             !
           repo-token: ${{ secrets.BOT_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          repo-token-user-login: "github-actions[bot]" # The user.login for temporary GitHub tokens
           allow-repeats: false # This is the default
 
       - name: Build and push

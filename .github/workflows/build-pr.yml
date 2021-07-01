@@ -37,7 +37,7 @@ jobs:
             🌏
             !
           repo-token: ${{ secrets.BOT_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]'
+          repo-token-user-login: "github-actions[bot]"
           allow-repeats: false
 
       - name: Build and push
