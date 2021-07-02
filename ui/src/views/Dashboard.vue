@@ -189,7 +189,7 @@
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+							<a class="nav-link" href="https://forum.storj.io" target="_blank">
 								<div class="nav-icon community-icon">
 									<svg
 										width="23"
@@ -226,7 +226,7 @@
 								Community
 							</a>
 						</li>
-						<li v-on:click="logout" class="nav-item">
+						<!-- <li v-on:click="logout" class="nav-item">
 							<a
 								class="nav-link d-flex justify-content-between"
 								href="#"
@@ -267,6 +267,25 @@
 										/>
 									</svg>
 								</span>
+							</a>
+						</li> -->
+						<li v-on:click="logout" class="nav-item">
+							<a class="nav-link" href="javascript:null">
+								<div class="nav-icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="16"
+										fill="none"
+										class="bi bi-lock-fill"
+										viewBox="0 0 18 16"
+									>
+										<path
+											d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+										/>
+									</svg>
+								</div>
+								Logout
 							</a>
 						</li>
 					</ul>
