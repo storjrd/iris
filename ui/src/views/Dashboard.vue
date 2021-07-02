@@ -134,7 +134,10 @@
 								Buckets
 							</a>
 						</li>
-						<li class="nav-item" v-bind:class="{ active: backupPath }">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: backupPath }"
+						>
 							<router-link class="nav-link" to="/app/backup">
 								<div class="nav-icon">
 									<svg

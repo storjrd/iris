@@ -133,10 +133,7 @@ a.docs-link-active {
 									/>
 									<button
 										v-on:click="
-											copy(
-												endpoint,
-												'endpointCopyText'
-											)
+											copy(endpoint, 'endpointCopyText')
 										"
 										class="copy"
 									>
@@ -163,10 +160,7 @@ a.docs-link-active {
 									/>
 									<button
 										v-on:click="
-											copy(
-												accessKey,
-												'accessKeyCopyText'
-											)
+											copy(accessKey, 'accessKeyCopyText')
 										"
 										class="copy"
 									>
@@ -193,10 +187,7 @@ a.docs-link-active {
 									/>
 									<button
 										v-on:click="
-											copy(
-												secretKey,
-												'secretKeyCopyText'
-											)
+											copy(secretKey, 'secretKeyCopyText')
 										"
 										class="copy"
 									>
@@ -218,17 +209,12 @@ a.docs-link-active {
 										id="bucket"
 										class="form-control"
 										autocomplete="off"
-										v-model="
-											bucket
-										"
+										v-model="bucket"
 										disabled
 									/>
 									<button
 										v-on:click="
-											copy(
-												bucket,
-												'bucketCopyText'
-											)
+											copy(bucket, 'bucketCopyText')
 										"
 										class="copy"
 									>
@@ -273,7 +259,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/1.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Create Backup"
 								/>
 
@@ -289,7 +282,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/2.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Set Passphrase"
 								/>
 
@@ -324,7 +324,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/3.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Configure Backup"
 								/>
 								<p>
@@ -334,7 +341,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/4.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Bucket Name"
 								/>
 								<p>
@@ -350,7 +364,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/5.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Success"
 								/>
 
@@ -362,7 +383,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/6.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Source Data"
 								/>
 								<p>
@@ -371,7 +399,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/7.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Backup Schedule"
 								/>
 								<p>
@@ -382,7 +417,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/8.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Backup Retention"
 								/>
 								<p>
@@ -396,7 +438,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/9.png"
-									class="img-fluid mt-3 mb-5 rounded border shadow"
+									class="
+										img-fluid
+										mt-3
+										mb-5
+										rounded
+										border
+										shadow
+									"
 									alt="Save Your Passphrase"
 								/>
 
@@ -410,7 +459,14 @@ a.docs-link-active {
 								</p>
 								<img
 									src="@/assets/duplicati/10.png"
-									class="img-fluid w-100 mt-3 rounded border shadow"
+									class="
+										img-fluid
+										w-100
+										mt-3
+										rounded
+										border
+										shadow
+									"
 									alt="Run First Backup"
 								/>
 							</div>
