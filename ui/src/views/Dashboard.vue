@@ -189,7 +189,11 @@
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="https://forum.storj.io" target="_blank">
+							<a
+								class="nav-link"
+								href="https://forum.storj.io"
+								target="_blank"
+							>
 								<div class="nav-icon community-icon">
 									<svg
 										width="23"
