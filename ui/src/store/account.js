@@ -25,7 +25,10 @@ export default {
 			apiKey: null,
 			projectId: null,
 			errorMessage: null,
-			loggingIn: false
+			loggingIn: false,
+			usage: null,
+			plans: null,
+			planId: null
 		};
 	},
 	mutations: {
@@ -60,6 +63,9 @@ export default {
 		startLogin(state) {
 			state.loggingIn = true;
 			state.errorMessage = "";
+		},
+		setUsage(state, usage) {
+			state.usage = usage;
 		}
 	},
 	actions: {
@@ -143,6 +149,18 @@ export default {
 				projectId: null,
 				apiKey: null
 			});
+		},
+
+		async getUsage({ commit }) {
+			commit("setUsage",
+			{
+        bytesUploaded: 1000000,
+        bytesUploadedQuota: 1e11,
+        filesUploaded: 10000,
+        filesUploadedQuota: 100000,
+        bytesDownloaded: 1000000000,
+        bytesDownloadedQuota: 1e11
+      });
 		}
 	},
 	getters: {

@@ -113,8 +113,8 @@
 								</span>
 							</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="javascript:null">
+						<li class="nav-item" v-bind:class="{ active: bucketsPath }">
+							<router-link class="nav-link" to="/app/buckets">
 								<div class="nav-icon">
 									<svg
 										width="16"
@@ -132,7 +132,7 @@
 									</svg>
 								</div>
 								Buckets
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="javascript:null">
@@ -156,8 +156,8 @@
 					</ul>
 
 					<ul class="navbar-nav bottom pb-4">
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+						<li class="nav-item" v-bind:class="{ active: usagePath }">
+							<router-link class="nav-link" to="/app/usage">
 								<div class="nav-icon">
 									<svg
 										width="19"
@@ -177,7 +177,7 @@
 									</svg>
 								</div>
 								Plan & Usage
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="javascript:null">
@@ -283,10 +283,21 @@ export default {
 	components: {
 		AppFooter
 	},
+	computed: {
+		bucketsPath() {
+			return this.$route.path === "/app/buckets";
+		},
+		usagePath() {
+			return this.$route.path === "/app/usage";
+		}
+	},
 	methods: {
 		logout() {
 			this.$store.dispatch("account/logout");
 		}
+	},
+	created() {
+		console.log('ROUTE', this.$route.path)
 	}
 };
 </script>
