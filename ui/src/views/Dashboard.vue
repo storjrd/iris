@@ -134,8 +134,8 @@
 								Buckets
 							</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+						<li class="nav-item" v-bind:class="{ active: backupPath }">
+							<router-link class="nav-link" to="/app/backup">
 								<div class="nav-icon">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@
 									</svg>
 								</div>
 								Backup
-							</a>
+							</router-link>
 						</li>
 					</ul>
 
@@ -282,6 +282,11 @@ import AppFooter from "../components/AppFooter.vue";
 export default {
 	components: {
 		AppFooter
+	},
+	computed: {
+		backupPath() {
+			return this.$route.path === "/app/backup";
+		}
 	},
 	methods: {
 		logout() {

@@ -25,7 +25,11 @@ export default {
 			apiKey: null,
 			projectId: null,
 			errorMessage: null,
-			loggingIn: false
+			loggingIn: false,
+			endpoint: "https://us1.storj.io",
+			accessKey: "4EdkanJHIlJ8949JIk23jlfjaJNallfH90",
+			secretKey: "si8nfanEF30NlmdjJ94n2laf435JHlh492",
+			bucket: "iris"
 		};
 	},
 	mutations: {

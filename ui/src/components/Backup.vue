@@ -128,15 +128,13 @@ a.docs-link-active {
 										id="stargate-endpoint"
 										class="form-control"
 										autocomplete="off"
-										v-model="
-											this.$store.state.stargateEndpoint
-										"
+										v-model="endpoint"
 										disabled
 									/>
 									<button
 										v-on:click="
 											copy(
-												$store.state.stargateEndpoint,
+												endpoint,
 												'endpointCopyText'
 											)
 										"
@@ -160,15 +158,13 @@ a.docs-link-active {
 										id="access-key"
 										class="form-control"
 										autocomplete="off"
-										v-model="
-											this.$store.state.stargateAccessKey
-										"
+										v-model="accessKey"
 										disabled
 									/>
 									<button
 										v-on:click="
 											copy(
-												$store.state.stargateAccessKey,
+												accessKey,
 												'accessKeyCopyText'
 											)
 										"
@@ -192,15 +188,13 @@ a.docs-link-active {
 										id="secret-key"
 										class="form-control"
 										autocomplete="off"
-										v-model="
-											this.$store.state.stargateSecretKey
-										"
+										v-model="secretKey"
 										disabled
 									/>
 									<button
 										v-on:click="
 											copy(
-												$store.state.stargateSecretKey,
+												secretKey,
 												'secretKeyCopyText'
 											)
 										"
@@ -225,14 +219,14 @@ a.docs-link-active {
 										class="form-control"
 										autocomplete="off"
 										v-model="
-											this.$store.state.stargateBucket
+											bucket
 										"
 										disabled
 									/>
 									<button
 										v-on:click="
 											copy(
-												$store.state.stargateBucket,
+												bucket,
 												'bucketCopyText'
 											)
 										"
@@ -436,6 +430,20 @@ export default {
 		secretKeyCopyText: "Copy",
 		bucketCopyText: "Copy"
 	}),
+	computed: {
+		endpoint() {
+			return this.$store.state.account.endpoint;
+		},
+		accessKey() {
+			return this.$store.state.account.accessKey;
+		},
+		secretKey() {
+			return this.$store.state.account.secretKey;
+		},
+		bucket() {
+			return this.$store.state.account.bucket;
+		}
+	},
 	methods: {
 		async copy(text, field) {
 			await navigator.clipboard.writeText(text);
