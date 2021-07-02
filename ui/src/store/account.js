@@ -28,16 +28,13 @@ export default {
 			projectId: null,
 			errorMessage: null,
 			loggingIn: false,
-<<<<<<< HEAD
 			endpoint: "https://us1.storj.io",
 			accessKey: "4EdkanJHIlJ8949JIk23jlfjaJNallfH90",
 			secretKey: "si8nfanEF30NlmdjJ94n2laf435JHlh492",
-			bucket: "iris"
-=======
+			bucket: "iris",
 			usage: null,
 			plans,
 			planId: "free-100g"
->>>>>>> usage-page
 		};
 	},
 	mutations: {

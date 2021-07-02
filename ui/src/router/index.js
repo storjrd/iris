@@ -9,11 +9,8 @@ import BucketCreation from "../components/BucketCreation";
 import BucketList from "../components/BucketList";
 import Unlock from "../components/Unlock";
 import Browse from "../components/Browse";
-<<<<<<< HEAD
 import Backup from "../components/Backup";
-=======
 import Usage from "../components/Usage";
->>>>>>> usage-page
 
 const routes = [
 	{
@@ -36,15 +33,14 @@ const routes = [
 		component: Dashboard,
 		children: [
 			{
-<<<<<<< HEAD
 				name: "backup",
 				path: "backup",
 				component: Backup
-=======
+			},
+			{
 				name: "usage",
 				path: "usage",
 				component: Usage
->>>>>>> usage-page
 			},
 			{
 				name: "buckets",
