@@ -7,6 +7,8 @@ import {
 	SatelliteError
 } from "../lib/satellite";
 
+import plans from "../plans.json";
+
 export default {
 	namespaced: true,
 
@@ -27,8 +29,8 @@ export default {
 			errorMessage: null,
 			loggingIn: false,
 			usage: null,
-			plans: null,
-			planId: null
+			plans,
+			planId: "free-100g"
 		};
 	},
 	mutations: {

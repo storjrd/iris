@@ -202,7 +202,7 @@
 				</div>
 			</div>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col">
 					<div class="table-responsive">
 						<table class="table plan-table">
@@ -237,18 +237,17 @@
 									</td>
 									<td>
 										{{
-											plan.storageBytesQuota | prettyBytes
+                      formatQuota(plan.storageBytesQuota)
 										}}
 									</td>
 									<td>
 										{{
-											plan.downloadBytesQuota
-												| prettyBytes
+                      formatQuota(plan.downloadBytesQuota)
 										}}
 									</td>
 									<td>
 										{{
-											plan.storageFilesQuota.toLocaleString()
+                      formatStorageFilesQuota(plan.storageFilesQuota)
 										}}
 									</td>
 									<td></td>
@@ -257,7 +256,7 @@
 						</table>
 					</div>
 				</div>
-			</div> -->
+			</div>
 
 			<div class="row">
 				<div class="col">
@@ -282,18 +281,24 @@ export default {
 		async updateUsage() {
 			// const { data } = await axios.post("/api/usage");
 			// this.usage = data;
-		}
+		},
+    formatQuota(quota) {
+      return prettyBytes(quota)
+    },
+    formatStorageFilesQuota(quota) {
+      return quota.toLocaleString();
+    }
 	},
 	computed: {
 		usage() {
 			return this.$store.state.account.usage;
 		},
-		// plans() {
-		// 	return this.$store.state.plans;
-		// },
-		// planId() {
-		// 	return this.$store.state.planId;
-		// },
+		plans() {
+			return this.$store.state.account.plans;
+		},
+		planId() {
+			return this.$store.state.account.planId;
+		},
 		bytesUploadedPrettyBytes() {
 			return prettyBytes(this.usage.bytesUploaded);
 		},
