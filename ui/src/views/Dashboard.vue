@@ -113,7 +113,10 @@
 								</span>
 							</a>
 						</li>
-						<li class="nav-item" v-bind:class="{ active: bucketsPath }">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: bucketsPath }"
+						>
 							<router-link class="nav-link" to="/app/buckets">
 								<div class="nav-icon">
 									<svg
@@ -156,7 +159,10 @@
 					</ul>
 
 					<ul class="navbar-nav bottom pb-4">
-						<li class="nav-item" v-bind:class="{ active: usagePath }">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: usagePath }"
+						>
 							<router-link class="nav-link" to="/app/usage">
 								<div class="nav-icon">
 									<svg
@@ -297,7 +303,7 @@ export default {
 		}
 	},
 	created() {
-		console.log('ROUTE', this.$route.path)
+		console.log("ROUTE", this.$route.path);
 	}
 };
 </script>

@@ -60,7 +60,9 @@
 		<div class="bars" v-if="usage != null">
 			<div class="row mb-4">
 				<div class="col">
-					<h5 class="mb-4">Usage <span class="usage-mute">(updates daily)</span></h5>
+					<h5 class="mb-4">
+						Usage <span class="usage-mute">(updates daily)</span>
+					</h5>
 					<hr />
 				</div>
 			</div>
@@ -138,9 +140,7 @@
 						<div class="col">
 							<p class="text-right">
 								<span class="metric"
-									>{{
-										filesUploadedToHumanString
-									}}/{{
+									>{{ filesUploadedToHumanString }}/{{
 										filesUploadedQuotaToHumanString
 									}}</span
 								>
@@ -179,9 +179,7 @@
 						<div class="col">
 							<p class="text-right">
 								<span class="metric"
-									>{{
-										bytesDownloadedPrettyBytes
-									}}/{{
+									>{{ bytesDownloadedPrettyBytes }}/{{
 										bytesDownloadedQuotaPrettyBytes
 									}}</span
 								>
@@ -265,9 +263,7 @@
 				<div class="col">
 					<p class="text-center mt-4">
 						Need more?
-						<a
-							href="mailto:iris@storj.io"
-							class="font-weight-bold"
+						<a href="mailto:iris@storj.io" class="font-weight-bold"
 							>Contact Us</a
 						>
 					</p>
@@ -285,7 +281,6 @@ export default {
 	methods: {
 		async updateUsage() {
 			// const { data } = await axios.post("/api/usage");
-
 			// this.usage = data;
 		}
 	},
@@ -299,24 +294,24 @@ export default {
 		// planId() {
 		// 	return this.$store.state.planId;
 		// },
-    bytesUploadedPrettyBytes() {
-      return prettyBytes(this.usage.bytesUploaded);
-    },
-    bytesUploadedQuotaPrettyBytes() {
-      return prettyBytes(this.usage.bytesUploadedQuota);
-    },
-    bytesDownloadedPrettyBytes() {
-      return prettyBytes(this.usage.bytesDownloaded);
-    },
-    bytesDownloadedQuotaPrettyBytes() {
-      return prettyBytes(this.usage.bytesDownloadedQuota);
-    },
-    filesUploadedToHumanString() {
-      return toHumanString(this.usage.filesUploaded);
-    },
-    filesUploadedQuotaToHumanString() {
-      return toHumanString(this.usage.filesUploadedQuota);
-    },
+		bytesUploadedPrettyBytes() {
+			return prettyBytes(this.usage.bytesUploaded);
+		},
+		bytesUploadedQuotaPrettyBytes() {
+			return prettyBytes(this.usage.bytesUploadedQuota);
+		},
+		bytesDownloadedPrettyBytes() {
+			return prettyBytes(this.usage.bytesDownloaded);
+		},
+		bytesDownloadedQuotaPrettyBytes() {
+			return prettyBytes(this.usage.bytesDownloadedQuota);
+		},
+		filesUploadedToHumanString() {
+			return toHumanString(this.usage.filesUploaded);
+		},
+		filesUploadedQuotaToHumanString() {
+			return toHumanString(this.usage.filesUploadedQuota);
+		},
 		bytesUploadedPercent() {
 			return this.usage !== null
 				? (
