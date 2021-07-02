@@ -225,7 +225,7 @@ a.docs-link-active {
 						</div>
 					</div>
 
-					<div class="docs-bg rounded-bottom">
+					<div class="rounded-bottom">
 						<div class="row px-0 py-5 p-md-5">
 							<div class="col-12 col-lg-4 pt-5 px-5 px-md-3">
 								<h4 class="mb-4">Docs</h4>
