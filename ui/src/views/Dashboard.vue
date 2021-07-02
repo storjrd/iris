@@ -113,8 +113,11 @@
 								</span>
 							</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="javascript:null">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: bucketsPath }"
+						>
+							<router-link class="nav-link" to="/app/buckets">
 								<div class="nav-icon">
 									<svg
 										width="16"
@@ -132,7 +135,7 @@
 									</svg>
 								</div>
 								Buckets
-							</a>
+							</router-link>
 						</li>
 						<li
 							class="nav-item"
@@ -159,8 +162,11 @@
 					</ul>
 
 					<ul class="navbar-nav bottom pb-4">
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: usagePath }"
+						>
+							<router-link class="nav-link" to="/app/usage">
 								<div class="nav-icon">
 									<svg
 										width="19"
@@ -180,7 +186,7 @@
 									</svg>
 								</div>
 								Plan & Usage
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="javascript:null">
@@ -287,8 +293,16 @@ export default {
 		AppFooter
 	},
 	computed: {
+<<<<<<< HEAD
 		backupPath() {
 			return this.$route.path === "/app/backup";
+=======
+		bucketsPath() {
+			return this.$route.path === "/app/buckets";
+		},
+		usagePath() {
+			return this.$route.path === "/app/usage";
+>>>>>>> usage-page
 		}
 	},
 	methods: {
