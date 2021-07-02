@@ -237,17 +237,19 @@
 									</td>
 									<td>
 										{{
-                      formatQuota(plan.storageBytesQuota)
+											formatQuota(plan.storageBytesQuota)
 										}}
 									</td>
 									<td>
 										{{
-                      formatQuota(plan.downloadBytesQuota)
+											formatQuota(plan.downloadBytesQuota)
 										}}
 									</td>
 									<td>
 										{{
-                      formatStorageFilesQuota(plan.storageFilesQuota)
+											formatStorageFilesQuota(
+												plan.storageFilesQuota
+											)
 										}}
 									</td>
 									<td></td>
@@ -282,12 +284,12 @@ export default {
 			// const { data } = await axios.post("/api/usage");
 			// this.usage = data;
 		},
-    formatQuota(quota) {
-      return prettyBytes(quota)
-    },
-    formatStorageFilesQuota(quota) {
-      return quota.toLocaleString();
-    }
+		formatQuota(quota) {
+			return prettyBytes(quota);
+		},
+		formatStorageFilesQuota(quota) {
+			return quota.toLocaleString();
+		}
 	},
 	computed: {
 		usage() {
