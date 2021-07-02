@@ -293,16 +293,14 @@ export default {
 		AppFooter
 	},
 	computed: {
-<<<<<<< HEAD
 		backupPath() {
 			return this.$route.path === "/app/backup";
-=======
+		},
 		bucketsPath() {
 			return this.$route.path === "/app/buckets";
 		},
 		usagePath() {
 			return this.$route.path === "/app/usage";
->>>>>>> usage-page
 		}
 	},
 	methods: {
