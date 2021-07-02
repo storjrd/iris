@@ -301,9 +301,6 @@ export default {
 		logout() {
 			this.$store.dispatch("account/logout");
 		}
-	},
-	created() {
-		console.log("ROUTE", this.$route.path);
 	}
 };
 </script>
