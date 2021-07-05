@@ -1,7 +1,7 @@
 # iris
 
 [![prettier](https://github.com/storjrd/iris/actions/workflows/prettier.yml/badge.svg)](https://github.com/storjrd/iris/actions/workflows/prettier.yml)
-[![build](https://github.com/storjrd/iris/actions/workflows/build.yml/badge.svg)](https://github.com/storjrd/iris/actions/workflows/build.yml)
+[![build](https://github.com/storjrd/iris/actions/workflows/build-commit.yml/badge.svg)](https://github.com/storjrd/iris/actions/workflows/build-commit.yml)
 
 Experimental new interface [Storj DCS](https://www.storj.io/).
 
