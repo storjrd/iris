@@ -15,7 +15,7 @@ cd iris
 > Requires `just`, `docker`, and `docker-compose`
 
 ```
-make
+just
 ```
 
 ### Development
