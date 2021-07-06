@@ -7,6 +7,8 @@ import {
 	SatelliteError
 } from "../lib/satellite";
 
+import plans from "../plans.json";
+
 export default {
 	namespaced: true,
 
@@ -25,7 +27,14 @@ export default {
 			apiKey: null,
 			projectId: null,
 			errorMessage: null,
-			loggingIn: false
+			loggingIn: false,
+			endpoint: "https://us1.storj.io",
+			accessKey: "4EdkanJHIlJ8949JIk23jlfjaJNallfH90",
+			secretKey: "si8nfanEF30NlmdjJ94n2laf435JHlh492",
+			bucket: "iris",
+			usage: null,
+			plans,
+			planId: "free-100g"
 		};
 	},
 	mutations: {
@@ -60,6 +69,9 @@ export default {
 		startLogin(state) {
 			state.loggingIn = true;
 			state.errorMessage = "";
+		},
+		setUsage(state, usage) {
+			state.usage = usage;
 		}
 	},
 	actions: {
@@ -142,6 +154,17 @@ export default {
 				token: null,
 				projectId: null,
 				apiKey: null
+			});
+		},
+
+		async getUsage({ commit }) {
+			commit("setUsage", {
+				bytesUploaded: 1000000,
+				bytesUploadedQuota: 1e11,
+				filesUploaded: 10000,
+				filesUploadedQuota: 100000,
+				bytesDownloaded: 1000000000,
+				bytesDownloadedQuota: 1e11
 			});
 		}
 	},

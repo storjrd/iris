@@ -9,6 +9,8 @@ import BucketCreation from "../components/BucketCreation";
 import BucketList from "../components/BucketList";
 import Unlock from "../components/Unlock";
 import Browse from "../components/Browse";
+import Backup from "../components/Backup";
+import Usage from "../components/Usage";
 
 const routes = [
 	{
@@ -30,6 +32,16 @@ const routes = [
 		path: "/app",
 		component: Dashboard,
 		children: [
+			{
+				name: "backup",
+				path: "backup",
+				component: Backup
+			},
+			{
+				name: "usage",
+				path: "usage",
+				component: Usage
+			},
 			{
 				name: "buckets",
 				path: "buckets",

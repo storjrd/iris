@@ -56,7 +56,7 @@
 .navbar-nav.bottom {
 	position: sticky;
 	bottom: 0;
-	margin-top: 330px;
+	margin-top: 430px;
 }
 .project-title {
 	color: white;
@@ -113,8 +113,11 @@
 								</span>
 							</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="javascript:null">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: bucketsPath }"
+						>
+							<router-link class="nav-link" to="/app/buckets">
 								<div class="nav-icon">
 									<svg
 										width="16"
@@ -132,10 +135,13 @@
 									</svg>
 								</div>
 								Buckets
-							</a>
+							</router-link>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: backupPath }"
+						>
+							<router-link class="nav-link" to="/app/backup">
 								<div class="nav-icon">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -151,13 +157,40 @@
 									</svg>
 								</div>
 								Backup
+							</router-link>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="javascript:null">
+								<div class="nav-icon">
+									<svg
+										class="svg"
+										width="19"
+										height="19"
+										viewBox="0 0 19 19"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											class="navigation-svg-path"
+											opacity="0.8"
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M19 0L18.8777 3.30167L17.3804 3.33154L17.3114 4.86798L15.548 5.164L15.5552 6.62419L14.0737 6.63827L13.8958 8.28354L12.3349 9.84422L13.2397 13.2214C13.3996 13.8182 13.229 14.4549 12.7921 14.8918L9.19044 18.4934C8.75356 18.9303 8.1168 19.1009 7.52001 18.941L2.60009 17.6227C2.00331 17.4628 1.53716 16.9967 1.37725 16.3999L0.0589658 11.48C-0.100943 10.8832 0.0696777 10.2464 0.506556 9.80956L4.10819 6.20793C4.54507 5.77105 5.18183 5.60043 5.77862 5.76034L9.15552 6.66484L15.6983 0.122284L19 0ZM6.52703 12.473C5.78414 11.7301 4.57967 11.7301 3.83678 12.473C3.09389 13.2159 3.09389 14.4203 3.83678 15.1632C4.57967 15.9061 5.78414 15.9061 6.52703 15.1632C7.26992 14.4203 7.26992 13.2159 6.52703 12.473Z"
+											fill="#768394"
+										/>
+									</svg>
+								</div>
+								Access Keys
 							</a>
 						</li>
 					</ul>
 
 					<ul class="navbar-nav bottom pb-4">
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: usagePath }"
+						>
+							<router-link class="nav-link" to="/app/usage">
 								<div class="nav-icon">
 									<svg
 										width="19"
@@ -177,10 +210,14 @@
 									</svg>
 								</div>
 								Plan & Usage
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+							<a
+								class="nav-link"
+								href="https://forum.storj.io"
+								target="_blank"
+							>
 								<div class="nav-icon community-icon">
 									<svg
 										width="23"
@@ -217,7 +254,7 @@
 								Community
 							</a>
 						</li>
-						<li v-on:click="logout" class="nav-item">
+						<!-- <li v-on:click="logout" class="nav-item">
 							<a
 								class="nav-link d-flex justify-content-between"
 								href="#"
@@ -259,6 +296,25 @@
 									</svg>
 								</span>
 							</a>
+						</li> -->
+						<li v-on:click="logout" class="nav-item">
+							<a class="nav-link" href="javascript:null">
+								<div class="nav-icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="16"
+										fill="none"
+										class="bi bi-lock-fill"
+										viewBox="0 0 18 16"
+									>
+										<path
+											d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+										/>
+									</svg>
+								</div>
+								Logout
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -282,6 +338,17 @@ import AppFooter from "../components/AppFooter.vue";
 export default {
 	components: {
 		AppFooter
+	},
+	computed: {
+		backupPath() {
+			return this.$route.path === "/app/backup";
+		},
+		bucketsPath() {
+			return this.$route.path === "/app/buckets";
+		},
+		usagePath() {
+			return this.$route.path === "/app/usage";
+		}
 	},
 	methods: {
 		logout() {
