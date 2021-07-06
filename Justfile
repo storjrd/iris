@@ -16,7 +16,12 @@ prettier:
 prettier-check:
 	prettier --check .
 
-release:
-	docker-compose build
-	docker save iris_ui:latest > iris_ui.tar
-	gpg --sign iris_ui.tar
+update-browser:
+	git pull
+	cd ui/browser
+	git fetch
+	git checkout main
+	git pull
+	cd ../
+	git add .
+	git commit -m "bump browser version"
