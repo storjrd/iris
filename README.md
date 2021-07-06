@@ -12,7 +12,7 @@ git clone git@github.com:storjrd/iris.git --recursive
 cd iris
 ```
 
-> Requires `make`, `docker`, and `docker-compose`
+> Requires `just`, `docker`, and `docker-compose`
 
 ```
 make
@@ -21,5 +21,5 @@ make
 ### Development
 
 ```
-make dev
+just dev
 ```
