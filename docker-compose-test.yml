@@ -10,3 +10,5 @@ services:
       - "ui:ui"
     volumes:
       - "./ui-tests-output:/output"
+    depends_on:
+      - ui
