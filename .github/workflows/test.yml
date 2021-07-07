@@ -16,6 +16,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: ui-tests-output
-          path: |
-            ui-tests-output/*
+          name: screenshot.png
+          path: ui-tests-output/screenshot.png
