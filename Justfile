@@ -9,7 +9,8 @@ dev:
 
 test:
 	mkdir -p ui-tests-output
-	docker-compose -f docker-compose-test.yml up --force-recreate --build --abort-on-container-exit
+	docker-compose -f docker-compose-test.yml build --parallel
+	docker-compose -f docker-compose-test.yml up --force-recreate --abort-on-container-exit
 
 prettier:
 	prettier --write . !ui/browser
