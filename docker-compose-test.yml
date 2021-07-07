@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  ui:
+    build: ui
+
+  ui-tests:
+    build: ui-tests
+    links:
+      - "ui:ui"
+    volumes:
+      - "./ui-tests-output:/output"

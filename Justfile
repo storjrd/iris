@@ -7,6 +7,10 @@ build:
 dev:
 	docker-compose -f docker-compose-dev.yml up --force-recreate --build
 
+test:
+	mkdir -p ui-tests-output
+	docker-compose -f docker-compose-test.yml up --force-recreate --build --abort-on-container-exit
+
 prettier:
 	prettier --write . !ui/browser
 	git add .
