@@ -252,7 +252,27 @@
 											)
 										}}
 									</td>
-									<td></td>
+									<td>
+										<button
+											v-if="free100G(id)"
+											type="button"
+											class="btn btn-light btn-sm"
+										>
+											Verify Email
+										</button>
+
+										<router-link
+											to="/app/usage/upgrade-form"
+										>
+											<button
+												v-if="free1Tb(id)"
+												type="button"
+												class="btn btn-light btn-sm"
+											>
+												Upgrade - Free!
+											</button>
+										</router-link>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -289,6 +309,12 @@ export default {
 		},
 		formatStorageFilesQuota(quota) {
 			return quota.toLocaleString();
+		},
+		free100G(id) {
+			return id === "free-100g";
+		},
+		free1Tb(id) {
+			return id === "free-1tb";
 		}
 	},
 	computed: {
