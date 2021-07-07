@@ -23,10 +23,6 @@ prettier-check:
 
 update-browser:
 	git pull
-	cd ui/browser
-	git fetch
-	git checkout main
-	git pull
-	cd ../
+	cd ui/browser && git fetch && git checkout main
 	git add .
 	git commit -m "bump browser version"
