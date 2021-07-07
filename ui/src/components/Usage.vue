@@ -254,7 +254,7 @@
 									</td>
 									<td>
 										<button
-											v-if="id === 'free-100g'"
+											v-if="free100G(id)"
 											type="button"
 											class="btn btn-light btn-sm"
 										>
@@ -265,7 +265,7 @@
 											to="/app/usage/upgrade-form"
 										>
 											<button
-												v-if="id === 'free-1tb'"
+												v-if="free1Tb(id)"
 												type="button"
 												class="btn btn-light btn-sm"
 											>
@@ -309,6 +309,12 @@ export default {
 		},
 		formatStorageFilesQuota(quota) {
 			return quota.toLocaleString();
+		},
+		free100G(id) {
+			return id === "free-100g";
+		},
+		free1Tb(id) {
+			return id === "free-1tb";
 		}
 	},
 	computed: {
