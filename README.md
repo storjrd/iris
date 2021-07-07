@@ -2,6 +2,7 @@
 
 [![prettier](https://github.com/storjrd/iris/actions/workflows/prettier.yml/badge.svg)](https://github.com/storjrd/iris/actions/workflows/prettier.yml)
 [![build](https://github.com/storjrd/iris/actions/workflows/build-commit.yml/badge.svg)](https://github.com/storjrd/iris/actions/workflows/build-commit.yml)
+[![test](https://github.com/storjrd/iris/actions/workflows/test.yml/badge.svg)](https://github.com/storjrd/iris/actions/workflows/test.yml)
 
 Experimental new interface [Storj DCS](https://www.storj.io/).
 
