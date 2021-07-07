@@ -18,9 +18,15 @@ func main() {
 
 	page := rod.New().ControlURL(u).MustConnect().MustPage("http://ui")
 
-	title := page.MustElement(".hero-title")
+	// Test hero title
 
+	title := page.MustElement(".hero-title")
 	assertEquals(title.MustText(), "Decentralized Cloud Storage is Here")
+
+	// Test switch to login box
+	page.MustElementR("h5", "Get Started")
+	page.MustElement("button.btn-success").MustClick()
+	page.MustElementR("h5", "Login")
 
 	page.MustWaitLoad().MustScreenshot("/output/screenshot.png")
 }
