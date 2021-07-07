@@ -12,9 +12,11 @@ jobs:
         with:
           submodules: "recursive"
 
-      - run: just test
+      - run: IRIS_EMAIL="${{ secrets.IRIS_EMAIL }}" IRIS_PASSWORD="${{ secrets.IRIS_PASSWORD }}" just test
 
       - uses: actions/upload-artifact@v2
         with:
-          name: screenshot.png
-          path: ui-tests-output/screenshot.png
+          name: output
+          path: ui-tests-output/*
+
+      

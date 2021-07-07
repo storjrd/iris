@@ -12,3 +12,6 @@ services:
       - "./ui-tests-output:/output"
     depends_on:
       - ui
+    environment:
+      - IRIS_EMAIL=${IRIS_EMAIL}
+      - IRIS_PASSWORD=${IRIS_PASSWORD}
