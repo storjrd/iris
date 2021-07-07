@@ -18,4 +18,4 @@ jobs:
         with:
           name: ui-tests-output
           path: |
-            ui-tests-output
+            ui-tests-output/*
