@@ -252,7 +252,17 @@
 											)
 										}}
 									</td>
-									<td></td>
+									<td>
+                    <button v-if="id === 'free-100g'" type="button" class="btn btn-light btn-sm">
+                      Verify Email
+                    </button>
+
+                    <router-link to="/app/usage/upgrade-form">
+                      <button v-if="id === 'free-1tb'" type="button" class="btn btn-light btn-sm">
+                        Upgrade - Free!
+                      </button>
+                    </router-link>
+                  </td>
 								</tr>
 							</tbody>
 						</table>

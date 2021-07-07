@@ -11,6 +11,7 @@ import Unlock from "../components/Unlock";
 import Browse from "../components/Browse";
 import Backup from "../components/Backup";
 import Usage from "../components/Usage";
+import UpgradeForm from "../components/UpgradeForm";
 
 const routes = [
 	{
@@ -41,6 +42,11 @@ const routes = [
 				name: "usage",
 				path: "usage",
 				component: Usage
+			},
+			{
+				name: "upgrade-form",
+				path: "usage/upgrade-form",
+				component: UpgradeForm
 			},
 			{
 				name: "buckets",
