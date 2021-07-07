@@ -347,7 +347,10 @@ export default {
 			return this.$route.path === "/app/buckets";
 		},
 		usagePath() {
-			return this.$route.path === "/app/usage" || this.$route.path === "/app/usage/upgrade-form";
+			return (
+				this.$route.path === "/app/usage" ||
+				this.$route.path === "/app/usage/upgrade-form"
+			);
 		}
 	},
 	methods: {
