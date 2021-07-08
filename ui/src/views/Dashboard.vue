@@ -298,7 +298,7 @@
 							</a>
 						</li> -->
 						<li v-on:click="logout" class="nav-item">
-							<a class="nav-link" href="javascript:null">
+							<a class="nav-link" href="#">
 								<div class="nav-icon">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
