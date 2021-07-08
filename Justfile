@@ -7,6 +7,9 @@ build:
 dev:
 	DOCKER_BUILDKIT=1 docker-compose -f docker-compose-dev.yml up --force-recreate --build
 
+test-init:
+	DOCKER_BUILDKIT=1 docker-compose -f docker-compose-test.yml pull
+
 test:
 	mkdir -p ui-tests-output
 	DOCKER_BUILDKIT=1 docker-compose -f docker-compose-test.yml build --parallel
