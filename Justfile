@@ -13,7 +13,7 @@ test-init:
 test:
 	mkdir -p ui-tests-output
 	DOCKER_BUILDKIT=1 docker-compose -f docker-compose-test.yml build --parallel
-	DOCKER_BUILDKIT=1 docker-compose -f docker-compose-test.yml up --force-recreate --abort-on-container-exit
+	DOCKER_BUILDKIT=1 docker-compose -f docker-compose-test.yml up --abort-on-container-exit
 
 prettier:
 	prettier --write . !ui/browser
