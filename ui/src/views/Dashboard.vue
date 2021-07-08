@@ -93,7 +93,7 @@
 									d-flex
 									justify-content-between
 								"
-								href="javascript:null"
+								href="#"
 							>
 								{{ "My Storage Project" }}
 								<span class="align-middle">
@@ -160,7 +160,7 @@
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+							<a class="nav-link" href="#">
 								<div class="nav-icon">
 									<svg
 										class="svg"
