@@ -12,6 +12,7 @@ jobs:
         with:
           submodules: "recursive"
 
+        # Pull docker images before caching
       - run: just test-init
 
       - uses: satackey/action-docker-layer-caching@v0.0.11
