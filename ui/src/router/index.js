@@ -45,8 +45,8 @@ const routes = [
 			},
 			{
 				name: "access",
-				path: "access"
-				Component: Access
+				path: "access",
+				component: Access
 			},
 			{
 				name: "buckets",

@@ -159,8 +159,8 @@
 								Backup
 							</router-link>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:null">
+						<li class="nav-item" v-bind:class="{ active: accessPath }">
+							<router-link class="nav-link" to="/app/access">
 								<div class="nav-icon">
 									<svg
 										class="svg"
@@ -181,7 +181,7 @@
 									</svg>
 								</div>
 								Access Keys
-							</a>
+							</router-link>
 						</li>
 					</ul>
 
@@ -348,6 +348,9 @@ export default {
 		},
 		usagePath() {
 			return this.$route.path === "/app/usage";
+		},
+		accessPath() {
+			return this.$route.path === "/app/access";
 		}
 	},
 	methods: {
