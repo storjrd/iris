@@ -5,6 +5,7 @@
 }
 .form-check-input {
 	margin-top: 0px;
+  cursor: pointer;
 }
 label {
 	font-weight: bold;
@@ -160,13 +161,14 @@ export default {
   name: "AccessTableEntry",
   props: ["access"],
   data: () => ({
-    dropdownOpen: false,
     deleteConfirmation: false
   }),
   computed: {
     accessBeingDeleted() {
-      // check if access key is being deleted in the store
-      return false;
+      return this.$store.state.access.accessKeysBeingDeleted.find((access) => access.name === this.access.key);
+    },
+    dropdownOpen() {
+      return this.$store.state.access.openedDropdown === this.access.name;
     }
   },
   methods: {
@@ -174,9 +176,9 @@ export default {
       event.stopPropagation();
 
       if (this.dropdownOpen) {
-        this.dropdownOpen = false;
+        this.$store.dispatch("access/closeDropdown");
       } else {
-        this.dropdownOpen = true;
+        this.$store.dispatch("access/openDropdown", this.access.name);
       }
     },
     confirmDeletion(event) {

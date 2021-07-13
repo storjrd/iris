@@ -18,47 +18,50 @@ thead th {
 .name {
   font-weight: bold;
 }
+.arrow {
+  cursor: pointer;
+}
 </style>
 
 <template>
   <thead>
         <tr>
-          <th class="name d-flex align-items-center">
+          <th class="name d-flex align-items-center" v-on:click="sortByName">
             NAME
             <div class="container">
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
-                <path d="M4.737 0L9 6H0l4.737-6z" fill="#354049" class="arrow-svg-path"></path>
+              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+                <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="nameAscFill" class="arrow-svg-path"></path>
               </svg>
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="active">
-                <path d="M4.263 6L0 0h9L4.263 6z" fill="#354049" class="arrow-svg-path"></path>
+              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+                <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="nameDescFill" class="arrow-svg-path"></path>
               </svg>
             </div>
           </th>
           <th>
             PERMISSIONS
           </th>
-          <th class="d-flex align-items-center">
+          <th class="d-flex align-items-center" v-on:click="sortByDuration">
             DURATION
             <div class="container">
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
-                <path d="M4.737 0L9 6H0l4.737-6z" fill="#354049" class="arrow-svg-path"></path>
+              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+                <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="durationAscFill" class="arrow-svg-path"></path>
               </svg>
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="active">
-                <path d="M4.263 6L0 0h9L4.263 6z" fill="#354049" class="arrow-svg-path"></path>
+              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+                <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="durationDescFill" class="arrow-svg-path"></path>
               </svg>
             </div>
           </th>
           <th>
             BUCKETS
           </th>
-          <th class="d-flex align-items-center">
+          <th class="d-flex align-items-center" v-on:click="sortByDateCreated">
             DATE CREATED
             <div class="container">
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
-                <path d="M4.737 0L9 6H0l4.737-6z" fill="#354049" class="arrow-svg-path"></path>
+              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+                <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="dateCreatedAscFill" class="arrow-svg-path"></path>
               </svg>
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="active">
-                <path d="M4.263 6L0 0h9L4.263 6z" fill="#354049" class="arrow-svg-path"></path>
+              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+                <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="dateCreatedDescFill" class="arrow-svg-path"></path>
               </svg>
             </div>
           </th>
@@ -68,7 +71,54 @@ thead th {
 </template>
 
 <script>
+// Computed property creators
+
+const fromAccessStore = (prop) =>
+	function () {
+		return this.$store.state.access[prop];
+	};
+
+const colorFill = (condition) => {
+  if (condition) {
+    return "#007bff";
+  }
+
+  return "#354049";
+}
+
+const descFill = (heading) =>
+  function () {
+    return colorFill(this.headingSorted === heading && this.orderBy === "desc");
+  }
+
+const ascFill = (heading) =>
+  function () {
+    return colorFill(this.headingSorted === heading && this.orderBy === "asc");
+  }
+
+// Method creators
+const sortBy = (heading) =>
+	function () {
+		this.$store.dispatch("access/sort", heading);
+	};
+
 export default {
-  name: "AccessTableHeader"
+  name: "AccessTableHeader",
+  computed: {
+    headingSorted: fromAccessStore("headingSorted"),
+		orderBy: fromAccessStore("orderBy"),
+
+    nameDescFill: descFill("name"),
+    nameAscFill: ascFill("name"),
+    durationDescFill: descFill("duration"),
+    durationAscFill: ascFill("duration"),
+    dateCreatedDescFill: descFill("dateCreated"),
+    dateCreatedAscFill: ascFill("dateCreated")
+  },
+  methods: {
+    sortByName: sortBy("name"),
+    sortByDuration: sortBy("duration"),
+    sortByDateCreated: sortBy("dateCreated")
+  }
 }
 </script>
