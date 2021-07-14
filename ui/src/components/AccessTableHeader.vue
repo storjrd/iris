@@ -25,49 +25,53 @@ thead th {
 
 <template>
   <thead>
-        <tr>
-          <th class="name d-flex align-items-center" v-on:click="sortByName">
-            NAME
-            <div class="container">
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
-                <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="nameAscFill" class="arrow-svg-path"></path>
-              </svg>
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
-                <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="nameDescFill" class="arrow-svg-path"></path>
-              </svg>
-            </div>
-          </th>
-          <th>
-            PERMISSIONS
-          </th>
-          <th class="d-flex align-items-center" v-on:click="sortByDuration">
-            DURATION
-            <div class="container">
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
-                <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="durationAscFill" class="arrow-svg-path"></path>
-              </svg>
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
-                <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="durationDescFill" class="arrow-svg-path"></path>
-              </svg>
-            </div>
-          </th>
-          <th>
-            BUCKETS
-          </th>
-          <th class="d-flex align-items-center" v-on:click="sortByDateCreated">
-            DATE CREATED
-            <div class="container">
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
-                <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="dateCreatedAscFill" class="arrow-svg-path"></path>
-              </svg>
-              <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
-                <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="dateCreatedDescFill" class="arrow-svg-path"></path>
-              </svg>
-            </div>
-          </th>
-          <th></th>
-        </tr>
-      </thead>
+    <tr>
+      <th v-on:click="sortByName">
+        <div class="name d-flex align-items-center">
+          NAME
+          <div class="container">
+            <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+              <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="nameAscFill" class="arrow-svg-path"></path>
+            </svg>
+            <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+              <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="nameDescFill" class="arrow-svg-path"></path>
+            </svg>
+          </div>
+        </div>
+      </th>
+      <!-- <th>
+        PERMISSIONS
+      </th>
+      <th class="d-flex align-items-center" v-on:click="sortByDuration">
+        DURATION
+        <div class="container">
+          <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+            <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="durationAscFill" class="arrow-svg-path"></path>
+          </svg>
+          <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+            <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="durationDescFill" class="arrow-svg-path"></path>
+          </svg>
+        </div>
+      </th>
+      <th>
+        BUCKETS
+      </th> -->
+      <th v-on:click="sortByDateCreated">
+        <div class="d-flex align-items-center">
+          DATE CREATED
+          <div class="container">
+            <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+              <path d="M4.737 0L9 6H0l4.737-6z" v-bind:fill="dateCreatedAscFill" class="arrow-svg-path"></path>
+            </svg>
+            <svg width="9" height="6" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow">
+              <path d="M4.263 6L0 0h9L4.263 6z" v-bind:fill="dateCreatedDescFill" class="arrow-svg-path"></path>
+            </svg>
+          </div>
+        </div>
+      </th>
+      <th></th>
+    </tr>
+  </thead>
 </template>
 
 <script>
@@ -110,15 +114,15 @@ export default {
 
     nameDescFill: descFill("name"),
     nameAscFill: ascFill("name"),
-    durationDescFill: descFill("duration"),
-    durationAscFill: ascFill("duration"),
     dateCreatedDescFill: descFill("dateCreated"),
-    dateCreatedAscFill: ascFill("dateCreated")
+    dateCreatedAscFill: ascFill("dateCreated"),
+    // durationDescFill: descFill("duration"),
+    // durationAscFill: ascFill("duration")
   },
   methods: {
     sortByName: sortBy("name"),
-    sortByDuration: sortBy("duration"),
-    sortByDateCreated: sortBy("dateCreated")
+    sortByDateCreated: sortBy("dateCreated"),
+    // sortByDuration: sortBy("duration")
   }
 }
 </script>

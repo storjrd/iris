@@ -30,21 +30,21 @@ td {
         class="form-check-label"
         for="FoodApp"
       >
-        {{ access.name }}
+        {{ name }}
       </label>
     </div>
   </td>
-  <td>
-    {{ access.permissions }}
+  <!-- <td>
+    {{ permissions }}
   </td>
   <td>
-    {{ access.duration }}
+    {{ duration }}
   </td>
   <td>
-    {{ access.buckets }}
-  </td>
+    {{ buckets }}
+  </td> -->
   <td>
-    {{ access.dateCreated }}
+    {{ date }}
   </td>
   <td>
     <div class="dropleft">
@@ -164,6 +164,12 @@ export default {
     deleteConfirmation: false
   }),
   computed: {
+    name() {
+      return this.access.name;
+    },
+    date() {
+      return new Date(this.access.createdAt).toLocaleString();
+    },
     accessBeingDeleted() {
       return this.$store.state.access.accessKeysBeingDeleted.find((access) => access.name === this.access.key);
     },
@@ -180,6 +186,8 @@ export default {
       } else {
         this.$store.dispatch("access/openDropdown", this.access.name);
       }
+
+      this.deleteConfirmation = false;
     },
     confirmDeletion(event) {
 			event.stopPropagation();
@@ -189,6 +197,7 @@ export default {
       event.stopPropagation();
 
       // delete access key and add it to access keys to be deleted array so that we can display the loading spinner
+      this.deleteConfirmation = false;
     },
     cancelDeletion(event) {
       event.stopPropagation();

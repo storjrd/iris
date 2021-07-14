@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import { getAccessKeys } from "../lib/satellite";
 
 export default {
   namespaced: true,
@@ -6,42 +6,23 @@ export default {
     accessKeys: [],
     headingSorted: "name",
     orderBy: "asc",
+    asc: 2,
+    desc: 1,
+    pageCount: 1,
+    nameHeadingOrder: 1,
+    dateCreatedHeadingOrder: 2,
     openedDropdown: null,
     accessCreationModal: null,
-    accessKeysBeingDeleted: []
-  }),
-  getters: {
-    sortedAccessKeys(state) {
-      // temporary for testing purposes
-      return state.accessKeys;
-
-      const duration = (a, b) => {
-        if (a === "forever") {
-          return 1;
-        } else if (b === "forever") {
-          return -1;
-        }
-
-        // find difference between dates and return accordingly
-      };
-
-      // key-specific sort cases
-      const fns = {
-        name: (a, b) => a.name.localeCompare(b.name),
-        duration: duration,
-        dateCreated: (a, b) => new Date(a.dateCreated) - new Date(b.dateCreated)
-      };
-
-      // sort by appropriate function
-			const sortedKeys = R.sort(fns[state.headingSorted], state.accessKeys);
-
-      // reverse if descending order
-			const orderedAccessKeys =
-      state.orderBy === "asc" ? sortedKeys : R.reverse(sortedKeys);
-
-      return orderedAccessKeys;
+    accessKeysBeingDeleted: [],
+    satellite: {
+      limit: 10,
+      page: 1,
+      search: "",
+      order: 1,
+      orderDirection: 2
     }
-  },
+  }),
+  getters: {},
   mutations: {
     setAccessKey(state, key) {
       state.accessKeys = [...state.accessKeys, key];
@@ -66,58 +47,34 @@ export default {
     },
     removeAccessKeyBeingDeleted(state, key) {
       state.accessKeysBeingDeleted = state.accessKeysBeingDeleted.filter((accessKey) => accessKey !== key);
+    },
+    setPageCount(state, count) {
+      state.pageCount = count;
+    },
+    updateSatelliteRequestObject(state) {
+      if (state.headingSorted === "name") {
+        state.satellite.order = state.nameHeadingOrder;
+      } else {
+        state.satellite.order = state.dateCreatedHeadingOrder;
+      }
+
+      if (state.orderBy === "asc") {
+        state.satellite.orderDirection = state.asc;
+      } else {
+        state.satellite.orderDirection = state.desc;
+      }
     }
   },
   actions: {
-    async list({ commit }) {
-      // fetch access keys
+    async list({ commit, state, rootState }) {
+      const { token, projectId,  } = rootState.account;
+      const { limit, search, page, order, orderDirection } = state.satellite;
 
-      const demoAccessObjects = [
-        {
-          name: "FoodApp",
-          permissions: "Read, Write",
-          duration: "Forever",
-          buckets: "All",
-          dateCreated: "07/06/2021 12:27PM EST"
-        },
-        {
-          name: "Iris",
-          permissions: "Read, Write, List, Delete",
-          duration: "06/21/2021 - 08/01/2021",
-          buckets: "5",
-          dateCreated: "06/21/2021 10:04AM EST"
-        },
-        {
-          name: "NFT Kitties",
-          permissions: "Read, Write, List",
-          duration: "05/14/2021 - 09/22/2021",
-          buckets: "2",
-          dateCreated: "05/14/2021 3:11PM EST"
-        },
-        {
-          name: "Todo iOS App",
-          permissions: "List, Delete",
-          duration: "04/29/2021 - 08/05/2021",
-          buckets: "8",
-          dateCreated: "04/29/2021 8:02AM EST"
-        },
-        {
-          name: "Watermelon Picker",
-          permissions: "Write",
-          duration: "Forever",
-          buckets: "All",
-          dateCreated: "03/19/2021 7:12PM EST"
-        },
-        {
-          name: "Accounting",
-          permissions: "Read, Write, Delete",
-          duration: "Forever",
-          buckets: "13",
-          dateCreated: "01/30/2021 11:20PM EST"
-        }
-      ];
+      const data = await getAccessKeys({ token, projectId, limit, search, page, order, orderDirection });
+      const { apiKeys, pageCount } = data;
 
-      commit("updateAccessKeys", demoAccessObjects);
+      commit("updateAccessKeys", apiKeys);
+      commit("setPageCount", pageCount);
     },
     async createAccessKey({ commit }, { key }) {
       // create access key
@@ -138,7 +95,7 @@ export default {
     closeDropdown({ commit }) {
       commit("setDropdown", null);
     },
-    sort({ commit, state }, heading) {
+    sort({ commit, state, dispatch }, heading) {
       const flip = (orderBy) => (orderBy === "asc" ? "desc" : "asc");
 
       const order = state.headingSorted === heading ?
@@ -147,6 +104,13 @@ export default {
 
       commit("setOrderBy", order);
       commit("setHeadingSorted", heading);
+      commit("updateSatelliteRequestObject")
+      dispatch("list");
+    },
+    closeAllInteractions({ state, dispatch }) {
+      if (state.openedDropdown) {
+        dispatch("closeDropdown");
+      }
     }
   }
 }

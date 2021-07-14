@@ -5,14 +5,17 @@ tbody {
 </style>
 
 <template>
-  <h5>Access Keys</h5>
+  <h5>Keys</h5>
 
   <div class="d-flex justify-content-end mb-4">
     <button type="button" class="btn btn-primary btn-sm">Create Access +</button>
   </div>
 
   <div>
-		<table class="table table-hover">
+    <div v-if="empty" class="d-flex justify-content-center text-primary mt-4">
+      <div class="spinner-border" role="status"></div>
+    </div>
+		<table v-else class="table table-hover">
 
       <access-table-header></access-table-header>
 
@@ -35,7 +38,10 @@ export default {
   }),
   computed: {
     accessKeys() {
-      return this.$store.getters["access/sortedAccessKeys"];
+      return this.$store.state.access.accessKeys;
+    },
+    empty() {
+      return this.accessKeys.length === 0;
     }
   },
   async created() {

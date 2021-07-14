@@ -57,6 +57,7 @@ export default {
 
 		closeAllInteractions() {
 			this.$store.dispatch("files/closeAllInteractions");
+			this.$store.dispatch("access/closeAllInteractions");
 
 			// close dropdrowns in access page and buckets if it has any
 		}

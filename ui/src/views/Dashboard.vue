@@ -180,7 +180,7 @@
 										/>
 									</svg>
 								</div>
-								Access Keys
+								Keys
 							</router-link>
 						</li>
 					</ul>
