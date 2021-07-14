@@ -154,7 +154,15 @@ export async function createApiKey({ token, projectId, name }) {
 	return { key };
 }
 
-export async function getAccessKeys({ token, projectId, limit, search, page, order, orderDirection }) {
+export async function getAccessKeys({
+	token,
+	projectId,
+	limit,
+	search,
+	page,
+	order,
+	orderDirection
+}) {
 	const response = await fetch("/api/v0/graphql", {
 		method: "POST",
 		headers: {
@@ -192,14 +200,13 @@ export async function getAccessKeys({ token, projectId, limit, search, page, ord
 		})
 	});
 
-	const { data: {
-		project: {
-			apiKeys: {
-				apiKeys,
-				pageCount
+	const {
+		data: {
+			project: {
+				apiKeys: { apiKeys, pageCount }
 			}
 		}
-	} } = await response.json();
+	} = await response.json();
 
 	return { apiKeys, pageCount };
 }

@@ -159,7 +159,10 @@
 								Backup
 							</router-link>
 						</li>
-						<li class="nav-item" v-bind:class="{ active: accessPath }">
+						<li
+							class="nav-item"
+							v-bind:class="{ active: accessPath }"
+						>
 							<router-link class="nav-link" to="/app/access">
 								<div class="nav-icon">
 									<svg
