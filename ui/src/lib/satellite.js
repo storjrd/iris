@@ -211,10 +211,7 @@ export async function getAccessKeys({
 	return { apiKeys, pageCount };
 }
 
-export async function deleteAccessKeys({
-	token,
-	id
-}) {
+export async function deleteAccessKeys({ token, id }) {
 	const response = await fetch("/api/v0/graphql", {
 		method: "POST",
 		headers: {
@@ -235,9 +232,7 @@ export async function deleteAccessKeys({
 	});
 
 	const {
-		data: {
-			deleteAPIKeys
-		}
+		data: { deleteAPIKeys }
 	} = await response.json();
 
 	return deleteAPIKeys;

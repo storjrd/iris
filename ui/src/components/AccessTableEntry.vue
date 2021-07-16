@@ -24,7 +24,7 @@ td {
 					class="form-check-input"
 					type="checkbox"
 					id="{{access.id}}"
-          v-model="selectionCheckbox"
+					v-model="selectionCheckbox"
 				/>
 				<label class="form-check-label" for="{{access.id}}">
 					{{ name }}
@@ -159,7 +159,7 @@ export default {
 	props: ["access"],
 	data: () => ({
 		deleteConfirmation: false,
-    selectionCheckbox: null
+		selectionCheckbox: null
 	}),
 	computed: {
 		name() {
@@ -177,15 +177,21 @@ export default {
 			return this.$store.state.access.openedDropdown === this.access.name;
 		}
 	},
-  watch: {
-    selectionCheckbox() {
-      if (this.selectionCheckbox) {
-        this.$store.dispatch("access/addSelectedAccessKey", this.access.id);
-      } else {
-        this.$store.dispatch("access/deleteSelectedAccessKey", this.access.id);
-      }
-    }
-  },
+	watch: {
+		selectionCheckbox() {
+			if (this.selectionCheckbox) {
+				this.$store.dispatch(
+					"access/addSelectedAccessKey",
+					this.access.id
+				);
+			} else {
+				this.$store.dispatch(
+					"access/deleteSelectedAccessKey",
+					this.access.id
+				);
+			}
+		}
+	},
 	methods: {
 		toggleDropdown(event) {
 			event.stopPropagation();
@@ -204,8 +210,8 @@ export default {
 		},
 		finalDelete(event) {
 			event.stopPropagation();
-      this.$store.dispatch("access/closeDropdown");
-      this.$store.dispatch("access/deleteAccessKeys", this.access.id);
+			this.$store.dispatch("access/closeDropdown");
+			this.$store.dispatch("access/deleteAccessKeys", this.access.id);
 			this.deleteConfirmation = false;
 		},
 		cancelDeletion(event) {

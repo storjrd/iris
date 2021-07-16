@@ -241,27 +241,27 @@ export default {
 		// durationDescFill: descFill("duration"),
 		// durationAscFill: ascFill("duration"),
 
-    keysToDelete() {
-      return this.$store.state.access.selectedAccessKeys.length > 0;
-    },
-    displayDropdown() {
-      return this.$store.state.access.accessTableDropdown;
-    }
+		keysToDelete() {
+			return this.$store.state.access.selectedAccessKeys.length > 0;
+		},
+		displayDropdown() {
+			return this.$store.state.access.accessTableDropdown;
+		}
 	},
 	methods: {
 		sortByName: sortBy("name"),
 		sortByDateCreated: sortBy("dateCreated"),
 		// sortByDuration: sortBy("duration"),
 
-    deleteSelectedDropdown(event) {
+		deleteSelectedDropdown(event) {
 			event.stopPropagation();
 			this.$store.dispatch("access/openAccessTableDropdown");
 		},
-    confirmDeleteSelection() {
+		confirmDeleteSelection() {
 			this.$store.dispatch("access/deleteSelectedAccessKeys");
 			this.$store.dispatch("access/closeAccessTableDropdown");
 		},
-    cancelDeleteSelection() {
+		cancelDeleteSelection() {
 			this.$store.dispatch("access/closeAccessTableDropdown");
 		}
 	}
