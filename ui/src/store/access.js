@@ -1,4 +1,4 @@
-import { getAccessKeys } from "../lib/satellite";
+import { getAccessKeys, deleteAccessKeys } from "../lib/satellite";
 
 export default {
 	namespaced: true,
@@ -14,6 +14,8 @@ export default {
 		openedDropdown: null,
 		accessCreationModal: null,
 		accessKeysBeingDeleted: [],
+    accessTableDropdown: null,
+    selectedAccessKeys: [],
 		satellite: {
 			limit: 10,
 			page: 1,
@@ -33,6 +35,9 @@ export default {
 		setDropdown(state, id) {
 			state.openedDropdown = id;
 		},
+    setAccessTableDropdown(state, value) {
+      state.accessTableDropdown = value;
+    },
 		setHeadingSorted(state, heading) {
 			state.headingSorted = heading;
 		},
@@ -48,11 +53,21 @@ export default {
 				...keys
 			];
 		},
-		removeAccessKeyBeingDeleted(state, key) {
-			state.accessKeysBeingDeleted = state.accessKeysBeingDeleted.filter(
-				(accessKey) => accessKey !== key
-			);
+		removeAllAccessKeyBeingDeleted(state) {
+			state.accessKeysBeingDeleted = [];
 		},
+    setSelectedAccessKey(state, key) {
+      state.selectedAccessKeys = [
+        ...state.selectedAccessKeys,
+        key
+      ];
+    },
+    removeSelectedAccessKey(state, key) {
+      state.selectedAccessKeys = state.selectedAccessKeys.filter((accessKey) => accessKey !== key);
+    },
+    removeAllSelectedAccessKeys(state) {
+      state.selectedAccessKeys = [];
+    },
 		setPageCount(state, count) {
 			state.pageCount = count;
 		},
@@ -94,14 +109,27 @@ export default {
 			// create access key
 			// commit("setAccessKey", key);
 		},
-		async deleteAccessKey({ commit }, key) {
-			// find key by name
-			// commit("setAccessKeysBeingDeleted", [key]);
-			// delete access key
-			// commit("removeAccessKeyBeingDeleted", key);
+		async deleteAccessKeys({ commit, rootState, dispatch }, keyIDs) {
+      const { token } = rootState.account;
+
+      if (!Array.isArray(keyIDs)) {
+        keyIDs = [keyIDs];
+      }
+
+      commit("setAccessKeysBeingDeleted", keyIDs);
+      await deleteAccessKeys({ token, id: keyIDs });
+      commit("removeAllAccessKeyBeingDeleted");
+      dispatch("list");
 		},
-		async deleteSelectedAccessKeys({ dispatch }, keys) {
-			await Promise.all(keys.map((key) => dispatch("deleteAccessKey")));
+    addSelectedAccessKey({ commit }, key) {
+      commit("setSelectedAccessKey", key);
+    },
+    deleteSelectedAccessKey({ commit }, key) {
+      commit("removeSelectedAccessKey", key);
+    },
+		async deleteSelectedAccessKeys({ dispatch, commit, state }) {
+      dispatch("deleteAccessKeys", [...state.selectedAccessKeys]);
+			commit("removeAllSelectedAccessKeys");
 		},
 		openDropdown({ commit }, id) {
 			commit("setDropdown", id);
@@ -109,6 +137,12 @@ export default {
 		closeDropdown({ commit }) {
 			commit("setDropdown", null);
 		},
+    openAccessTableDropdown({ commit }) {
+      commit("setAccessTableDropdown", true);
+    },
+    closeAccessTableDropdown({ commit }) {
+      commit("setAccessTableDropdown", null);
+    },
 		sort({ commit, state, dispatch }, heading) {
 			const flip = (orderBy) => (orderBy === "asc" ? "desc" : "asc");
 
@@ -124,6 +158,10 @@ export default {
 			if (state.openedDropdown) {
 				dispatch("closeDropdown");
 			}
+
+      if (state.accessTableDropdown) {
+        dispatch("closeAccessTableDropdown");
+      }
 		}
 	}
 };

@@ -27,7 +27,7 @@ tbody {
 				<access-table-entry
 					v-for="access in accessKeys"
 					v-bind:access="access"
-					v-bind:key="access.name"
+					v-bind:key="access.id"
 				></access-table-entry>
 			</tbody>
 		</table>

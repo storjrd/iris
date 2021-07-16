@@ -210,3 +210,35 @@ export async function getAccessKeys({
 
 	return { apiKeys, pageCount };
 }
+
+export async function deleteAccessKeys({
+	token,
+	id
+}) {
+	const response = await fetch("/api/v0/graphql", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Cookie: `_tokenKey=${token}`
+		},
+		body: JSON.stringify({
+			query: `mutation ($id: [String!]!) {
+				  deleteAPIKeys(id: $id) {
+				    id
+				    __typename
+			  }
+		}`,
+			variables: {
+				id
+			}
+		})
+	});
+
+	const {
+		data: {
+			deleteAPIKeys
+		}
+	} = await response.json();
+
+	return deleteAPIKeys;
+}

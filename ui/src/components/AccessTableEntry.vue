@@ -23,10 +23,10 @@ td {
 				<input
 					class="form-check-input"
 					type="checkbox"
-					value="FoodApp"
-					id="FoodApp"
+					id="{{access.id}}"
+          v-model="selectionCheckbox"
 				/>
-				<label class="form-check-label" for="FoodApp">
+				<label class="form-check-label" for="{{access.id}}">
 					{{ name }}
 				</label>
 			</div>
@@ -158,7 +158,8 @@ export default {
 	name: "AccessTableEntry",
 	props: ["access"],
 	data: () => ({
-		deleteConfirmation: false
+		deleteConfirmation: false,
+    selectionCheckbox: null
 	}),
 	computed: {
 		name() {
@@ -169,13 +170,22 @@ export default {
 		},
 		accessBeingDeleted() {
 			return this.$store.state.access.accessKeysBeingDeleted.find(
-				(access) => access.name === this.access.key
+				(access) => access === this.access.id
 			);
 		},
 		dropdownOpen() {
 			return this.$store.state.access.openedDropdown === this.access.name;
 		}
 	},
+  watch: {
+    selectionCheckbox() {
+      if (this.selectionCheckbox) {
+        this.$store.dispatch("access/addSelectedAccessKey", this.access.id);
+      } else {
+        this.$store.dispatch("access/deleteSelectedAccessKey", this.access.id);
+      }
+    }
+  },
 	methods: {
 		toggleDropdown(event) {
 			event.stopPropagation();
@@ -194,8 +204,8 @@ export default {
 		},
 		finalDelete(event) {
 			event.stopPropagation();
-
-			// delete access key and add it to access keys to be deleted array so that we can display the loading spinner
+      this.$store.dispatch("access/closeDropdown");
+      this.$store.dispatch("access/deleteAccessKeys", this.access.id);
 			this.deleteConfirmation = false;
 		},
 		cancelDeletion(event) {
