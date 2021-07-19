@@ -155,6 +155,9 @@ export default {
 	computed: {
 		buckets() {
 			return this.$store.state.buckets.names;
+		},
+		loadingBucketsSpinner() {
+			return this.buckets.length === 0;
 		}
 	},
 	methods: {
@@ -166,7 +169,6 @@ export default {
 	},
 	async created() {
 		await this.$store.dispatch("buckets/list");
-		this.loadingBucketsSpinner = false;
 	}
 };
 </script>
