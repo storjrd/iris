@@ -3,14 +3,19 @@ import "./wasm_exec.js";
 
 const go = new Go();
 
-const wasmInit = WebAssembly.instantiateStreaming(
-	fetch("/access.wasm"),
-	go.importObject
-);
+const instantiateStreaming = WebAssembly.instantiateStreaming || async function (resp, importObject) {
+	const response = await resp;
+	const source = await response.arrayBuffer();
 
-wasmInit.then((result) => {
-	go.run(result.instance);
-});
+	return await WebAssembly.instantiate(source, importObject);
+};
+
+const response = fetch("/access.wasm");
+instantiateStreaming(response, go.importObject).then(result => {
+	go.run(result.instance)
+	self.postMessage('configured');
+}).catch(err => self.postMessage(new Error(err.message)));
+
 
 export async function generateAccess({
 	key,
@@ -19,7 +24,7 @@ export async function generateAccess({
 	satelliteUrl = "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo@us2.storj.io:7777",
 	passphrase = ""
 }) {
-	await wasmInit;
+	await instantiateStreaming;
 
 	const permission = await global.newPermission();
 
