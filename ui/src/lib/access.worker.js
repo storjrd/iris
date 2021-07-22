@@ -3,19 +3,22 @@ import "./wasm_exec.js";
 
 const go = new Go();
 
-const instantiateStreaming = WebAssembly.instantiateStreaming || async function (resp, importObject) {
-	const response = await resp;
-	const source = await response.arrayBuffer();
+const instantiateStreaming =
+	WebAssembly.instantiateStreaming ||
+	async function (resp, importObject) {
+		const response = await resp;
+		const source = await response.arrayBuffer();
 
-	return await WebAssembly.instantiate(source, importObject);
-};
+		return await WebAssembly.instantiate(source, importObject);
+	};
 
 const response = fetch("/access.wasm");
-instantiateStreaming(response, go.importObject).then(result => {
-	go.run(result.instance)
-	self.postMessage('configured');
-}).catch(err => self.postMessage(new Error(err.message)));
-
+instantiateStreaming(response, go.importObject)
+	.then((result) => {
+		go.run(result.instance);
+		self.postMessage("configured");
+	})
+	.catch((err) => self.postMessage(new Error(err.message)));
 
 export async function generateAccess({
 	key,
