@@ -354,6 +354,9 @@ export default {
 				this.$route.path === "/app/usage" ||
 				this.$route.path === "/app/usage/upgrade-form"
 			);
+		},
+		accessPath() {
+			return this.$route.path === "/app/access";
 		}
 	},
 	methods: {
