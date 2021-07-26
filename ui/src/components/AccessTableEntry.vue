@@ -14,6 +14,9 @@ label {
 td {
 	border: none;
 }
+.dropdown-item {
+  color: #212529 !important;
+}
 </style>
 
 <template>
