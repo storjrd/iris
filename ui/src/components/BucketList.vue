@@ -149,9 +149,7 @@ export default {
 	components: {
 		Bucket
 	},
-	data: () => ({
-		loadingBucketsSpinner: true
-	}),
+	data: () => ({}),
 	computed: {
 		buckets() {
 			return this.$store.state.buckets.names;
