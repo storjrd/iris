@@ -13,10 +13,9 @@ const instantiateStreaming =
 	};
 
 const response = fetch("/access.wasm");
-instantiateStreaming(response, go.importObject)
-	.then((result) => {
-		go.run(result.instance);
-	});
+instantiateStreaming(response, go.importObject).then((result) => {
+	go.run(result.instance);
+});
 
 export async function generateAccess({
 	key,
