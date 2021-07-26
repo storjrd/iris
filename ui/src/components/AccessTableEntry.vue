@@ -15,7 +15,7 @@ td {
 	border: none;
 }
 .dropdown-item {
-  color: #212529 !important;
+	color: #212529 !important;
 }
 </style>
 
