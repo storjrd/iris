@@ -586,7 +586,7 @@ input {
 					<div class="col-sm-12 col-md-6 col-lg-5 pt-5 mt-0 mt-lg-5">
 						<div>
 							<h1 class="hero-title text-white">
-								Decentralized Cloud Storage is Here
+								Decentralized Compute is here
 							</h1>
 
 							<p class="description my-4 text-white">
