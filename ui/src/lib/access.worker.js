@@ -13,7 +13,7 @@ const instantiateStreaming =
 	};
 
 const response = fetch("/access.wasm");
-instantiateStreaming(response, go.importObject).then((result) => {
+const init = instantiateStreaming(response, go.importObject).then((result) => {
 	go.run(result.instance);
 });
 
@@ -24,7 +24,7 @@ export async function generateAccess({
 	satelliteUrl = "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo@us2.storj.io:7777",
 	passphrase = ""
 }) {
-	await response;
+	await init;
 
 	const permission = await global.newPermission();
 
