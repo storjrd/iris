@@ -102,6 +102,8 @@ func testBrowser(u string) {
 	page.MustElementR("a", "go-rod-test2").MustClick()
 	assertEquals(page.MustElement("div.upload-help > p.drop-files-text.mt-4.mb-0").MustText(), "Drop Files Here to Upload", "The folder `go-rod-test2` is not empty upon creation")
 
+	// Add a file and cancel its upload immediately
+
 	// Add a file into folder
 	storjLogo, _ := filepath.Abs("./input/storjlogo.jpeg")
 	page.MustElement("input[type=file]").SetFiles([]string{storjLogo})
