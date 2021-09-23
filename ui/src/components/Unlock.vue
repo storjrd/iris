@@ -27,7 +27,7 @@
 
 			<div class="mb-4">
 				<label for="passphrase" class="form-label">Passphrase</label>
-				<input type="text" class="form-control" v-model="passphrase" />
+				<input id="passphrase" type="text" class="form-control" v-model="passphrase" />
 			</div>
 
 			<div class="d-flex">
