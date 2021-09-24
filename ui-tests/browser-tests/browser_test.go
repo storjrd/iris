@@ -208,10 +208,9 @@ func TestBrowser(t *testing.T) {
 
 		// Create Folder with special characters
 		page.MustElementR("button", "New Folder").MustClick()
-		folderInput := page.MustElement("[placeholder=\"Name of the folder\"]")
-		folderInput.MustInput("Свобода")
+		page.MustElement("[placeholder=\"Name of the folder\"]").MustInput("Свобода")
 		page.MustElementR("button", "Save Folder").MustClick()
-		require.Equal(t, "Свобода", page.MustElementR("a", "Свобода").MustText(), "Folder with special characters was not created")
+		require.Equal(t, "Свобода", page.MustElementR("a.file-name", "Свобода").MustText(), "Folder with special characters was not created")
 
 		// Navigate into folder and create another folder of the same name
 		page.MustElementR("a.file-name", "Свобода").MustClick()
@@ -219,7 +218,7 @@ func TestBrowser(t *testing.T) {
 		page.MustElementR("button", "New Folder").MustClick()
 		page.MustElement("[placeholder=\"Name of the folder\"]").MustInput("Свобода")
 		page.MustElementR("button", "Save Folder").MustClick()
-		require.Equal(t, "Свобода", page.MustElementR("a", "Свобода").MustText(), "Folder with special characters was not created")
+		require.Equal(t, "Свобода", page.MustElementR("a.file-name", "Свобода").MustText(), "Folder with special characters was not created")
 
 		// Navigate into nested folder and upload a video
 		page.MustElementR("a.file-name", "Свобода").MustClick()
@@ -245,5 +244,13 @@ func TestBrowser(t *testing.T) {
 		// mouse.MustMove(3, 3)
 		// mouse.MustDown("left")
 		// mouse.MustUp("left")
+
+		// Upload a folder
+		dragAndDropFolder, _ := filepath.Abs("./input/dragAndDropFolder")
+		page.MustElement("input[type=file]").MustSetFiles(dragAndDropFolder)
+		require.Equal(t, " dragAndDropFolder", page.MustElementR("span.file-name", " dragAndDropFolder").MustText(), "The folder `dragAndDropFolder` was not uploaded successfully")
+		page.MustElementR("span", "dragAndDropFolder").MustClick()
+		require.Contains(t, page.MustElement("audio.preview").MustProperty("src").Str(), "dragAndDropFolder", "The modal did not open on video file click")
+		page.MustElement("#close-modal").MustClick()
 	})
 }
