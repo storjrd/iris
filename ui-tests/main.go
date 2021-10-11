@@ -60,7 +60,7 @@ func testLogin(u string) {
 	page.MustElement("button.btn-primary").MustClick()
 	page.MustElement(".bucket-name")
 
-	page.MustWaitLoad().MustScreenshot("/output/login.png")
+// 	page.MustWaitLoad().MustScreenshot("/output/login.png")
 }
 
 func testBrowser(u string) {
