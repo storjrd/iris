@@ -12,7 +12,7 @@ import (
 
 func TestBrowserFeatures(t *testing.T) {
 	Browser(t, func(t *testing.T, browser *rod.Browser) {
-		page := browser.MustPage("http://localhost:3000")
+		page := browser.MustPage("http://ui")
 
 		// Must switch to login
 		page.MustElementR("button", "Login to Storj").MustClick()

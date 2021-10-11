@@ -8,8 +8,8 @@ import (
 )
 
 func TestHome(t *testing.T) {
-	Browser(t, func (t *testing.T, browser *rod.Browser)  {
-		page := browser.MustPage("http://localhost:3000")
+	Browser(t, func(t *testing.T, browser *rod.Browser) {
+		page := browser.MustPage("http://ui")
 
 		// Test hero title
 		title := page.MustElement(".hero-title")
