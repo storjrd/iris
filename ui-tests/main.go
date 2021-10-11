@@ -72,15 +72,15 @@ func testBrowser(u string) {
 	// Login
 	page.MustElement("#emailAddress").MustInput(os.Getenv("IRIS_EMAIL"))
 	page.MustElement("#password").MustInput(os.Getenv("IRIS_PASSWORD"))
-	page.MustElement("button.btn-primary").MustClick()
+	page.MustElementR("button", "Login").MustClick()
 
 	// Navigate into bucket and browser
 	page.MustElementR("span", "go-rod-test").MustClick()
-	page.MustElement("div.col-8.col-md-9.col-lg-9.col-xl-10.p-4.p-lg-5.white-background > div > div > div:nth-child(3) > input").MustInput("go-rod-test")
-	page.MustElement("button.btn.btn-primary.btn-block").MustClick()
+	page.MustElement("#passphrase").MustInput("go-rod-test")
+	page.MustElementR("button", "Unlock").MustClick()
 
 	// Verify that browser is empty
-	dropZone := page.MustElement("div.upload-help > p.drop-files-text.mt-4.mb-0")
+	dropZone := page.MustElementR("p", "Drop Files Here to Upload")
 	assertEquals(dropZone.MustText(), "Drop Files Here to Upload", "Browser is not empty on login")
 
 	// Attempt to create an invalid folder
