@@ -1,16 +1,16 @@
 package uitest
 
 import (
-	"testing"
 	"os"
+	"testing"
 
 	"github.com/go-rod/rod"
 	"github.com/stretchr/testify/require"
 )
 
 func TestLogin(t *testing.T) {
-	Browser(t, func (t *testing.T, browser *rod.Browser)  {
-		page := browser.MustPage("http://localhost:3000")
+	Browser(t, func(t *testing.T, browser *rod.Browser) {
+		page := browser.MustPage("http://ui")
 
 		// Must switch to login
 		page.MustElementR("button", "Login to Storj").MustClick()

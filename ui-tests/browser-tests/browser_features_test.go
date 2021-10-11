@@ -1,16 +1,17 @@
 package uitest
 
 import (
-	"os"
 	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/go-rod/rod"
 	"github.com/stretchr/testify/require"
 )
 
-func TestBrowser(t *testing.T) {
-	Browser(t, func (t *testing.T, browser *rod.Browser)  {
+func TestBrowserFeatures(t *testing.T) {
+	Browser(t, func(t *testing.T, browser *rod.Browser) {
 		page := browser.MustPage("http://localhost:3000")
 
 		// Must switch to login
@@ -27,25 +28,30 @@ func TestBrowser(t *testing.T) {
 		page.MustElementR("button", "Unlock").MustClick()
 
 		// Verify that browser component has loaded and that the dropzone is present
-		require.Equal(t, "Drop Files Here to Upload", page.MustElementR("p", "Drop Files Here to Upload").MustText(), "Browser component has not loaded and dropzone is not visible")
+		page.MustElementR("p", "Drop Files Here to Upload")
 
 		// Attempt to create an invalid folder
 		page.MustElementR("button", "New Folder").MustClick()
 		folderInput := page.MustElement("[placeholder=\"Name of the folder\"]")
 		folderInput.MustInput("...")
-		require.Equal(t, "true", page.MustElementR("button", "Save Folder").MustProperty("disabled").Str(), "Folder is not disabled on invalid folder name")
+		page.MustElementR("button", "Save Folder").MustProperty("disabled")
 		require.Equal(t, "...", folderInput.MustText(), "Folder input does not contain the `...` invalid name")
 
 		// Create a folder
-		folderInput.SelectAllText()
+		err := folderInput.SelectAllText()
+
+		if err != nil {
+			require.NoError(t, err)
+		}
+
 		folderInput.MustInput("go-rod-test2")
 		page.MustElementR("button", "Save Folder").MustClick()
-		require.Equal(t, "go-rod-test2", page.MustElementR("[aria-roledescription=folder]", "go-rod-test2").MustText(), "The valid folder name `go-rod-test2` was not created")
+		page.MustElementR("[aria-roledescription=folder]", "go-rod-test2")
 
 		// Navigate into the folder and make sure the dropzone is visible
 		page.MustElementR("[aria-roledescription=folder]", "go-rod-test2").MustClick()
 		require.Equal(t, "go-rod-test2", page.MustElement("a[aria-current=\"page\"]").MustText(), "Navigating into the folder `go-rod-test2` has not been successful")
-		require.Equal(t, "Drop Files Here to Upload", page.MustElementR("p", "Drop Files Here to Upload").MustText(), "The folder `go-rod-test2` is not displaying the dropzone")
+		page.MustElementR("p", "Drop Files Here to Upload")
 
 		// Attempt to create a new folder but cancel
 		page.MustElementR("button", "New Folder").MustClick()
@@ -53,10 +59,10 @@ func TestBrowser(t *testing.T) {
 		page.MustElementR("button", "Cancel").MustClick()
 
 		// Add a file into folder and check that dropzone is still visible
-		img := generateImage("img.png")
+		img, _ := filepath.Abs("./testdata/img.png")
 		page.MustElement("input[aria-roledescription=file-upload]").MustSetFiles(img)
-		require.Equal(t, " img.png", page.MustElementR("[aria-roledescription=file]", " img.png").MustText(), "The file `img.png` was not uploaded successfully")
-		require.Equal(t, "Drop Files Here to Upload", page.MustElementR("p", "Drop Files Here to Upload").MustText(), "The dropzone is not being displaying after a file upload")
+		page.MustElementR("[aria-roledescription=file]", "img.png")
+		page.MustElementR("p", "Drop Files Here to Upload")
 
 		// Click on the file name
 		page.MustElementR("[aria-roledescription=file]", "img.png").MustClick()
@@ -64,19 +70,21 @@ func TestBrowser(t *testing.T) {
 
 		// Share a file
 		page.MustElementR("span", "Share").MustClick()
-		require.Equal(t, "Copy Link", page.MustElement("#generateShareLink").MustText(), "The modal share functionality is not working")
+		page.MustElement("#generateShareLink")
 		page.MustElement("#close-modal").MustClick()
 
 		// Click on the hamburger and share
 		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
 		page.MustElementR("button", "Share").MustClick()
-		require.Equal(t, "Copy Link", page.MustElement("#btn-copy-link").MustText(), "The dropdown share functionality is not working")
+		page.MustElement("#btn-copy-link")
 		page.MustElementR("span", "×").MustClick()
 
 		// Click on the hamburger and then details
 		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
 		page.MustElementR("button", "Details").MustClick()
 		require.Contains(t, page.MustElement("[aria-roledescription=image-preview]").MustProperty("src").Str(), "img.png", "The dropdown details functionality is not working")
+		page.MustElementR("span", "Share").MustClick()
+		page.MustElement("#generateShareLink")
 		page.MustElement("#close-modal").MustClick()
 
 		// Use the `..` to navigate out of the folder
@@ -87,14 +95,14 @@ func TestBrowser(t *testing.T) {
 		page.MustElementR("button", "New Folder").MustClick()
 		page.MustElement("[placeholder=\"Name of the folder\"]").MustInput("go-rod-test3")
 		page.MustElementR("button", "Save Folder").MustClick()
-		require.Equal(t, "go-rod-test3", page.MustElementR("a", "go-rod-test3").MustText(), "go-rod-test3", "The second folder `go-rod-test3` was not created")
+		page.MustElementR("a", "go-rod-test3")
 
 		// Add two files
-		img2 := generateImage("img2.png")
+		img2, _ := filepath.Abs("./testdata/img2.png")
 		page.MustElement("input[aria-roledescription=file-upload]").MustSetFiles(img2)
 		page.MustElement("input[aria-roledescription=file-upload]").MustSetFiles(img)
-		require.Equal(t, " img2.png", page.MustElementR("[aria-roledescription=file]", "img2.png").MustText(), "The second file `storjcomponents.png` was not uploaded successfully")
-		require.Equal(t, " img.png", page.MustElementR("[aria-roledescription=file]", "img.png").MustText(), "The second file `img.png` was not uploaded successfully")
+		page.MustElementR("[aria-roledescription=file]", "img2.png")
+		page.MustElementR("[aria-roledescription=file]", "img.png")
 
 		// Sort folders/files (by name, size, and date)
 		require.Equal(t, "go-rod-test2", page.MustElement("table > tbody > tr:nth-child(1) > td").MustText(), "The automatic sorting by name for folders is not working")
@@ -133,7 +141,7 @@ func TestBrowser(t *testing.T) {
 		// Select file and folders **CAN'T SIMULATE MULTIPLE FILE/FOLDERS SELECT YET**
 
 		// Navigate into folders and use the breadcrumbs to navigate out
-		page.MustElementR("a", "go-rod-test3").MustClick()
+		page.MustElementR("[aria-roledescription=folder]", "go-rod-test3").MustClick()
 		page.MustElementR("a[href=\"/app/buckets/go-rod-test/browse/\"]", "go-rod-test").MustClick()
 		require.Equal(t, "go-rod-test", page.MustElement("a[aria-current=\"page\"]").MustText(), "Unable to get to root of browser by way of breadcrumbs")
 
@@ -141,25 +149,25 @@ func TestBrowser(t *testing.T) {
 		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
 		page.MustElementR("button", "Delete").MustClick()
 		page.MustElementR("button", "No").MustClick()
-		require.Equal(t, "go-rod-test3", page.MustElementR("a", "go-rod-test3").MustText(), "Canceling a folder deletion by way of hamburger did not work")
+		page.MustElementR("a", "go-rod-test3")
 
 		// Delete a folder by clicking on hamburger
 		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
 		page.MustElementR("button", "Delete").MustClick()
 		page.MustElementR("button", "Yes").MustClick()
-		require.Equal(t, "go-rod-test2", page.MustElementR("table > tbody > tr:nth-child(1) > td", "go-rod-test2").MustText(), "Folder deletion by way of hamburger is not working")
+		page.MustElementR("table > tbody > tr:nth-child(1) > td", "go-rod-test2")
 
 		// Cancel folder deletion by way of trashcan
 		page.MustElement("tr[scope=\"row\"]").MustClick()
 		page.MustElement("#header-delete").MustClick()
 		page.MustElementR("button", "No").MustClick()
-		require.Equal(t, "go-rod-test2", page.MustElement("a[href=\"/app/buckets/go-rod-test/browse/go-rod-test2/\"]").MustText(), "Folder cancellation by way of trashcan is not working")
+		page.MustElementR("a[href=\"/app/buckets/go-rod-test/browse/go-rod-test2/\"]", "go-rod-test2")
 
 		// Delete a folder by selecting and clicking on trashcan
 		page.MustElement("tr[scope=\"row\"]").MustClick()
 		page.MustElement("#header-delete").MustClick()
 		page.MustElementR("button", "Yes").MustClick()
-		require.Equal(t, " img2.png", page.MustElementR("table > tbody > tr:nth-child(1) > td", " img2.png").MustText(), "Deleting a folder by way of trashcan is not working")
+		page.MustElementR("table > tbody > tr:nth-child(1) > td", "img2.png")
 
 		// Cancel file deletion by way of hamburger
 		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
@@ -171,7 +179,7 @@ func TestBrowser(t *testing.T) {
 		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
 		page.MustElementR("button", "Delete").MustClick()
 		page.MustElementR("button", "Yes").MustClick()
-		require.Equal(t, " img.png", page.MustElementR("table > tbody > tr:nth-child(1) > td", " img.png").MustText(), "File deletion by way of hamburger is not working")
+		page.MustElementR("table > tbody > tr:nth-child(1) > td", "img.png")
 
 		// Cancel file deletion by way of trashcan
 		page.MustElement("tr[scope=\"row\"]").MustClick()
@@ -184,7 +192,7 @@ func TestBrowser(t *testing.T) {
 		page.MustElement("tr[scope=\"row\"]").MustClick()
 		page.MustElement("#header-delete").MustClick()
 		page.MustElementR("button", "Yes").MustClick()
-		require.Equal(t, "Drop Files Here to Upload", page.MustElementR("p", "Drop Files Here to Upload").MustText(), "Dropzone is not visible on last file deletion")
+		page.MustElementR("p", "Drop Files Here to Upload")
 		wait()
 
 		// Delete multiple folders by selection **SELECTION NOT WORKING**
@@ -193,7 +201,55 @@ func TestBrowser(t *testing.T) {
 
 		// Empty out entire folder
 
-		// Delete created files
-		removeFiles([]string{"img.png", "img2.png"})
+		// Attempt to create a folder with spaces
+		page.MustElementR("button", "New Folder").MustClick()
+		page.MustElement("[placeholder=\"Name of the folder\"]").MustInput("   ")
+		page.MustElementR("button", "Save Folder").MustProperty("disabled")
+		require.Equal(t, "   ", page.MustElement("[placeholder=\"Name of the folder\"]").MustText(), "Folder input does not contain the empty invalid name")
+		page.MustElementR("button", "Cancel").MustClick()
+
+		// Create Folder with special characters
+		page.MustElementR("button", "New Folder").MustClick()
+		page.MustElement("[placeholder=\"Name of the folder\"]").MustInput("Свобода")
+		page.MustElementR("button", "Save Folder").MustClick()
+		page.MustElementR("[aria-roledescription=folder]", "Свобода")
+
+		// Navigate into folder and create another folder of the same name, and check that the dropzone is present
+		page.MustElementR("[aria-roledescription=folder]", "Свобода").MustClick()
+		page.MustElement("[href=\"/app/buckets/go-rod-test/browse/Свобода/\"]")
+		page.MustElementR("p", "Drop Files Here to Upload")
+		page.MustElementR("button", "New Folder").MustClick()
+		page.MustElement("[placeholder=\"Name of the folder\"]").MustInput("Свобода")
+		page.MustElementR("button", "Save Folder").MustClick()
+		page.MustElementR("[aria-roledescription=folder]", "Свобода")
+
+		// upload a video
+		wait1 := page.MustWaitRequestIdle()
+		movie, _ := filepath.Abs("./testdata/movie.mp4")
+		page.MustElement("input[aria-roledescription=file-upload]").MustSetFiles(movie)
+		wait1()
+		page.MustElementR("[aria-roledescription=file]", "movie.mp4")
+		page.MustElementR("[aria-roledescription=file-size]", "1.48 kB")
+		page.MustElement("[aria-roledescription=file-upload-date]")
+		page.MustElementR("[aria-roledescription=file]", "movie.mp4").MustClick()
+		require.Contains(t, page.MustElement("[aria-roledescription=video-preview]").MustProperty("src").Str(), "movie.mp4", "The modal did not open on video file click")
+		page.MustElement("#close-modal").MustClick()
+
+		// Upload an audio file
+		wait3 := page.MustWaitRequestIdle()
+		audio, _ := filepath.Abs("./testdata/audio.mp3")
+		page.MustElement("input[aria-roledescription=file-upload]").MustSetFiles(audio)
+		wait3()
+		page.MustElementR("[aria-roledescription=file]", "audio.mp3").MustClick()
+		require.Contains(t, page.MustElement("[aria-roledescription=audio-preview]").MustProperty("src").Str(), "audio.mp3", "The modal did not open on video file click")
+		page.MustElement("#close-modal").MustClick()
+
+		// Navigate out of nested folder and delete everything
+		page.MustElement("#navigate-back").MustClick()
+		page.MustElement("button[aria-roledescription=dropdown]").MustClick()
+		page.MustElementR("button", "Delete").MustClick()
+		wait4 := page.MustWaitRequestIdle()
+		page.MustElementR("button", "Yes").MustClick()
+		wait4()
 	})
 }

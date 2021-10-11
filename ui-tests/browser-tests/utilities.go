@@ -2,9 +2,6 @@ package uitest
 
 import (
 	"fmt"
-	"image"
-	"image/color"
-	"image/png"
 	"os"
 	"path/filepath"
 )
@@ -21,50 +18,24 @@ func generateByteFile(name string, size int) string {
 		panic(err)
 	}
 
-	defer f.Close()
 	_, err = f.Write(data)
 
 	if err != nil {
 		panic(err)
 	}
 
-	file, _ := filepath.Abs(filePath)
-	return file
-}
-
-func generateImage(name string) string {
-	width := 200
-	height := 100
-
-	upLeft := image.Point{0, 0}
-	lowRight := image.Point{width, height}
-
-	img := image.NewRGBA(image.Rectangle{upLeft, lowRight})
-
-	shade := color.RGBA{200, 80, 188, 0x29}
-
-	for x := 0; x < width; x++ {
-		for y := 0; y < height; y++ {
-			switch {
-			case x < width/2 && y < height/2:
-				img.Set(x, y, shade)
-			case x >= width/2 && y >= height/2:
-				img.Set(x, y, color.White)
-			default:
-			}
-		}
-	}
-
-	filePath := fmt.Sprintf("./testdata/%s", name)
-	f, err := os.Create(filePath)
+	file, err := filepath.Abs(filePath)
 
 	if err != nil {
 		panic(err)
 	}
 
-	png.Encode(f, img)
+	err = f.Close()
 
-	file, _ := filepath.Abs(filePath)
+	if err != nil {
+		panic(err)
+	}
+
 	return file
 }
 
@@ -77,3 +48,12 @@ func removeFiles(files []string) {
 		}
 	}
 }
+
+// func generateEmptyFile(t *testing.T, ctx *testcontext.Context, name string, size memory.Size) string {
+// 	path := ctx.File(name)
+// 	f, err := os.Create(path)
+// 	require.NoError(t, err)
+// 	defer func() { require.NoError(t, f.Close()) }()
+// 	require.NoError(t, f.Truncate(size.Int64()))
+// 	return path
+// }
