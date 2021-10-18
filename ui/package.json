@@ -20,7 +20,7 @@
 		"worker-loader": "^3.0.8"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-router": "~4.5.13",
+		"@vue/cli-plugin-router": "~4.5.14",
 		"@vue/cli-plugin-typescript": "~4.5.13",
 		"@vue/cli-plugin-vuex": "~4.5.13",
 		"@vue/cli-service": "~4.5.13",
